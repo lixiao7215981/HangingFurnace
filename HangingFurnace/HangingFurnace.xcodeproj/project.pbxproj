@@ -16,6 +16,8 @@
 		4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */; };
 		4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80EB1B93FAE700C0E099 /* Info.plist */; };
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
+		4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED920C91B957C8E001B823F /* Home.storyboard */; };
+		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,10 @@
 		4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4EBF80EB1B93FAE700C0E099 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBF80EC1B93FAE700C0E099 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4ED920C81B9578BC001B823F /* PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCH.pch; sourceTree = "<group>"; };
+		4ED920C91B957C8E001B823F /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4ED920CB1B957D57001B823F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		4ED920CC1B957D57001B823F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,8 @@
 		4EBF80D91B93FAE700C0E099 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4ED920CB1B957D57001B823F /* HomeViewController.h */,
+				4ED920CC1B957D57001B823F /* HomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +168,7 @@
 		4EBF80DB1B93FAE700C0E099 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				4ED920C91B957C8E001B823F /* Home.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -232,6 +241,7 @@
 				4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */,
 				4EBF80EB1B93FAE700C0E099 /* Info.plist */,
 				4EBF80EC1B93FAE700C0E099 /* main.m */,
+				4ED920C81B9578BC001B823F /* PCH.pch */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -336,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */,
+				4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */,
 				4EBF80EF1B93FAE700C0E099 /* Main.storyboard in Resources */,
 				4EBF80EE1B93FAE700C0E099 /* LaunchScreen.xib in Resources */,
 				4EBF80BF1B93F98D00C0E099 /* Images.xcassets in Resources */,
@@ -407,6 +418,7 @@
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
 				4EBF80F41B93FAE700C0E099 /* main.m in Sources */,
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
+				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +530,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/PCH.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -534,6 +547,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",
 				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/PCH.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

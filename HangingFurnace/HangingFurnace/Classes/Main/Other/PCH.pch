@@ -1,0 +1,22 @@
+//
+//  PCH.pch
+//  HangingFurnace
+//
+//  Created by 李晓 on 15/9/1.
+//  Copyright (c) 2015年 skyware. All rights reserved.
+//
+
+#ifndef HangingFurnace_PCH_pch
+#define HangingFurnace_PCH_pch
+
+// 全局使用的分类引用
+#ifdef __OBJC__
+
+#import <ImportClass.h>
+#import <SkywareSDK.h>
+
+#define kSystemLoginViewBackageColor kRGBColor(231, 231, 231, 1)
+#define kSystemRedBtnColor kRGBColor(188, 0, 24, 1)
+
+#endif
+#endif

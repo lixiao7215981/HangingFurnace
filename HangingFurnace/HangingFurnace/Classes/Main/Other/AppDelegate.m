@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import <SMS_SDK/SMS_SDK.h>
+#import <SkywareUIInstance.h>
+#import <UserLoginViewController.h>
+
+#define SMS_SDKAppKey    @"888af4137d99"
+#define SMS_SDKAppSecret  @"907cae6bb1ecc40c41182c0109b61a21"
 
 @interface AppDelegate ()
 
@@ -16,7 +22,30 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
+    self.window.rootViewController = loginRegister;
+    self.navigationController = (UINavigationController *)loginRegister;
+    [self.window makeKeyAndVisible];
+    
+    
+    // 设置 App_id
+    SkywareInstanceModel *skywareInstance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    skywareInstance.app_id = 1;
+    
+    SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+    UIM.All_button_bgColor = [UIColor blueColor];
+    UIM.All_view_bgColor = kSystemLoginViewBackageColor;
+    
+    
+    
+    // 启动ShareSDK 的短信功能
+    [SMS_SDK registerApp:SMS_SDKAppKey withSecret:SMS_SDKAppSecret];
+    [SMS_SDK enableAppContactFriends:NO];
+    
+    
+    
     return YES;
 }
 
