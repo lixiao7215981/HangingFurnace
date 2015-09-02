@@ -7,10 +7,7 @@
 //
 
 #import "TCircleView.h"
-#import <TKit.h>
-#import <POP.h>
 #import "TCircleView+BaseConfiguration.h"
-
 @interface TCircleView ()
 
 @property (strong, nonatomic) CAShapeLayer *colorMaskLayer; // 渐变色遮罩
@@ -24,7 +21,7 @@
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-    
+
     self.backgroundColor = [TCircleView backgroundColor];
     
     [self setupColorLayer];
@@ -36,7 +33,6 @@
  *  设置整个蓝色view的遮罩
  */
 - (void)setupBlueMaskLayer {
-    
     CAShapeLayer *layer = [self generateMaskLayer];
     self.layer.mask = layer;
     self.blueMaskLayer = layer;
@@ -88,7 +84,7 @@
     layer.frame = self.bounds;
     
     // 创建一个圆心为父视图中点的圆，半径为父视图宽的2/5，起始角度是从-240°到60°
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.width / 2, self.height / 2) radius:self.width / 2.5 startAngle:[TCircleView startAngle] endAngle:[TCircleView endAngle] clockwise:YES];
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(self.width / 2, self.height / 2) radius:self.width / 2.5 startAngle:[TCircleView startAngle] endAngle:[TCircleView endAngle] clockwise:NO];
     layer.lineWidth = [TCircleView lineWidth];
     layer.path = path.CGPath;
     layer.fillColor = [UIColor clearColor].CGColor; // 填充色为透明（不设置为黑色）
@@ -105,8 +101,8 @@
 - (void)setPersentage:(CGFloat)persentage {
     
     _persentage = persentage;
-    //    self.colorMaskLayer.strokeEnd = persentage; // 没有回弹动画
-    [self animationWithStrokeEnd:persentage]; // 有回弹动画
+    self.colorMaskLayer.strokeEnd = persentage; // 没有回弹动画
+//    [self animationWithStrokeEnd:persentage]; // 有回弹动画
 }
 
 /**
@@ -114,13 +110,13 @@
  *
  *  @param strokeEnd 进度条结束的位置（当前百分比）
  */
+
 - (void)animationWithStrokeEnd:(CGFloat)strokeEnd {
-    
-    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
-    strokeAnimation.toValue = @(strokeEnd);
-    strokeAnimation.springBounciness = 12.f;
-    strokeAnimation.removedOnCompletion = NO;
-    [self.colorMaskLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
+//    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
+//    strokeAnimation.toValue = @(strokeEnd);
+//    strokeAnimation.springBounciness = 12.f;
+//    strokeAnimation.removedOnCompletion = NO;
+//    [self.colorMaskLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
 }
 
 @end

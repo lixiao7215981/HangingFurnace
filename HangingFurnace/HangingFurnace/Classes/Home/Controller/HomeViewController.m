@@ -17,11 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:@"kefeng"];
+    
+    self.circleView.persentage = 0.5;
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (IBAction)testCircle:(UISlider *)sender {
+    self.circleView.persentage = sender.value;
+
 }
 
 /*

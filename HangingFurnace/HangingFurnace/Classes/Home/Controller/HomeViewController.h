@@ -7,7 +7,12 @@
 //
 
 #import "BaseViewController.h"
-
+#import "HomTopView.h"
+#import "TCircleView.h"
 @interface HomeViewController : BaseViewController
+
+@property (weak, nonatomic) IBOutlet HomTopView *homeTopView;
+
+@property (weak, nonatomic) IBOutlet TCircleView *circleView;
 
 @end

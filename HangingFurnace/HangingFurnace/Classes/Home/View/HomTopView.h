@@ -10,4 +10,10 @@
 
 @interface HomTopView : UIView
 
+
+@property (weak, nonatomic) IBOutlet UILabel *lblTemp;
+@property (weak, nonatomic) IBOutlet UILabel *lblwind;
+
+
+
 @end

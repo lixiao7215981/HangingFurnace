@@ -18,6 +18,9 @@
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
 		4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED920C91B957C8E001B823F /* Home.storyboard */; };
 		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
+		8B2303DE1B9698F400644702 /* HomTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303DD1B9698F400644702 /* HomTopView.m */; };
+		8B2303E41B969C7C00644702 /* TCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303E11B969C7C00644702 /* TCircleView.m */; };
+		8B2303E51B969C7C00644702 /* TCircleView+BaseConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,12 @@
 		4ED920C91B957C8E001B823F /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4ED920CB1B957D57001B823F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		4ED920CC1B957D57001B823F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		8B2303DC1B9698F400644702 /* HomTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomTopView.h; sourceTree = "<group>"; };
+		8B2303DD1B9698F400644702 /* HomTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomTopView.m; sourceTree = "<group>"; };
+		8B2303E01B969C7C00644702 /* TCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircleView.h; sourceTree = "<group>"; };
+		8B2303E11B969C7C00644702 /* TCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircleView.m; sourceTree = "<group>"; };
+		8B2303E21B969C7C00644702 /* TCircleView+BaseConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCircleView+BaseConfiguration.h"; sourceTree = "<group>"; };
+		8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCircleView+BaseConfiguration.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,10 +150,10 @@
 		4EBF80D81B93FAE700C0E099 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8B2303DB1B9698E700644702 /* View */,
 				4EBF80D91B93FAE700C0E099 /* Controller */,
 				4EBF80DA1B93FAE700C0E099 /* Model */,
 				4EBF80DB1B93FAE700C0E099 /* Storyboard */,
-				4EBF80DC1B93FAE700C0E099 /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -171,13 +180,6 @@
 				4ED920C91B957C8E001B823F /* Home.storyboard */,
 			);
 			path = Storyboard;
-			sourceTree = "<group>";
-		};
-		4EBF80DC1B93FAE700C0E099 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4EBF80DD1B93FAE700C0E099 /* Main */ = {
@@ -214,6 +216,7 @@
 		4EBF80E41B93FAE700C0E099 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				8B2303E61B96A29000644702 /* Other */,
 				4EBF80E51B93FAE700C0E099 /* Pgy_SDK */,
 			);
 			path = Lib;
@@ -260,6 +263,34 @@
 				00A4B6F4B23544FD64EB5C29 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B2303DB1B9698E700644702 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B2303DF1B969C6F00644702 /* CustomView */,
+				8B2303DC1B9698F400644702 /* HomTopView.h */,
+				8B2303DD1B9698F400644702 /* HomTopView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8B2303DF1B969C6F00644702 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				8B2303E01B969C7C00644702 /* TCircleView.h */,
+				8B2303E11B969C7C00644702 /* TCircleView.m */,
+				8B2303E21B969C7C00644702 /* TCircleView+BaseConfiguration.h */,
+				8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */,
+			);
+			name = CustomView;
+			sourceTree = "<group>";
+		};
+		8B2303E61B96A29000644702 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,7 +449,10 @@
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
 				4EBF80F41B93FAE700C0E099 /* main.m in Sources */,
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
+				8B2303E41B969C7C00644702 /* TCircleView.m in Sources */,
+				8B2303DE1B9698F400644702 /* HomTopView.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
+				8B2303E51B969C7C00644702 /* TCircleView+BaseConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

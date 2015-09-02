@@ -7,8 +7,7 @@
 //
 
 #import "TCircleView+BaseConfiguration.h"
-#import <TKit.h>
-
+#import <UIColor+Category.h>
 #define DEGREES_TO_RADOANS(x) (M_PI * (x) / 180.0) // 将角度转为弧度
 
 @implementation TCircleView (BaseConfiguration)
@@ -29,23 +28,24 @@
 }
 
 + (UIColor *)backgroundColor {
-    
-    return [UIColor colorWithHex:0x2682D5 alpha:0.5];
+//    return [UIColor colorWithHex:0x2682D5 alpha:0.5];
+//    return [UIColor colorWithHexString:@"2682D5"];
+    return [UIColor lightGrayColor];
 }
 
 + (CGFloat)lineWidth {
     
-    return 20;
+    return 4;
 }
 
 + (CGFloat)startAngle {
     
-    return DEGREES_TO_RADOANS(-240);
+    return DEGREES_TO_RADOANS(-90);
 }
 
 + (CGFloat)endAngle {
     
-    return DEGREES_TO_RADOANS(60);
+    return DEGREES_TO_RADOANS(-89);
 }
 
 @end
