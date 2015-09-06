@@ -25,7 +25,6 @@
 }
 
 + (UIColor *)backgroundColor {
-//    return [UIColor colorWithHex:0x2682D5 alpha:0.5];
     return [UIColor colorWithHexString:@"d9d9d9"];
 }
 
@@ -35,12 +34,12 @@
 
 + (CGFloat)startAngle {
     
-    return DEGREES_TO_RADOANS(-91);
+    return DEGREES_TO_RADOANS(-92);
 }
 
 + (CGFloat)endAngle {
     
-    return DEGREES_TO_RADOANS(-89);
+    return DEGREES_TO_RADOANS(-90);
 }
 
 @end

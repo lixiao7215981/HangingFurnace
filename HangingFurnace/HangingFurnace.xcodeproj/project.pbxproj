@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A01B9C198E003C6E2A /* ASValuePopUpView.m */; };
+		4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A21B9C198E003C6E2A /* ASValueTrackingSlider.m */; };
+		4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A51B9C198E003C6E2A /* TCircleView+BaseConfiguration.m */; };
+		4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A71B9C198E003C6E2A /* TCircleView.m */; };
+		4EBBD9AF1B9C1A00003C6E2A /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9AD1B9C1A00003C6E2A /* HomeCollectionViewCell.m */; };
+		4EBBD9B01B9C1A00003C6E2A /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */; };
+		4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9B21B9C1D3B003C6E2A /* HomeCollectionView.m */; };
 		4EBF80BF1B93F98D00C0E099 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80BE1B93F98D00C0E099 /* Images.xcassets */; };
 		4EBF80CE1B93F98D00C0E099 /* HangingFurnaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80CD1B93F98D00C0E099 /* HangingFurnaceTests.m */; };
 		4EBF80EE1B93FAE700C0E099 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80E01B93FAE700C0E099 /* LaunchScreen.xib */; };
@@ -18,9 +25,6 @@
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
 		4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED920C91B957C8E001B823F /* Home.storyboard */; };
 		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
-		8B2303DE1B9698F400644702 /* HomTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303DD1B9698F400644702 /* HomTopView.m */; };
-		8B2303E41B969C7C00644702 /* TCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303E11B969C7C00644702 /* TCircleView.m */; };
-		8B2303E51B969C7C00644702 /* TCircleView+BaseConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +42,19 @@
 		00A4B6F4B23544FD64EB5C29 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		30C9AF198BFE5B95A31DCB26 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C063B83B514A70B7BF862BE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4EBBD99F1B9C198E003C6E2A /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
+		4EBBD9A01B9C198E003C6E2A /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
+		4EBBD9A11B9C198E003C6E2A /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
+		4EBBD9A21B9C198E003C6E2A /* ASValueTrackingSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValueTrackingSlider.m; sourceTree = "<group>"; };
+		4EBBD9A41B9C198E003C6E2A /* TCircleView+BaseConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCircleView+BaseConfiguration.h"; sourceTree = "<group>"; };
+		4EBBD9A51B9C198E003C6E2A /* TCircleView+BaseConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCircleView+BaseConfiguration.m"; sourceTree = "<group>"; };
+		4EBBD9A61B9C198E003C6E2A /* TCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircleView.h; sourceTree = "<group>"; };
+		4EBBD9A71B9C198E003C6E2A /* TCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircleView.m; sourceTree = "<group>"; };
+		4EBBD9AC1B9C1A00003C6E2A /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
+		4EBBD9AD1B9C1A00003C6E2A /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
+		4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		4EBBD9B11B9C1D3B003C6E2A /* HomeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionView.h; sourceTree = "<group>"; };
+		4EBBD9B21B9C1D3B003C6E2A /* HomeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionView.m; sourceTree = "<group>"; };
 		4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangingFurnace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF80BE1B93F98D00C0E099 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4EBF80C71B93F98D00C0E099 /* HangingFurnaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangingFurnaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,12 +73,6 @@
 		4ED920C91B957C8E001B823F /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4ED920CB1B957D57001B823F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		4ED920CC1B957D57001B823F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		8B2303DC1B9698F400644702 /* HomTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomTopView.h; sourceTree = "<group>"; };
-		8B2303DD1B9698F400644702 /* HomTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomTopView.m; sourceTree = "<group>"; };
-		8B2303E01B969C7C00644702 /* TCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCircleView.h; sourceTree = "<group>"; };
-		8B2303E11B969C7C00644702 /* TCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCircleView.m; sourceTree = "<group>"; };
-		8B2303E21B969C7C00644702 /* TCircleView+BaseConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCircleView+BaseConfiguration.h"; sourceTree = "<group>"; };
-		8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCircleView+BaseConfiguration.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +101,28 @@
 				30C9AF198BFE5B95A31DCB26 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EBBD99E1B9C198E003C6E2A /* ASValueTrackingSlider */ = {
+			isa = PBXGroup;
+			children = (
+				4EBBD99F1B9C198E003C6E2A /* ASValuePopUpView.h */,
+				4EBBD9A01B9C198E003C6E2A /* ASValuePopUpView.m */,
+				4EBBD9A11B9C198E003C6E2A /* ASValueTrackingSlider.h */,
+				4EBBD9A21B9C198E003C6E2A /* ASValueTrackingSlider.m */,
+			);
+			path = ASValueTrackingSlider;
+			sourceTree = "<group>";
+		};
+		4EBBD9A31B9C198E003C6E2A /* loopProgress */ = {
+			isa = PBXGroup;
+			children = (
+				4EBBD9A41B9C198E003C6E2A /* TCircleView+BaseConfiguration.h */,
+				4EBBD9A51B9C198E003C6E2A /* TCircleView+BaseConfiguration.m */,
+				4EBBD9A61B9C198E003C6E2A /* TCircleView.h */,
+				4EBBD9A71B9C198E003C6E2A /* TCircleView.m */,
+			);
+			path = loopProgress;
 			sourceTree = "<group>";
 		};
 		4EBF80A51B93F98D00C0E099 = {
@@ -216,7 +249,6 @@
 		4EBF80E41B93FAE700C0E099 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				8B2303E61B96A29000644702 /* Other */,
 				4EBF80E51B93FAE700C0E099 /* Pgy_SDK */,
 			);
 			path = Lib;
@@ -268,29 +300,15 @@
 		8B2303DB1B9698E700644702 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B2303DF1B969C6F00644702 /* CustomView */,
-				8B2303DC1B9698F400644702 /* HomTopView.h */,
-				8B2303DD1B9698F400644702 /* HomTopView.m */,
+				4EBBD99E1B9C198E003C6E2A /* ASValueTrackingSlider */,
+				4EBBD9A31B9C198E003C6E2A /* loopProgress */,
+				4EBBD9B11B9C1D3B003C6E2A /* HomeCollectionView.h */,
+				4EBBD9B21B9C1D3B003C6E2A /* HomeCollectionView.m */,
+				4EBBD9AC1B9C1A00003C6E2A /* HomeCollectionViewCell.h */,
+				4EBBD9AD1B9C1A00003C6E2A /* HomeCollectionViewCell.m */,
+				4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		8B2303DF1B969C6F00644702 /* CustomView */ = {
-			isa = PBXGroup;
-			children = (
-				8B2303E01B969C7C00644702 /* TCircleView.h */,
-				8B2303E11B969C7C00644702 /* TCircleView.m */,
-				8B2303E21B969C7C00644702 /* TCircleView+BaseConfiguration.h */,
-				8B2303E31B969C7C00644702 /* TCircleView+BaseConfiguration.m */,
-			);
-			name = CustomView;
-			sourceTree = "<group>";
-		};
-		8B2303E61B96A29000644702 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */,
+				4EBBD9B01B9C1A00003C6E2A /* HomeCollectionViewCell.xib in Resources */,
 				4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */,
 				4EBF80EF1B93FAE700C0E099 /* Main.storyboard in Resources */,
 				4EBF80EE1B93FAE700C0E099 /* LaunchScreen.xib in Resources */,
@@ -447,12 +466,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
+				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
+				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
+				4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */,
 				4EBF80F41B93FAE700C0E099 /* main.m in Sources */,
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
-				8B2303E41B969C7C00644702 /* TCircleView.m in Sources */,
-				8B2303DE1B9698F400644702 /* HomTopView.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
-				8B2303E51B969C7C00644702 /* TCircleView+BaseConfiguration.m in Sources */,
+				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
+				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,
+				4EBBD9AF1B9C1A00003C6E2A /* HomeCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
