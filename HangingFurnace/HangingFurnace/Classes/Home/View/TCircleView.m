@@ -51,13 +51,14 @@
     leftLayer.frame = CGRectMake(0, 0, self.width / 2, self.height);
     // 分段设置渐变色
     leftLayer.locations = @[@0.3, @0.9, @1];
-    leftLayer.colors = @[(id)[TCircleView centerColor].CGColor, (id)[TCircleView startColor].CGColor];
+    
+    leftLayer.colors = @[(id)[TCircleView startColor].CGColor, (id)[TCircleView centerColor].CGColor];//yelllow , green
     [self.colorLayer addSublayer:leftLayer];
     
     CAGradientLayer *rightLayer = [CAGradientLayer layer];
     rightLayer.frame = CGRectMake(self.width / 2, 0, self.width / 2, self.height);
     rightLayer.locations = @[@0.3, @0.9, @1];
-    rightLayer.colors = @[(id)[TCircleView centerColor].CGColor, (id)[TCircleView endColor].CGColor];
+    rightLayer.colors = @[(id)[TCircleView endColor].CGColor, (id)[TCircleView centerColor].CGColor];
     [self.colorLayer addSublayer:rightLayer];
 }
 
