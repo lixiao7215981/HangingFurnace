@@ -83,7 +83,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptP-Xb-1pp" userLabel="View-bottom">
                                 <rect key="frame" x="0.0" y="378" width="600" height="222"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-eX-Lj8" userLabel="W-set">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-eX-Lj8" userLabel="F-set">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="047-aI-g5S">
@@ -175,6 +175,11 @@
                     <navigationItem key="navigationItem" id="1dU-az-0Yq"/>
                     <connections>
                         <outlet property="CollectionView" destination="Tz7-kj-Eqb" id="4f1-rM-POB"/>
+                        <outlet property="F_setH" destination="FNR-gY-EQt" id="6Kk-Ah-LDR"/>
+                        <outlet property="S_setH" destination="5Z0-Bl-9Ez" id="ON8-dC-Ttj"/>
+                        <outlet property="State_setH" destination="A6u-VV-d7P" id="Z0T-Hu-zh3"/>
+                        <outlet property="T_setH" destination="C8h-xS-ThT" id="Owk-EC-trz"/>
+                        <outlet property="homeBtnH" destination="FZp-ZJ-e76" id="36J-gr-Luz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7s2-QK-Voa" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,13 @@
     NSTimer *_timer;
 }
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeBtnH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *S_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *F_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
+
+
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
 /*** 用户所有设备的Array */
@@ -40,8 +47,15 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self.dataList addObject:@(2)];
     
     
+    [self setScreenDisplay];
     
-    
+}
+
+- (void)setScreenDisplay
+{
+//    if () {
+//        <#statements#>
+//    }
 }
 
 - (void) setPersentageWith:(NSTimer *) params
