@@ -83,7 +83,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptP-Xb-1pp" userLabel="View-bottom">
                                 <rect key="frame" x="0.0" y="378" width="600" height="222"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-eX-Lj8" userLabel="W-set">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLC-eX-Lj8" userLabel="F-set">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="047-aI-g5S">
@@ -94,12 +94,18 @@
                                                 <state key="normal" title="壁挂炉">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="modeButtonClicked:" destination="Z2f-sn-rIC" eventType="touchUpInside" id="EYa-9g-TAf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrc-o6-bit">
                                                 <rect key="frame" x="300" y="0.0" width="300" height="44"/>
                                                 <state key="normal" title="热水器">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="modeButtonClicked:" destination="Z2f-sn-rIC" eventType="touchUpInside" id="UlC-RU-3yP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.98714745039999996" green="0.0" blue="0.027448250980000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,17 +132,26 @@
                                         <rect key="frame" x="0.0" y="88" width="600" height="90"/>
                                         <subviews>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wfg-Ln-Qtd" customClass="ASValueTrackingSlider">
-                                                <rect key="frame" x="6" y="19" width="588" height="31"/>
+                                                <rect key="frame" x="36" y="19" width="540" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="dXG-GZ-mMw"/>
                                                 </constraints>
                                             </slider>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T_setting" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-P0-osi">
+                                                <rect key="frame" x="20" y="40" width="560" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="mRQ-Iv-7mI"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="wfg-Ln-Qtd" secondAttribute="trailing" constant="8" id="5bR-YY-R1x"/>
-                                            <constraint firstItem="wfg-Ln-Qtd" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="8" id="79v-Fu-pmc"/>
+                                            <constraint firstAttribute="trailing" secondItem="wfg-Ln-Qtd" secondAttribute="trailing" constant="26" id="5bR-YY-R1x"/>
+                                            <constraint firstItem="wfg-Ln-Qtd" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="38" id="79v-Fu-pmc"/>
+                                            <constraint firstAttribute="trailing" secondItem="qp8-P0-osi" secondAttribute="trailing" constant="20" id="Ao9-O4-L95"/>
                                             <constraint firstAttribute="height" constant="90" id="C8h-xS-ThT"/>
+                                            <constraint firstItem="qp8-P0-osi" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="20" id="GY6-hw-y8W"/>
+                                            <constraint firstItem="qp8-P0-osi" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="40" id="bkc-b8-VIL"/>
                                             <constraint firstItem="wfg-Ln-Qtd" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="19" id="fwh-9q-73g"/>
                                         </constraints>
                                     </view>
@@ -186,6 +201,11 @@
                     <navigationItem key="navigationItem" id="1dU-az-0Yq"/>
                     <connections>
                         <outlet property="CollectionView" destination="Tz7-kj-Eqb" id="4f1-rM-POB"/>
+                        <outlet property="F_setH" destination="FNR-gY-EQt" id="6Kk-Ah-LDR"/>
+                        <outlet property="S_setH" destination="5Z0-Bl-9Ez" id="ON8-dC-Ttj"/>
+                        <outlet property="State_setH" destination="A6u-VV-d7P" id="Z0T-Hu-zh3"/>
+                        <outlet property="T_setH" destination="C8h-xS-ThT" id="Owk-EC-trz"/>
+                        <outlet property="homeBtnH" destination="FZp-ZJ-e76" id="36J-gr-Luz"/>
                         <outlet property="tempretureSliderView" destination="wfg-Ln-Qtd" id="i3K-nR-VzX"/>
                     </connections>
                 </viewController>
@@ -194,4 +214,7 @@
             <point key="canvasLocation" x="681" y="601"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="T_setting" width="289" height="28"/>
+    </resources>
 </document>

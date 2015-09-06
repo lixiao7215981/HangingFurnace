@@ -10,13 +10,21 @@
 #import "HomeCollectionView.h"
 #import "HomeCollectionViewCell.h"
 #import "ASValueTrackingSlider.h"
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDataSource>
+
+
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
 {
     NSTimer *_timer;
 }
 
 /*** 首页的温度指示View ***/
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *tempretureSliderView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeBtnH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *S_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *F_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
+
 
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
@@ -44,37 +52,40 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     [self setTSliderView];
     
+    [self setScreenDisplay];
     
 }
 -(void)setTSliderView
 {
-    NSNumberFormatter *tempFormatter = [[NSNumberFormatter alloc] init];
-    [tempFormatter setPositiveSuffix:@"°C"];
-    [tempFormatter setNegativeSuffix:@"°C"];
-    
-    //    self.slider3.dataSource = self;
-    [self.tempretureSliderView setNumberFormatter:tempFormatter];
-    self.tempretureSliderView.minimumValue = 20.0;
-    self.tempretureSliderView.maximumValue = 80.0;
-    self.tempretureSliderView.popUpViewCornerRadius = 16.0;
-    
-    self.tempretureSliderView.font = [UIFont systemFontOfSize:15];
-    self.tempretureSliderView.textColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    UIColor *coldBlue = [UIColor colorWithHue:0.6 saturation:0.7 brightness:1.0 alpha:1.0];
-    UIColor *blue = [UIColor colorWithHue:0.55 saturation:0.75 brightness:1.0 alpha:1.0];
-    UIColor *green = [UIColor colorWithHue:0.3 saturation:0.65 brightness:0.8 alpha:1.0];
-    UIColor *yellow = [UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0];
-    UIColor *red = [UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0];
-    [self.tempretureSliderView setPopUpViewAnimatedColors:@[coldBlue, blue, green, yellow, red]
-                               withPositions:@[@20, @30, @40, @50, @60]];
-    UIImage *tumbImage= [UIImage imageNamed:@"temp_color_pin"];
-    //设置指示图标样式
-    [self.tempretureSliderView setThumbImage:tumbImage forState:UIControlStateHighlighted];
-    [self.tempretureSliderView setThumbImage:tumbImage forState:UIControlStateNormal];
-    //设置跟踪色---这里设为透明
-    self.tempretureSliderView.minimumTrackTintColor = [UIColor clearColor];
-    self.tempretureSliderView.maximumTrackTintColor = [UIColor clearColor];
+//    self.tempretureSliderView.dataSource = self;
+    self.tempretureSliderView.delegate = self;
+    [self.tempretureSliderView customeSliderView];
+    [self updateByMode:ModeHange];
+}
 
+-(void)updateByMode:(WhichMode)mode
+{
+    NSArray *colorHang = [NSArray arrayWithObjects:myColor(113, 173, 197, 0.8),myColor(144, 180, 91, 0.8),[UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0], myColor(164, 80, 5, 0.9),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];//蓝,绿，黄，浅红，红
+    NSArray *positionHang = @[@20, @30, @40, @50, @70];
+    NSArray *colorsWarmer = [NSArray arrayWithObjects:myColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
+    NSArray *positionWarmer = @[@20,  @70];
+    if (mode == ModeHange) { //壁挂炉
+        self.tempretureSliderView.minimumValue = 20.0;
+        self.tempretureSliderView.maximumValue = 80.0;
+        [self.tempretureSliderView setPopUpViewAnimatedColors:colorHang withPositions:positionHang];
+    }else{ //取暖
+        self.tempretureSliderView.minimumValue = 30.0;
+        self.tempretureSliderView.maximumValue = 60.0;
+        [self.tempretureSliderView setPopUpViewAnimatedColors:colorsWarmer withPositions:positionWarmer];
+    }
+}
+
+
+- (void)setScreenDisplay
+{
+//    if () {
+//        <#statements#>
+//    }
 }
 
 - (void) setPersentageWith:(NSTimer *) params
@@ -94,6 +105,14 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 }
 
 
+#pragma mark --在壁挂炉和取暖之间切换
+- (IBAction)modeButtonClicked:(UIButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"壁挂炉"]) {
+        [self updateByMode:ModeHange];
+    }else{
+        [self updateByMode:ModeWarm];
+    }
+}
 
 
 #pragma mark - CollectionViewDelegate / DataSource
@@ -133,8 +152,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 }
 
 
-#pragma mark - ASValueTrackingSliderDataSource
-
+#pragma mark - ASValueTrackingSliderDataSource--暂时未用
 - (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value;
 {
     value = roundf(value);
@@ -148,6 +166,10 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     }
     return s;
 }
-
-
+#pragma mark -ASValueTrackingSliderDelegate
+-(void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
+{
+    //存储设定的值
+    NSLog(@"the slider value is %lf",slider.value);
+}
 @end
