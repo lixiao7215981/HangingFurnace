@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YhD-Yu-eef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YhD-Yu-eef">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -124,9 +124,20 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZC-nL-AUn" userLabel="T-set">
                                         <rect key="frame" x="0.0" y="88" width="600" height="90"/>
+                                        <subviews>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wfg-Ln-Qtd" customClass="ASValueTrackingSlider">
+                                                <rect key="frame" x="6" y="19" width="588" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="dXG-GZ-mMw"/>
+                                                </constraints>
+                                            </slider>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="wfg-Ln-Qtd" secondAttribute="trailing" constant="8" id="5bR-YY-R1x"/>
+                                            <constraint firstItem="wfg-Ln-Qtd" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="8" id="79v-Fu-pmc"/>
                                             <constraint firstAttribute="height" constant="90" id="C8h-xS-ThT"/>
+                                            <constraint firstItem="wfg-Ln-Qtd" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="19" id="fwh-9q-73g"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BE7-et-1c7">
@@ -175,6 +186,7 @@
                     <navigationItem key="navigationItem" id="1dU-az-0Yq"/>
                     <connections>
                         <outlet property="CollectionView" destination="Tz7-kj-Eqb" id="4f1-rM-POB"/>
+                        <outlet property="tempretureSliderView" destination="wfg-Ln-Qtd" id="i3K-nR-VzX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7s2-QK-Voa" userLabel="First Responder" sceneMemberID="firstResponder"/>
