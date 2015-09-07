@@ -67,6 +67,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     //设置温度指示
     [self setTSliderView];
+    
     [self setModeSettingCell];
     // 适配
     [self setScreenDisplay];
