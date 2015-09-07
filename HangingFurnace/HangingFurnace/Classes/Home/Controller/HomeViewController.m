@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_colorImgViewH;
 
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
@@ -102,6 +103,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _F_setH.constant = 40;
         _State_setH.constant = 50;
         _bottomViewH.constant = 80 + 40*3;
+        _T_colorImgViewH.constant = 24;
     }else if (IS_IPHONE_6){
         _homeBtnH.constant = 54;
         _T_setH.constant = 95;
@@ -109,6 +111,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _F_setH.constant = 54;
         _State_setH.constant = 60;
         _bottomViewH.constant = 95 + 54*3;
+        _T_colorImgViewH.constant = 30;
     }else if (IS_IPHONE_6P){
         _homeBtnH.constant = 60;
         _T_setH.constant = 100;
@@ -116,6 +119,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _F_setH.constant = 60;
         _State_setH.constant = 65;
         _bottomViewH.constant = 100 + 60*3;
+        _T_colorImgViewH.constant = 36;
     }
 }
 
