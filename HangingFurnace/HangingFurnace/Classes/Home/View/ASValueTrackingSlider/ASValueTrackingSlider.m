@@ -411,4 +411,25 @@ static void * ASValueTrackingSliderBoundsContext = &ASValueTrackingSliderBoundsC
     }
 }
 
+
+-(void)customeSliderView
+{
+    NSNumberFormatter *tempFormatter = [[NSNumberFormatter alloc] init];
+    [tempFormatter setPositiveSuffix:@"°C"];
+    [tempFormatter setNegativeSuffix:@"°C"];
+    [self setNumberFormatter:tempFormatter];
+    self.popUpViewCornerRadius = 16.0;
+    self.font = [UIFont systemFontOfSize:15];
+    self.textColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    
+    UIImage *tumbImage= [UIImage imageNamed:@"T-cursor"];
+    //设置指示图标样式
+    [self setThumbImage:tumbImage forState:UIControlStateHighlighted];
+    [self setThumbImage:tumbImage forState:UIControlStateNormal];
+    //设置跟踪色---这里设为透明
+    self.minimumTrackTintColor = [UIColor clearColor];
+    self.maximumTrackTintColor = [UIColor clearColor];  
+}
+
+
 @end

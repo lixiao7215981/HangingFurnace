@@ -18,5 +18,8 @@
 #define kSystemLoginViewBackageColor kRGBColor(231, 231, 231, 1)
 #define kSystemRedBtnColor kRGBColor(188, 0, 24, 1)
 
+//自定义颜色
+#define myColor(r,g,b,al) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:al]
+
 #endif
 #endif

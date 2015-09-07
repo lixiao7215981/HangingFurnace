@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSInteger, WhichMode){
+    ModeHange,
+    ModeHotWater,
+} ;
+
+
 @protocol ASValueTrackingSliderDelegate;
 @protocol ASValueTrackingSliderDataSource;
 
 @interface ASValueTrackingSlider : UISlider
+
+
+-(void)customeSliderView;
 
 // present the popupview manually, without touch event.
 - (void)showPopUpView;
@@ -34,6 +44,7 @@
 // the above @property distributes the colors evenly across the slider
 // to specify the exact position of colors on the slider scale, pass an NSArray of NSNumbers
 - (void)setPopUpViewAnimatedColors:(NSArray *)popUpViewAnimatedColors withPositions:(NSArray *)positions;
+
 
 // cornerRadius of the popUpView, default is 4.0
 @property (nonatomic) CGFloat popUpViewCornerRadius;
@@ -93,3 +104,4 @@
  }
  @end
  */
+
