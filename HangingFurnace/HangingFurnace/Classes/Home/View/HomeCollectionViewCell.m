@@ -41,7 +41,7 @@
     CGFloat CirX = kWindowWidth * 0.5 - self.LoopWH *0.5;
     CGFloat CirY = 15;
     _circleView = [[TCircleView alloc] initWithFrame:CGRectMake(CirX, CirY, self.LoopWH, self.LoopWH)];;
-    _circleView.persentage = 10;
+//    _circleView.persentage = 10;
     
     [self addSubview:_circleView];
     _topLabel = [UILabel newAutoLayoutView];
@@ -72,7 +72,7 @@
 
 - (void) setTemperatureWithT:(double) t
 {
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(setPersentageWith:) userInfo:@(t) repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(setPersentageWith:) userInfo:@(t) repeats:YES];
 }
 
 - (void) setPersentageWith:(NSTimer *) params
@@ -150,7 +150,7 @@
 {
     if (_topBottomFont == 0) {
         if (IS_IPHONE_4_OR_LESS) {
-            _topBottomFont = 13;
+            _topBottomFont = 11;
         }else if (IS_IPHONE_5){
             _topBottomFont = 13;
         }else if (IS_IPHONE_6){

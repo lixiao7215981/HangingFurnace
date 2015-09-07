@@ -35,7 +35,6 @@
 {
     [super layoutSubviews];
     _layout.itemSize = CGSizeMake(self.width, self.height);
-    NSLog(@"CollectionView---layoutSubviews");
 }
 
 
@@ -46,7 +45,6 @@
         _layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _layout.minimumLineSpacing = 0;
         _layout.minimumInteritemSpacing = 0;
-//        _layout.sectionInset = UIEdgeInsetsMake(0, 7, 0, 0);
     }
     return _layout;
 }

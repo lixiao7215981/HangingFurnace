@@ -28,7 +28,7 @@
 
 - (CGRect)titleRectForContentRect:(CGRect)contentRect
 {
-    CGFloat titleX = 8;
+    CGFloat titleX = 10;
     CGFloat titleY = 0;
     CGFloat titleW = 0;
     CGFloat titleH = contentRect.size.height;
@@ -36,7 +36,6 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[NSFontAttributeName] = [UIFont boldSystemFontOfSize:18];
     titleW = [self.currentTitle boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesFontLeading | NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size.width;
-    
     return CGRectMake(titleX, titleY, titleW, titleH);
 }
 
@@ -44,7 +43,7 @@
 {
     CGFloat imageW = self.currentImage.size.width;
     CGFloat imageH = contentRect.size.height;
-    CGFloat imageX = self.bounds.size.width - imageW + 8;
+    CGFloat imageX = (self.frame.size.width - CGRectGetMaxX(self.titleLabel.frame)) *0.5 + CGRectGetMaxX(self.titleLabel.frame) - imageW * 0.5;
     CGFloat imageY = 0;
     return CGRectMake(imageX, imageY, imageW, imageH);
     

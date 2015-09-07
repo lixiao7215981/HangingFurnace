@@ -19,12 +19,17 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="winter" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-ja-cQk">
+                        <rect key="frame" x="327" y="202" width="43" height="17"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="bKu-ja-cQk" secondAttribute="bottom" constant="10" id="Hwa-MD-skY"/>
                 <constraint firstAttribute="centerX" secondItem="o2j-Ay-Q1t" secondAttribute="centerX" id="Z5l-bn-40b"/>
+                <constraint firstAttribute="trailing" secondItem="bKu-ja-cQk" secondAttribute="trailing" constant="20" id="bIT-sb-hzc"/>
                 <constraint firstItem="o2j-Ay-Q1t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="gmR-Su-a7D"/>
             </constraints>
             <size key="customSize" width="390" height="248"/>
@@ -34,4 +39,7 @@
             <point key="canvasLocation" x="510" y="420.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="winter" width="43" height="17"/>
+    </resources>
 </document>

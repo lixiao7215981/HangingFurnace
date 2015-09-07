@@ -5,24 +5,20 @@
 //  Created by 李晓 on 15/9/1.
 //  Copyright (c) 2015年 skyware. All rights reserved.
 //
-
 #import "HomeViewController.h"
 #import "HomeCollectionView.h"
 #import "HomeCollectionViewCell.h"
 #import "ASValueTrackingSlider.h"
 #import "TempretureSetModel.h"
 #import "ModeSettingCellView.h"
-#import "ModeSetTableViewController.h"
 
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDelegate>
 {
     TempretureSetModel *_TModel;
-    
-    WhichMode _currentSelectedMode;//当前选择的是“壁挂炉”还是“热水器”
+    WhichMode _currentSelectedMode;//当前选择的是“取暖”还是“热水”
 }
 
-/*** 首页的温度指示View ***/
-@property (weak, nonatomic) IBOutlet ASValueTrackingSlider *tempretureSliderView;
+// ----------------屏幕适配---------------
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeBtnH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *S_setH;
@@ -30,19 +26,21 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 
-/**
- *  温度颜色图片的高度
- */
+/*** 取暖按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *warmOneselfBtn;
+/*** 热水按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *hotWaterBtn;
+/*** 首页的温度指示Slider */
+@property (weak, nonatomic) IBOutlet ASValueTrackingSlider *tempretureSliderView;
+/***  温度颜色图片的高度 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_colorImgViewH;
-
-/**
- *  模式设定Cell
- */
+/***  模式设定Cell */
 @property (weak, nonatomic) IBOutlet ModeSettingCellView *modeSettingCellView;
-
-
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
+
+
+
 /*** 用户所有设备的Array */
 @property (nonatomic,strong) NSMutableArray *dataList;
 
@@ -54,24 +52,19 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setCenterView:^UIView *{
         return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kefeng"]];
     }];
-    
+    // 注册CollectionViewCell
     [self registerCollectionNib];
-    
-    [self.dataList addObject:@(1)];
-    [self.dataList addObject:@(2)];
-    
-    
-    
     //设置温度指示
     [self setTSliderView];
-    
-    [self setModeSettingCell];
     // 适配
     [self setScreenDisplay];
     
+    [self.dataList addObject:@(1)];
+    [self.dataList addObject:@(2)];
     
 }
 
@@ -79,13 +72,13 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 #pragma mark -----------温度指示
 -(void)setTSliderView
 {
-    //    self.tempretureSliderView.dataSource = self;
     self.tempretureSliderView.delegate = self;
     [self.tempretureSliderView customeSliderView];
     
     _currentSelectedMode = ModeHange;//默认选择壁挂炉
     [self updateByMode:_currentSelectedMode];
     
+    // 模型Model
     _TModel = [[TempretureSetModel alloc] init];
     _TModel.hangTemp = @(40.0);
     _TModel.hotWaterTemp = @(60.0);
@@ -113,16 +106,29 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 }
 
 
-#pragma mark ------模式设定
--(void)setModeSettingCell
+#pragma mark -ASValueTrackingSliderDelegate
+-(void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider
 {
-    _modeSettingCellView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onModeVC)];
-    [_modeSettingCellView addGestureRecognizer:gesture];
+    //存储设定的值
+    if (_currentSelectedMode == ModeHange) {
+        _TModel.hangTemp = [NSNumber numberWithFloat:slider.value];
+    }else{
+        _TModel.hotWaterTemp = [NSNumber numberWithFloat:slider.value];
+    }
+}
+
+-(void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
+{
+    NSLog(@"the slider value is %lf",slider.value);
 }
 
 
 
+
+
+/**
+ *  适配屏幕大小
+ */
 - (void)setScreenDisplay
 {
     if (IS_IPHONE_5_OR_LESS) {
@@ -152,24 +158,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     }
 }
 
-
-
--(void)onModeVC
-{
-    [self.navigationController pushViewController:[[ModeSetTableViewController alloc] init] animated:YES];  
-}
-
-#pragma mark --在壁挂炉和取暖之间切换
-- (IBAction)modeButtonClicked:(UIButton *)sender {
-    if ([sender.titleLabel.text isEqualToString:@"壁挂炉"]) {
-        _currentSelectedMode = ModeHange;
-    }else{
-        _currentSelectedMode = ModeHotWater;
-    }
-    [self updateByMode:_currentSelectedMode];
-}
-
-
 #pragma mark - CollectionViewDelegate / DataSource
 
 - (void) registerCollectionNib
@@ -193,11 +181,28 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // 计算当前页数
-    NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
-    HomeCollectionViewCell *collectionViewCell = (HomeCollectionViewCell *)[self.CollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    [collectionViewCell updateConstraints];
-    
-    kFrameLog(collectionViewCell.frame);
+    //    NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
+}
+
+#pragma mark - UITapGestureRecognizer
+- (IBAction)pushModeVC:(UITapGestureRecognizer *)sender {
+    //     [self.navigationController pushViewController:[[ModeSetTableViewController alloc] init] animated:YES];
+}
+
+#pragma mark -- ButtonClick
+
+- (IBAction)warmOneselfBtnClick:(UIButton *)sender {
+    self.hotWaterBtn.selected = NO;
+    self.warmOneselfBtn.selected = YES;
+    _currentSelectedMode = ModeHange;
+    [self updateByMode:_currentSelectedMode];
+}
+
+- (IBAction)hotWaterBtnClick:(UIButton *)sender {
+    self.warmOneselfBtn.selected = NO;
+    self.hotWaterBtn.selected = YES;
+    _currentSelectedMode = ModeHotWater;
+    [self updateByMode:_currentSelectedMode];
 }
 
 #pragma mark - 懒加载
@@ -207,38 +212,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _dataList = [[NSMutableArray alloc] init];
     }
     return _dataList;
-}
-
-
-#pragma mark - ASValueTrackingSliderDataSource--暂时未用
-- (NSString *)slider:(ASValueTrackingSlider *)slider stringForValue:(float)value;
-{
-    value = roundf(value);
-    NSString *s;
-    if (value < 30.0) {
-        s = @"❄️Brrr!⛄️";
-    } else if (value > 40.0 && value < 50.0) {
-        s = [NSString stringWithFormat:@"😎 %@ 😎", [slider.numberFormatter stringFromNumber:@(value)]];
-    } else if (value >= 70.0) {
-        s = @"I’m Melting!";
-    }
-    return s;
-}
-
-#pragma mark -ASValueTrackingSliderDelegate
--(void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider
-{
-    //存储设定的值
-    if (_currentSelectedMode == ModeHange) {
-        _TModel.hangTemp = [NSNumber numberWithFloat:slider.value];
-    }else{
-        _TModel.hotWaterTemp = [NSNumber numberWithFloat:slider.value];
-    }
-}
-
--(void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
-{
-    NSLog(@"the slider value is %lf",slider.value);
 }
 
 @end
