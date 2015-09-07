@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *S_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *F_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 
 
 /*** 首页的CollectionView */
@@ -38,7 +39,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self setNavTitle:@"kefeng"];
     
     // 模拟下载进度
-//    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(setPersentageWith:) userInfo:@(80.5) repeats:YES];
+    //    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(setPersentageWith:) userInfo:@(80.5) repeats:YES];
     
     
     [self registerCollectionNib];
@@ -46,16 +47,34 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self.dataList addObject:@(1)];
     [self.dataList addObject:@(2)];
     
-    
+    // 适配
     [self setScreenDisplay];
     
+
 }
 
 - (void)setScreenDisplay
 {
-//    if () {
-//        <#statements#>
-//    }
+    if (IS_IPHONE_5_OR_LESS) {
+        _homeBtnH.constant = 40;
+        _T_setH.constant = 80;
+        _S_setH.constant = 40;
+        _F_setH.constant = 40;
+        _State_setH.constant = 50;
+        _bottomViewH.constant = 80 + 40*3;
+    }else if (IS_IPHONE_6){
+        _homeBtnH.constant = 54;
+        _T_setH.constant = 95;
+        _S_setH.constant = 54;
+        _F_setH.constant = 54;
+        _State_setH.constant = 60;
+    }else if (IS_IPHONE_6P){
+        _homeBtnH.constant = 60;
+        _T_setH.constant = 100;
+        _S_setH.constant = 60;
+        _F_setH.constant = 60;
+        _State_setH.constant = 65;
+    }
 }
 
 - (void) setPersentageWith:(NSTimer *) params
@@ -101,7 +120,10 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 {
     // 计算当前页数
     NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    HomeCollectionViewCell *collectionViewCell = (HomeCollectionViewCell *)[self.CollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [collectionViewCell updateConstraints];
     
+    kFrameLog(collectionViewCell.frame);
 }
 
 #pragma mark - 懒加载

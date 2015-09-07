@@ -179,6 +179,7 @@
                         <outlet property="S_setH" destination="5Z0-Bl-9Ez" id="ON8-dC-Ttj"/>
                         <outlet property="State_setH" destination="A6u-VV-d7P" id="Z0T-Hu-zh3"/>
                         <outlet property="T_setH" destination="C8h-xS-ThT" id="Owk-EC-trz"/>
+                        <outlet property="bottomViewH" destination="Bh0-Rh-42m" id="Zg6-nP-E4f"/>
                         <outlet property="homeBtnH" destination="FZp-ZJ-e76" id="36J-gr-Luz"/>
                     </connections>
                 </viewController>
