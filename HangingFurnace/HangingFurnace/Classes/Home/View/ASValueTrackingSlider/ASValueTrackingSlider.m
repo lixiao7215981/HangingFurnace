@@ -428,9 +428,7 @@ static void * ASValueTrackingSliderBoundsContext = &ASValueTrackingSliderBoundsC
     [self setThumbImage:tumbImage forState:UIControlStateNormal];
     //设置跟踪色---这里设为透明
     self.minimumTrackTintColor = [UIColor clearColor];
-    self.maximumTrackTintColor = [UIColor clearColor];
-    
-    
+    self.maximumTrackTintColor = [UIColor clearColor];  
 }
 
 

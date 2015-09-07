@@ -10,7 +10,7 @@
 
 typedef NS_ENUM(NSInteger, WhichMode){
     ModeHange,
-    ModeWarm,
+    ModeHotWater,
 } ;
 
 
@@ -44,7 +44,6 @@ typedef NS_ENUM(NSInteger, WhichMode){
 // the above @property distributes the colors evenly across the slider
 // to specify the exact position of colors on the slider scale, pass an NSArray of NSNumbers
 - (void)setPopUpViewAnimatedColors:(NSArray *)popUpViewAnimatedColors withPositions:(NSArray *)positions;
-
 
 
 // cornerRadius of the popUpView, default is 4.0

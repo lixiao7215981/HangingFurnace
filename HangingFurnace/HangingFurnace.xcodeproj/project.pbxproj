@@ -25,6 +25,7 @@
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
 		4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED920C91B957C8E001B823F /* Home.storyboard */; };
 		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
+		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,8 @@
 		4ED920C91B957C8E001B823F /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4ED920CB1B957D57001B823F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		4ED920CC1B957D57001B823F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
+		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,9 +186,9 @@
 		4EBF80D81B93FAE700C0E099 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				8BA6A9041B9C795B00537F67 /* Model */,
 				8B2303DB1B9698E700644702 /* View */,
 				4EBF80D91B93FAE700C0E099 /* Controller */,
-				4EBF80DA1B93FAE700C0E099 /* Model */,
 				4EBF80DB1B93FAE700C0E099 /* Storyboard */,
 			);
 			path = Home;
@@ -198,13 +201,6 @@
 				4ED920CC1B957D57001B823F /* HomeViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		4EBF80DA1B93FAE700C0E099 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		4EBF80DB1B93FAE700C0E099 /* Storyboard */ = {
@@ -309,6 +305,15 @@
 				4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		8BA6A9041B9C795B00537F67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */,
+				8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +471,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
+				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
 				4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */,

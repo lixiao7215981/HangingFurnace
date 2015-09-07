@@ -143,6 +143,24 @@
                                                     <constraint firstAttribute="height" constant="30" id="mRQ-Iv-7mI"/>
                                                 </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="温度设定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R01-Dq-SYy">
+                                                <rect key="frame" x="20" y="11" width="60" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30℃" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD0-h0-8l2">
+                                                <rect key="frame" x="20" y="70" width="32" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80℃" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-EF-KiT">
+                                                <rect key="frame" x="548.5" y="70" width="32" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -150,9 +168,15 @@
                                             <constraint firstItem="wfg-Ln-Qtd" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="38" id="79v-Fu-pmc"/>
                                             <constraint firstAttribute="trailing" secondItem="qp8-P0-osi" secondAttribute="trailing" constant="20" id="Ao9-O4-L95"/>
                                             <constraint firstAttribute="height" constant="90" id="C8h-xS-ThT"/>
+                                            <constraint firstItem="LD0-h0-8l2" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="20" id="GDZ-Ad-k3w"/>
                                             <constraint firstItem="qp8-P0-osi" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="20" id="GY6-hw-y8W"/>
+                                            <constraint firstAttribute="trailing" secondItem="bIM-EF-KiT" secondAttribute="trailing" constant="20" id="QUS-N5-sHr"/>
+                                            <constraint firstItem="bIM-EF-KiT" firstAttribute="top" secondItem="qp8-P0-osi" secondAttribute="bottom" id="Qow-1O-8rb"/>
+                                            <constraint firstItem="R01-Dq-SYy" firstAttribute="leading" secondItem="8ZC-nL-AUn" secondAttribute="leading" constant="20" id="StX-Qb-is4"/>
                                             <constraint firstItem="qp8-P0-osi" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="40" id="bkc-b8-VIL"/>
                                             <constraint firstItem="wfg-Ln-Qtd" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="19" id="fwh-9q-73g"/>
+                                            <constraint firstItem="LD0-h0-8l2" firstAttribute="top" secondItem="qp8-P0-osi" secondAttribute="bottom" id="nh8-h9-d5t"/>
+                                            <constraint firstItem="R01-Dq-SYy" firstAttribute="top" secondItem="8ZC-nL-AUn" secondAttribute="top" constant="11" id="r0o-Dz-Qhe"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BE7-et-1c7">
