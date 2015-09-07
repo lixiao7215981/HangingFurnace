@@ -18,53 +18,10 @@
 
 @implementation TCircleView
 
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.backgroundColor = [TCircleView backgroundColor];
-        
-        [self setupColorLayer];
-        [self setupColorMaskLayer];
-        [self setupBlueMaskLayer];
-  
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.backgroundColor = [TCircleView backgroundColor];
-        
-        [self setupColorLayer];
-        [self setupColorMaskLayer];
-        [self setupBlueMaskLayer];
-        
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.backgroundColor = [TCircleView backgroundColor];
-        
-        [self setupColorLayer];
-        [self setupColorMaskLayer];
-        [self setupBlueMaskLayer];
-        
-    }
-    return self;
-}
-
 - (void)awakeFromNib {
     
     [super awakeFromNib];
-
+    
     self.backgroundColor = [TCircleView backgroundColor];
     
     [self setupColorLayer];
@@ -72,6 +29,17 @@
     [self setupBlueMaskLayer];
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [TCircleView backgroundColor];
+        [self setupColorLayer];
+        [self setupColorMaskLayer];
+        [self setupBlueMaskLayer];
+    }
+    return self;
+}
 /**
  *  设置整个蓝色view的遮罩
  */
@@ -89,7 +57,7 @@
     self.colorLayer = [CAShapeLayer layer];
     self.colorLayer.frame = self.bounds;
     [self.layer addSublayer:self.colorLayer];
-
+    
     CAGradientLayer *leftLayer = [CAGradientLayer layer];
     leftLayer.frame = CGRectMake(0, 0, self.width / 2, self.height);
     // 分段设置渐变色
@@ -143,10 +111,9 @@
  *  @param persentage 百分比
  */
 - (void)setPersentage:(CGFloat)persentage {
-    
     _persentage = persentage;
     self.colorMaskLayer.strokeEnd = persentage; // 没有回弹动画
-//    [self animationWithStrokeEnd:persentage]; // 有回弹动画
+    //    [self animationWithStrokeEnd:persentage]; // 有回弹动画
 }
 
 /**
@@ -156,11 +123,11 @@
  */
 
 - (void)animationWithStrokeEnd:(CGFloat)strokeEnd {
-//    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
-//    strokeAnimation.toValue = @(strokeEnd);
-//    strokeAnimation.springBounciness = 12.f;
-//    strokeAnimation.removedOnCompletion = NO;
-//    [self.colorMaskLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
+    //    POPSpringAnimation *strokeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPShapeLayerStrokeEnd];
+    //    strokeAnimation.toValue = @(strokeEnd);
+    //    strokeAnimation.springBounciness = 12.f;
+    //    strokeAnimation.removedOnCompletion = NO;
+    //    [self.colorMaskLayer pop_addAnimation:strokeAnimation forKey:@"layerStrokeAnimation"];
 }
 
 @end

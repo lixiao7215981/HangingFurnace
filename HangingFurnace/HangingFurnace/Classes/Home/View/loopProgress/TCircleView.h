@@ -12,4 +12,5 @@
 
 @property (assign, nonatomic) CGFloat persentage;
 
+
 @end

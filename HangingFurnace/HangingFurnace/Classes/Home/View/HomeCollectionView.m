@@ -35,6 +35,7 @@
 {
     [super layoutSubviews];
     _layout.itemSize = CGSizeMake(self.width, self.height);
+    NSLog(@"CollectionView---layoutSubviews");
 }
 
 

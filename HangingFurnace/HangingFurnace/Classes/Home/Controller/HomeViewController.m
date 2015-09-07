@@ -46,7 +46,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self setCenterView:^UIView *{
         return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kefeng"]];
     }];
-//    [self setNavTitle:@"kefeng"];
     
     [self registerCollectionNib];
     
@@ -55,6 +54,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     
     [self setTSliderView];
+    
     // 适配
     [self setScreenDisplay];
     
@@ -77,10 +77,10 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 
 -(void)updateByMode:(WhichMode)mode
 {
-    NSArray *colorHang = [NSArray arrayWithObjects:myColor(113, 173, 197, 0.8),myColor(144, 180, 91, 0.8),[UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0], myColor(164, 80, 5, 0.9),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];//蓝,绿，黄，浅红，红
+    NSArray *colorHang = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),kRGBColor(144, 180, 91, 0.8),[UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0], kRGBColor(164, 80, 5, 0.9),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];//蓝,绿，黄，浅红，红
     NSArray *positionHang = @[@20, @30, @40, @50, @70];
     
-    NSArray *colorsWarmer = [NSArray arrayWithObjects:myColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
+    NSArray *colorsWarmer = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
     NSArray *positionWarmer = @[@20,  @70];
     
     if (mode == ModeHange) { //壁挂炉
@@ -100,29 +100,29 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 - (void)setScreenDisplay
 {
     if (IS_IPHONE_5_OR_LESS) {
-        _homeBtnH.constant = 40;
-        _T_setH.constant = 80;
-        _S_setH.constant = 40;
-        _F_setH.constant = 40;
-        _State_setH.constant = 50;
-        _bottomViewH.constant = 80 + 40*3;
-        _T_colorImgViewH.constant = 24;
+        _homeBtnH.constant = HomeiPhone5s_or_less_3;
+        _T_setH.constant = HomeiPhone5s_or_less_1;
+        _S_setH.constant = HomeiPhone5s_or_less_3;
+        _F_setH.constant = HomeiPhone5s_or_less_3;
+        _State_setH.constant = HomeiPhone5s_or_less_State;
+        _bottomViewH.constant = HomeiPhone5s_or_less_1 + HomeiPhone5s_or_less_3*3;
+        _T_colorImgViewH.constant = HomeiPhone5s_or_less_T_colorsettingimg;
     }else if (IS_IPHONE_6){
-        _homeBtnH.constant = 54;
-        _T_setH.constant = 95;
-        _S_setH.constant = 54;
-        _F_setH.constant = 54;
-        _State_setH.constant = 60;
-        _bottomViewH.constant = 95 + 54*3;
-        _T_colorImgViewH.constant = 30;
+        _homeBtnH.constant = HomeiPhone6_3;
+        _T_setH.constant = HomeiPhone6_1;
+        _S_setH.constant = HomeiPhone6_3;
+        _F_setH.constant = HomeiPhone6_3;
+        _State_setH.constant = HomeiPhone6_State;
+        _bottomViewH.constant = HomeiPhone6_1 + HomeiPhone6_3*3;
+        _T_colorImgViewH.constant = HomeiPhone6_T_colorsettingimg;
     }else if (IS_IPHONE_6P){
-        _homeBtnH.constant = 60;
-        _T_setH.constant = 100;
-        _S_setH.constant = 60;
-        _F_setH.constant = 60;
-        _State_setH.constant = 65;
-        _bottomViewH.constant = 100 + 60*3;
-        _T_colorImgViewH.constant = 36;
+        _homeBtnH.constant = HomeiPhone6plus_3;
+        _T_setH.constant = HomeiPhone6plus_1;
+        _S_setH.constant = HomeiPhone6plus_3;
+        _F_setH.constant = HomeiPhone6plus_3;
+        _State_setH.constant = HomeiPhone6plus_State;
+        _bottomViewH.constant = HomeiPhone6plus_1 + HomeiPhone6plus_3*3;
+        _T_colorImgViewH.constant = HomeiPhone6plus_T_colorsettingimg;
     }
 }
 
