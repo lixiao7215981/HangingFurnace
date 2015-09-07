@@ -27,6 +27,7 @@
 		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		8BC7216F1B9D23AE001E440A /* ModeSettingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */; };
+		8BC721741B9D2A8F001E440A /* ModeSetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC721731B9D2A8F001E440A /* ModeSetTableViewController.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,8 @@
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
 		8BC7216D1B9D23AE001E440A /* ModeSettingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeSettingCellView.h; sourceTree = "<group>"; };
 		8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeSettingCellView.m; sourceTree = "<group>"; };
+		8BC721721B9D2A8F001E440A /* ModeSetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeSetTableViewController.h; sourceTree = "<group>"; };
+		8BC721731B9D2A8F001E440A /* ModeSetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeSetTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,7 +220,7 @@
 		4EBF80DD1B93FAE700C0E099 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				4EBF80DE1B93FAE700C0E099 /* Controller */,
+				8BC721701B9D2A28001E440A /* Controllers */,
 				4EBF80DF1B93FAE700C0E099 /* LaunchScreen */,
 				4EBF80E41B93FAE700C0E099 /* Lib */,
 				4EBF80E71B93FAE700C0E099 /* Model */,
@@ -225,13 +228,6 @@
 				4EBF80ED1B93FAE700C0E099 /* View */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		4EBF80DE1B93FAE700C0E099 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		4EBF80DF1B93FAE700C0E099 /* LaunchScreen */ = {
@@ -327,6 +323,23 @@
 				8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */,
 			);
 			path = modeSeting;
+			sourceTree = "<group>";
+		};
+		8BC721701B9D2A28001E440A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8BC721711B9D2A41001E440A /* ModeSetting */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8BC721711B9D2A41001E440A /* ModeSetting */ = {
+			isa = PBXGroup;
+			children = (
+				8BC721721B9D2A8F001E440A /* ModeSetTableViewController.h */,
+				8BC721731B9D2A8F001E440A /* ModeSetTableViewController.m */,
+			);
+			path = ModeSetting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +506,7 @@
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
 				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
+				8BC721741B9D2A8F001E440A /* ModeSetTableViewController.m in Sources */,
 				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,
 				4EBBD9AF1B9C1A00003C6E2A /* HomeCollectionViewCell.m in Sources */,
 			);
