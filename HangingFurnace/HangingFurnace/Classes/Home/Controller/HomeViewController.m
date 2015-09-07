@@ -42,7 +42,10 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNavTitle:@"kefeng"];
+    [self setCenterView:^UIView *{
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kefeng"]];
+    }];
+//    [self setNavTitle:@"kefeng"];
     
     [self registerCollectionNib];
     
@@ -184,6 +187,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     }
     return s;
 }
+
 #pragma mark -ASValueTrackingSliderDelegate
 -(void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider
 {
@@ -199,4 +203,5 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 {
     NSLog(@"the slider value is %lf",slider.value);
 }
+
 @end

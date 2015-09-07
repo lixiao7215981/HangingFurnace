@@ -19,11 +19,19 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgV-JR-2K6">
+                        <rect key="frame" x="129" y="61" width="133" height="108"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="centerX" secondItem="fgV-JR-2K6" secondAttribute="centerX" id="5at-kO-MDi"/>
+                <constraint firstAttribute="centerY" secondItem="fgV-JR-2K6" secondAttribute="centerY" id="F1o-gT-TPD"/>
                 <constraint firstAttribute="centerX" secondItem="o2j-Ay-Q1t" secondAttribute="centerX" id="Z5l-bn-40b"/>
                 <constraint firstItem="o2j-Ay-Q1t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="gmR-Su-a7D"/>
             </constraints>

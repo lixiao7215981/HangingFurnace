@@ -38,6 +38,9 @@
     UIM.All_button_bgColor = [UIColor blueColor];
     UIM.All_view_bgColor = kSystemLoginViewBackageColor;
     
+    LXFrameWorkInstance *LXM = [LXFrameWorkInstance sharedLXFrameWorkInstance];
+    LXM.NavigationBar_bgColor = kRGBColor(200, 31, 2, 1);
+    
     
     
     // 启动ShareSDK 的短信功能
