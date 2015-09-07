@@ -14,8 +14,6 @@
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
 {
-    NSTimer *_timer;
-    
     TempretureSetModel *_TModel;
     
     WhichMode _currentSelectedMode;//当前选择的是“壁挂炉”还是“热水器”
@@ -46,10 +44,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [super viewDidLoad];
     [self setNavTitle:@"kefeng"];
     
-    // 模拟下载进度
-    //    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(setPersentageWith:) userInfo:@(80.5) repeats:YES];
-    
-    
     [self registerCollectionNib];
     
     [self.dataList addObject:@(1)];
@@ -60,21 +54,21 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 适配
     [self setScreenDisplay];
     
-
+    
 }
 -(void)setTSliderView
 {
-//    self.tempretureSliderView.dataSource = self;
+    //    self.tempretureSliderView.dataSource = self;
     self.tempretureSliderView.delegate = self;
     [self.tempretureSliderView customeSliderView];
-
+    
     _currentSelectedMode = ModeHange;//默认选择壁挂炉
     [self updateByMode:_currentSelectedMode];
     
     _TModel = [[TempretureSetModel alloc] init];
     _TModel.hangTemp = @(40.0);
     _TModel.hotWaterTemp = @(60.0);
-
+    
 }
 
 -(void)updateByMode:(WhichMode)mode
@@ -84,7 +78,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     NSArray *colorsWarmer = [NSArray arrayWithObjects:myColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
     NSArray *positionWarmer = @[@20,  @70];
-
+    
     if (mode == ModeHange) { //壁挂炉
         self.tempretureSliderView.minimumValue = 20.0;
         self.tempretureSliderView.maximumValue = 80.0;
@@ -114,31 +108,16 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _S_setH.constant = 54;
         _F_setH.constant = 54;
         _State_setH.constant = 60;
+        _bottomViewH.constant = 95 + 54*3;
     }else if (IS_IPHONE_6P){
         _homeBtnH.constant = 60;
         _T_setH.constant = 100;
         _S_setH.constant = 60;
         _F_setH.constant = 60;
         _State_setH.constant = 65;
+        _bottomViewH.constant = 100 + 60*3;
     }
 }
-
-- (void) setPersentageWith:(NSTimer *) params
-{
-    CGFloat end = [params.userInfo floatValue]/100;
-    static CGFloat progress = 15 / 100;
-    // 循环
-    if (progress <= end){
-        progress += 0.01;
-        //            self.circleView.persentage = progress;
-    }else{
-        [_timer invalidate];
-    }
-    // 进度数字
-    NSString *progressStr = [NSString stringWithFormat:@"%.0f", progress * 100];
-    NSLog(@"%@",progressStr);
-}
-
 
 #pragma mark --在壁挂炉和取暖之间切换
 - (IBAction)modeButtonClicked:(UIButton *)sender {
@@ -167,7 +146,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeCollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellID forIndexPath:indexPath];
-    
+    [collectionViewCell setTemperatureWithT:80];
     return collectionViewCell;
 }
 

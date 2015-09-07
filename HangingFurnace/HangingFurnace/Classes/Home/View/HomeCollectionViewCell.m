@@ -10,7 +10,9 @@
 #import "TCircleView.h"
 
 @interface HomeCollectionViewCell ()
-
+{
+    NSTimer *_timer;
+}
 @property (strong, nonatomic) TCircleView *circleView;
 
 @end
@@ -18,6 +20,7 @@
 @implementation HomeCollectionViewCell
 
 - (void)awakeFromNib {
+    
     
 }
 
@@ -40,10 +43,32 @@
         CirWH =  self.height -40;
         CirY = 0;
     }
-     CirX = self.width * 0.5 - CirWH *0.5;
+    CirX = self.width * 0.5 - CirWH *0.5;
     _circleView = [[TCircleView alloc] initWithFrame:CGRectMake(CirX, CirY, CirWH, CirWH)];
     [self addSubview:_circleView];
 }
+
+- (void) setTemperatureWithT:(double) t
+{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(setPersentageWith:) userInfo:@(t) repeats:YES];
+}
+
+- (void) setPersentageWith:(NSTimer *) params
+{
+    CGFloat end = [params.userInfo floatValue]/100;
+    static CGFloat progress = 15 / 100;
+    // 循环
+    if (progress <= end){
+        progress += 0.01;
+        self.circleView.persentage = progress;
+    }else{
+        [_timer invalidate];
+    }
+    // 进度数字
+    NSString *progressStr = [NSString stringWithFormat:@"%.0f", progress * 100];
+    NSLog(@"%@",progressStr);
+}
+
 
 
 @end

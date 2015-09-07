@@ -10,4 +10,6 @@
 
 @interface HomeCollectionViewCell : UICollectionViewCell
 
+- (void) setTemperatureWithT:(double) t;
+
 @end
