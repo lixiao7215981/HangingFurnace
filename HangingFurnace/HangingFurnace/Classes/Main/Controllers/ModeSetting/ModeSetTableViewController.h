@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ModeSetTableViewController : UITableViewController
+#import "BaseViewController.h"
+@interface ModeSetTableViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

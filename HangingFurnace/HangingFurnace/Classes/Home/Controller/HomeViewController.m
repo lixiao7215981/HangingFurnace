@@ -11,6 +11,8 @@
 #import "HomeCollectionViewCell.h"
 #import "ASValueTrackingSlider.h"
 #import "TempretureSetModel.h"
+#import "ModeSettingCellView.h"
+#import "ModeSetTableViewController.h"
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDataSource,ASValueTrackingSliderDelegate>
 {
@@ -28,7 +30,16 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *State_setH;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewH;
 
+/**
+ *  温度颜色图片的高度
+ */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_colorImgViewH;
+
+/**
+ *  模式设定Cell
+ */
+@property (weak, nonatomic) IBOutlet ModeSettingCellView *modeSettingCellView;
+
 
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
@@ -51,12 +62,19 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self.dataList addObject:@(2)];
     
     
+    
+    //设置温度指示
     [self setTSliderView];
+    
+    [self setModeSettingCell];
     // 适配
     [self setScreenDisplay];
     
     
 }
+
+
+#pragma mark -----------温度指示
 -(void)setTSliderView
 {
     //    self.tempretureSliderView.dataSource = self;
@@ -69,7 +87,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     _TModel = [[TempretureSetModel alloc] init];
     _TModel.hangTemp = @(40.0);
     _TModel.hotWaterTemp = @(60.0);
-    
 }
 
 -(void)updateByMode:(WhichMode)mode
@@ -92,6 +109,16 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         [self.tempretureSliderView setPopUpViewAnimatedColors:colorsWarmer withPositions:positionWarmer];
     }
 }
+
+
+#pragma mark ------模式设定
+-(void)setModeSettingCell
+{
+    _modeSettingCellView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onModeVC)];
+    [_modeSettingCellView addGestureRecognizer:gesture];
+}
+
 
 
 - (void)setScreenDisplay
@@ -121,6 +148,13 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _bottomViewH.constant = 100 + 60*3;
         _T_colorImgViewH.constant = 36;
     }
+}
+
+
+
+-(void)onModeVC
+{
+    [self.navigationController pushViewController:[[ModeSetTableViewController alloc] init] animated:YES];  
 }
 
 #pragma mark --在壁挂炉和取暖之间切换
