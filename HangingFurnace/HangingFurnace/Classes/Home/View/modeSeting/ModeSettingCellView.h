@@ -10,4 +10,9 @@
 
 @interface ModeSettingCellView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *currentMode;
+
+
+
+
 @end

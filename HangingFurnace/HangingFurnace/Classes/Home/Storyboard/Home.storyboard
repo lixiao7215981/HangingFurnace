@@ -121,20 +121,44 @@
                                             <constraint firstItem="eQj-Q3-ihl" firstAttribute="leading" secondItem="BLC-eX-Lj8" secondAttribute="leading" id="sV9-KB-2Sg"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-qm-I33" userLabel="S-set">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgV-qm-I33" userLabel="S-set" customClass="ModeSettingCellView">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlk-rE-fqS">
-                                                <rect key="frame" x="283" y="8" width="46" height="30"/>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="模式设定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8h-4B-ggl">
+                                                <rect key="frame" x="20" y="8" width="52" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无定时模式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRV-nH-GyA">
+                                                <rect key="frame" x="20" y="25" width="60" height="14.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zXX-Wr-Wo7">
+                                                <rect key="frame" x="560" y="12" width="20" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="Sfq-Ya-e7L"/>
+                                                    <constraint firstAttribute="height" constant="20" id="q1c-nc-xTh"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="5Z0-Bl-9Ez"/>
+                                            <constraint firstAttribute="trailing" secondItem="zXX-Wr-Wo7" secondAttribute="trailing" constant="20" id="7fq-aH-HYE"/>
+                                            <constraint firstItem="t8h-4B-ggl" firstAttribute="top" secondItem="WgV-qm-I33" secondAttribute="top" constant="8" id="B5v-38-0Qm"/>
+                                            <constraint firstItem="t8h-4B-ggl" firstAttribute="leading" secondItem="WgV-qm-I33" secondAttribute="leading" constant="20" id="dBQ-NE-TQR"/>
+                                            <constraint firstAttribute="centerY" secondItem="zXX-Wr-Wo7" secondAttribute="centerY" id="gwt-VI-18T"/>
+                                            <constraint firstItem="NRV-nH-GyA" firstAttribute="leading" secondItem="WgV-qm-I33" secondAttribute="leading" constant="20" id="pla-U4-bIr"/>
+                                            <constraint firstAttribute="bottom" secondItem="NRV-nH-GyA" secondAttribute="bottom" constant="4" id="wXb-5X-dKU"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="bottomMarginH" destination="wXb-5X-dKU" id="c2f-Df-2w2"/>
+                                            <outlet property="currentMode" destination="NRV-nH-GyA" id="yYr-SC-Bvd"/>
+                                            <outlet property="topMarginH" destination="B5v-38-0Qm" id="U0f-qz-vPS"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZC-nL-AUn" userLabel="T-set">
                                         <rect key="frame" x="0.0" y="88" width="600" height="90"/>
@@ -248,6 +272,7 @@
                         <outlet property="T_setH" destination="C8h-xS-ThT" id="Owk-EC-trz"/>
                         <outlet property="bottomViewH" destination="Bh0-Rh-42m" id="Zg6-nP-E4f"/>
                         <outlet property="homeBtnH" destination="FZp-ZJ-e76" id="36J-gr-Luz"/>
+                        <outlet property="modeSettingCellView" destination="WgV-qm-I33" id="pbI-u0-qJA"/>
                         <outlet property="tempretureSliderView" destination="wfg-Ln-Qtd" id="i3K-nR-VzX"/>
                     </connections>
                 </viewController>
