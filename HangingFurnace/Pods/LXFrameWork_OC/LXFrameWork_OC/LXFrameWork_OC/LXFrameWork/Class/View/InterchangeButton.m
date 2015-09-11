@@ -7,7 +7,9 @@
 //
 
 #import "InterchangeButton.h"
-
+/**
+ *  Image 和 Title 交换位置的Button
+ */
 @implementation InterchangeButton
 
 - (id)initWithFrame:(CGRect)frame
@@ -46,7 +48,6 @@
     CGFloat imageX = (self.frame.size.width - CGRectGetMaxX(self.titleLabel.frame)) *0.5 + CGRectGetMaxX(self.titleLabel.frame) - imageW * 0.5;
     CGFloat imageY = 0;
     return CGRectMake(imageX, imageY, imageW, imageH);
-    
 }
 
 @end

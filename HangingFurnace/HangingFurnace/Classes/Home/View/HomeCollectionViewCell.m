@@ -36,6 +36,21 @@
 
 @implementation HomeCollectionViewCell
 
++ (void)load
+{
+    Method existing = class_getInstanceMethod(self, @selector(layoutSubviews));
+    Method new = class_getInstanceMethod(self, @selector(_autolayout_replacementLayoutSubviews));
+    
+    method_exchangeImplementations(existing, new);
+}
+
+- (void)_autolayout_replacementLayoutSubviews
+{
+    [super layoutSubviews];
+    [self _autolayout_replacementLayoutSubviews]; // not recursive due to method swizzling
+    [super layoutSubviews];
+}
+
 - (void)awakeFromNib {
     
     CGFloat CirX = kWindowWidth * 0.5 - self.LoopWH *0.5;

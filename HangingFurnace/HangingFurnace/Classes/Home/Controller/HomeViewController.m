@@ -10,13 +10,11 @@
 #import "HomeCollectionViewCell.h"
 #import "ASValueTrackingSlider.h"
 #import "TempretureSetModel.h"
-#import "ModeSettingCellView.h"
+#import "UserMenuViewController.h"
+#import "SettingModelViewController.h"
+#import <AddDeviceViewController.h>
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDelegate>
-{
-    TempretureSetModel *_TModel;
-    WhichMode _currentSelectedMode;//当前选择的是“取暖”还是“热水”
-}
 
 // ----------------屏幕适配---------------
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeBtnH;
@@ -34,11 +32,16 @@
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *tempretureSliderView;
 /***  温度颜色图片的高度 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_colorImgViewH;
-/***  模式设定Cell */
-@property (weak, nonatomic) IBOutlet ModeSettingCellView *modeSettingCellView;
+/***  当前模式 */
+@property (weak, nonatomic) IBOutlet UILabel *deviceModelLabel;
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
 
+/**
+ *  Slider 温度数值
+ */
+@property (weak, nonatomic) IBOutlet UILabel *sliderMin;
+@property (weak, nonatomic) IBOutlet UILabel *sliderMax;
 
 
 /*** 用户所有设备的Array */
@@ -52,10 +55,15 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNavBarBtn];
     
-    [self setCenterView:^UIView *{
-        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kefeng"]];
-    }];
+    // 冬季模式下默认为采暖 测试默认是地暖
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    instance.deviceFunState = heating_fun;
+    instance.heatingState = heating_radiator;
+    instance.heating_select_model = ceaseless_run;
+    [self warmOneselfBtnClick:nil];
+    
     // 注册CollectionViewCell
     [self registerCollectionNib];
     //设置温度指示
@@ -63,9 +71,44 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 适配
     [self setScreenDisplay];
     
+    
     [self.dataList addObject:@(1)];
     [self.dataList addObject:@(2)];
     
+    [kNotificationCenter addObserver:self selector:@selector(deviceModelChange:) name:kChangeDeviceModelNotification object:nil];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    //    [self updateByMode];
+}
+
+//- (void)deviceModelChange:(NSNotification *)nfa
+//{
+//    NSDictionary *params = nfa.userInfo;
+//    _deviceModel = [params[@"deviceModel"] integerValue];
+//    HFInstance *instance = [HFInstance sharedHFInstance];
+//    self.deviceModelLabel.text = [instance.deviceHeatingModelArray objectAtIndex:_deviceModel];
+//}
+
+- (void) setNavBarBtn
+{
+    [self setCenterView:^UIView *{
+        return [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kefeng"]];
+    }];
+    
+    [self setLeftBtnWithImage:[UIImage imageNamed:@"menu"] orTitle:nil ClickOption:^{
+        UserMenuViewController *menu = [[UserMenuViewController alloc] init];
+        [MainDelegate.navigationController pushViewController:menu animated:YES];
+    }];
+    
+    [self setRightBtnWithImage:[UIImage imageNamed:@"addDevice"] orTitle:nil ClickOption:^{
+        AddDeviceViewController *add = [[AddDeviceViewController alloc] init];
+        add.isAddDevice = YES;
+        [MainDelegate.navigationController pushViewController:add animated:YES];
+    }];
 }
 
 
@@ -74,35 +117,31 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 {
     self.tempretureSliderView.delegate = self;
     [self.tempretureSliderView customeSliderView];
-    
-    _currentSelectedMode = ModeHange;//默认选择壁挂炉
-    [self updateByMode:_currentSelectedMode];
-    
-    // 模型Model
-    _TModel = [[TempretureSetModel alloc] init];
-    _TModel.hangTemp = @(40.0);
-    _TModel.hotWaterTemp = @(60.0);
+    [self updateByMode];
 }
 
--(void)updateByMode:(WhichMode)mode
+-(void)updateByMode
 {
-    NSArray *colorHang = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),kRGBColor(144, 180, 91, 0.8),[UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0], kRGBColor(164, 80, 5, 0.9),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];//蓝,绿，黄，浅红，红
-    NSArray *positionHang = @[@20, @30, @40, @50, @70];
+    //    NSArray *colorHang = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),kRGBColor(144, 180, 91, 0.8),[UIColor colorWithHue:0.15 saturation:0.9 brightness:0.9 alpha:1.0], kRGBColor(164, 80, 5, 0.9),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];//蓝,绿，黄，浅红，红
+    //    NSArray *positionHang = @[@20, @30, @40, @50, @70];
+    //
+    //    NSArray *colorsWarmer = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
+    //    NSArray *positionWarmer = @[@20,  @70];
+    //        [self.tempretureSliderView setPopUpViewAnimatedColors:colorsWarmer withPositions:positionWarmer];
     
-    NSArray *colorsWarmer = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
-    NSArray *positionWarmer = @[@20,  @70];
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    NSInteger min = [instance.tRange.firstObject integerValue];
+    NSInteger max = [instance.tRange.lastObject integerValue];
     
-    if (mode == ModeHange) { //壁挂炉
-        self.tempretureSliderView.minimumValue = 20.0;
-        self.tempretureSliderView.maximumValue = 80.0;
-        self.tempretureSliderView.value = [_TModel.hangTemp floatValue];
-        [self.tempretureSliderView setPopUpViewAnimatedColors:colorHang withPositions:positionHang];
-    }else{ //热水器
-        self.tempretureSliderView.minimumValue = 30.0;
-        self.tempretureSliderView.maximumValue = 60.0;
-        self.tempretureSliderView.value = [_TModel.hotWaterTemp floatValue];
-        [self.tempretureSliderView setPopUpViewAnimatedColors:colorsWarmer withPositions:positionWarmer];
-    }
+    self.tempretureSliderView.minimumValue = min;
+    self.tempretureSliderView.maximumValue = max;
+    self.tempretureSliderView.value = instance.defaultTem;
+    
+    self.sliderMin.text = [NSString stringWithFormat:@"%ld°C",min];
+    self.sliderMax.text = [NSString stringWithFormat:@"%ld°C",max];
+    
+    NSLog(@"%ld---%ld---%ld",[instance.tRange.firstObject integerValue],[instance.tRange.lastObject integerValue],instance.defaultTem);
+    
 }
 
 
@@ -110,21 +149,14 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 -(void)sliderDidHidePopUpView:(ASValueTrackingSlider *)slider
 {
     //存储设定的值
-    if (_currentSelectedMode == ModeHange) {
-        _TModel.hangTemp = [NSNumber numberWithFloat:slider.value];
-    }else{
-        _TModel.hotWaterTemp = [NSNumber numberWithFloat:slider.value];
-    }
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    instance.defaultTem = (NSInteger)slider.value;
 }
 
 -(void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
 {
     NSLog(@"the slider value is %lf",slider.value);
 }
-
-
-
-
 
 /**
  *  适配屏幕大小
@@ -186,23 +218,32 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 
 #pragma mark - UITapGestureRecognizer
 - (IBAction)pushModeVC:(UITapGestureRecognizer *)sender {
-    //     [self.navigationController pushViewController:[[ModeSetTableViewController alloc] init] animated:YES];
+    SettingModelViewController *settingModelVC = [[SettingModelViewController alloc] init];
+    [self.navigationController pushViewController:settingModelVC animated:YES];
 }
 
 #pragma mark -- ButtonClick
 
+/**
+ *  点击了采暖按钮
+ */
 - (IBAction)warmOneselfBtnClick:(UIButton *)sender {
     self.hotWaterBtn.selected = NO;
     self.warmOneselfBtn.selected = YES;
-    _currentSelectedMode = ModeHange;
-    [self updateByMode:_currentSelectedMode];
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    instance.deviceFunState = heating_fun;
+    [self updateByMode];
 }
 
+/**
+ *  点击了热水
+ */
 - (IBAction)hotWaterBtnClick:(UIButton *)sender {
     self.warmOneselfBtn.selected = NO;
     self.hotWaterBtn.selected = YES;
-    _currentSelectedMode = ModeHotWater;
-    [self updateByMode:_currentSelectedMode];
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    instance.deviceFunState = hotwater_fun;
+    [self updateByMode];
 }
 
 #pragma mark - 懒加载

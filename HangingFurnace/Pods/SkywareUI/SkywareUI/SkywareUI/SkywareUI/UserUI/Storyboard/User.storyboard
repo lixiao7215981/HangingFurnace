@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dF0-Kk-ZO4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dF0-Kk-ZO4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -44,7 +44,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eeq-6l-x5n" kind="show" id="3du-vg-Hog"/>
+                                    <segue destination="eeq-6l-x5n" kind="push" id="KfT-Vx-qKS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hQ-qv-CMU">
@@ -54,7 +54,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="E1K-Ka-Mjk" kind="show" id="Fa5-d9-EYe"/>
+                                    <segue destination="E1K-Ka-Mjk" kind="push" id="h9s-Ue-YnO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNY-q4-o44">
@@ -89,17 +89,11 @@
                             <constraint firstItem="0hQ-qv-CMU" firstAttribute="top" secondItem="fNY-q4-o44" secondAttribute="bottom" constant="20" id="dZ2-Sl-qMt"/>
                             <constraint firstItem="KOj-Zo-cbc" firstAttribute="top" secondItem="zY1-FL-vu4" secondAttribute="bottom" constant="50" id="fjB-vS-GL2"/>
                             <constraint firstAttribute="centerX" secondItem="zY1-FL-vu4" secondAttribute="centerX" id="i3o-O1-YnI"/>
-                            <constraint firstItem="fNY-q4-o44" firstAttribute="height" secondItem="zou-Fc-Wmj" secondAttribute="height" id="oAo-kj-Arn"/>
                             <constraint firstItem="zou-Fc-Wmj" firstAttribute="top" secondItem="KOj-Zo-cbc" secondAttribute="bottom" constant="20" id="ofV-ux-qPk"/>
                             <constraint firstItem="zY1-FL-vu4" firstAttribute="top" secondItem="WHA-Ok-4sj" secondAttribute="top" constant="100" id="sZH-wl-wjK"/>
                             <constraint firstItem="0hQ-qv-CMU" firstAttribute="trailing" secondItem="fNY-q4-o44" secondAttribute="trailing" constant="-10" id="sfB-0x-HDI"/>
                             <constraint firstItem="KOj-Zo-cbc" firstAttribute="width" secondItem="zou-Fc-Wmj" secondAttribute="width" id="zBj-me-z0e"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="oAo-kj-Arn"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="664-Do-8FN"/>
                     <connections>
@@ -126,6 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Fn9-e6-yIn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNY-wZ-nLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,7 +144,7 @@
                                     <constraint firstAttribute="height" constant="40" id="FOC-J6-Ds0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="收到的验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-AL-JiO">
                                 <rect key="frame" x="20" y="134" width="560" height="40"/>
@@ -257,6 +252,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="wja-ys-aL3"/>
                     <connections>
                         <outlet property="againPassword" destination="z7t-bG-aHc" id="tk4-DN-K69"/>
                         <outlet property="code" destination="2fp-AL-JiO" id="FCb-wW-TIy"/>

@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <SMS_SDK/SMS_SDK.h>
 #import <SkywareUIInstance.h>
-#import <UserLoginViewController.h>
+#import "UserLoginViewController.h"
 
 #define SMS_SDKAppKey    @"888af4137d99"
 #define SMS_SDKAppSecret  @"907cae6bb1ecc40c41182c0109b61a21"
@@ -29,6 +29,10 @@
     self.navigationController = (UINavigationController *)loginRegister;
     [self.window makeKeyAndVisible];
     
+    UIApplication *app = [UIApplication sharedApplication];
+    [app setStatusBarHidden:NO];
+    [app setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     
     // 设置 App_id
     SkywareInstanceModel *skywareInstance = [SkywareInstanceModel sharedSkywareInstanceModel];
@@ -40,6 +44,8 @@
     
     LXFrameWorkInstance *LXM = [LXFrameWorkInstance sharedLXFrameWorkInstance];
     LXM.NavigationBar_bgColor = kRGBColor(200, 31, 2, 1);
+    LXM.NavigationBar_textColor = [UIColor whiteColor];
+    LXM.backState = writeBase;
     
     
     

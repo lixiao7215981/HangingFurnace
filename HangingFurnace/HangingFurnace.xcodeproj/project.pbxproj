@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E4E5E791BA02907008C594E /* CustomTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E5E781BA02907008C594E /* CustomTimeViewController.m */; };
+		4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E5E7B1BA033E4008C594E /* SelectWeekView.m */; };
+		4E4E5E7E1BA033F8008C594E /* SelectWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4E5E7D1BA033F8008C594E /* SelectWeekView.xib */; };
 		4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A01B9C198E003C6E2A /* ASValuePopUpView.m */; };
 		4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A21B9C198E003C6E2A /* ASValueTrackingSlider.m */; };
 		4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBBD9A51B9C198E003C6E2A /* TCircleView+BaseConfiguration.m */; };
@@ -23,10 +26,21 @@
 		4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */; };
 		4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80EB1B93FAE700C0E099 /* Info.plist */; };
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
+		4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */; };
+		4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E21B9E927100425190 /* SettingModelViewController.m */; };
+		4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E51B9EBB1A00425190 /* HFConst.m */; };
+		4ECAC5E91B9EDF8000425190 /* ModelEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E81B9EDF8000425190 /* ModelEditViewController.m */; };
+		4ECAC5EC1B9FC3F200425190 /* CustomModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5EB1B9FC3F200425190 /* CustomModelViewController.m */; };
+		4ECAC5EF1B9FC57900425190 /* CustomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5EE1B9FC57900425190 /* CustomModel.m */; };
+		4ECAC5F31B9FC9C600425190 /* CustomModelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5F11B9FC9C600425190 /* CustomModelTableViewCell.m */; };
+		4ECAC5F41B9FC9C600425190 /* CustomModelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAC5F21B9FC9C600425190 /* CustomModelTableViewCell.xib */; };
 		4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ED920C91B957C8E001B823F /* Home.storyboard */; };
 		4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ED920CC1B957D57001B823F /* HomeViewController.m */; };
+		4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D921BA151380057B4DA /* selectDataPickView.m */; };
+		4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE04D931BA151380057B4DA /* selectDataPickView.xib */; };
+		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
+		4EE04D9B1BA282EB0057B4DA /* UserDefaultsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
-		8BC7216F1B9D23AE001E440A /* ModeSettingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +58,11 @@
 		00A4B6F4B23544FD64EB5C29 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		30C9AF198BFE5B95A31DCB26 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C063B83B514A70B7BF862BE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4E4E5E771BA02907008C594E /* CustomTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTimeViewController.h; sourceTree = "<group>"; };
+		4E4E5E781BA02907008C594E /* CustomTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTimeViewController.m; sourceTree = "<group>"; };
+		4E4E5E7A1BA033E4008C594E /* SelectWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWeekView.h; sourceTree = "<group>"; };
+		4E4E5E7B1BA033E4008C594E /* SelectWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWeekView.m; sourceTree = "<group>"; };
+		4E4E5E7D1BA033F8008C594E /* SelectWeekView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWeekView.xib; sourceTree = "<group>"; };
 		4EBBD99F1B9C198E003C6E2A /* ASValuePopUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValuePopUpView.h; sourceTree = "<group>"; };
 		4EBBD9A01B9C198E003C6E2A /* ASValuePopUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASValuePopUpView.m; sourceTree = "<group>"; };
 		4EBBD9A11B9C198E003C6E2A /* ASValueTrackingSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASValueTrackingSlider.h; sourceTree = "<group>"; };
@@ -71,14 +90,34 @@
 		4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4EBF80EB1B93FAE700C0E099 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBF80EC1B93FAE700C0E099 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4ECAC5DE1B9E826A00425190 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
+		4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
+		4ECAC5E11B9E927100425190 /* SettingModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingModelViewController.h; sourceTree = "<group>"; };
+		4ECAC5E21B9E927100425190 /* SettingModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingModelViewController.m; sourceTree = "<group>"; };
+		4ECAC5E41B9EBB1A00425190 /* HFConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFConst.h; sourceTree = "<group>"; };
+		4ECAC5E51B9EBB1A00425190 /* HFConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFConst.m; sourceTree = "<group>"; };
+		4ECAC5E71B9EDF8000425190 /* ModelEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelEditViewController.h; sourceTree = "<group>"; };
+		4ECAC5E81B9EDF8000425190 /* ModelEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelEditViewController.m; sourceTree = "<group>"; };
+		4ECAC5EA1B9FC3F200425190 /* CustomModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModelViewController.h; sourceTree = "<group>"; };
+		4ECAC5EB1B9FC3F200425190 /* CustomModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModelViewController.m; sourceTree = "<group>"; };
+		4ECAC5ED1B9FC57900425190 /* CustomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModel.h; sourceTree = "<group>"; };
+		4ECAC5EE1B9FC57900425190 /* CustomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModel.m; sourceTree = "<group>"; };
+		4ECAC5F01B9FC9C600425190 /* CustomModelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomModelTableViewCell.h; sourceTree = "<group>"; };
+		4ECAC5F11B9FC9C600425190 /* CustomModelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomModelTableViewCell.m; sourceTree = "<group>"; };
+		4ECAC5F21B9FC9C600425190 /* CustomModelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomModelTableViewCell.xib; sourceTree = "<group>"; };
 		4ED920C81B9578BC001B823F /* PCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCH.pch; sourceTree = "<group>"; };
 		4ED920C91B957C8E001B823F /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4ED920CB1B957D57001B823F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		4ED920CC1B957D57001B823F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		4EE04D911BA151380057B4DA /* selectDataPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectDataPickView.h; sourceTree = "<group>"; };
+		4EE04D921BA151380057B4DA /* selectDataPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectDataPickView.m; sourceTree = "<group>"; };
+		4EE04D931BA151380057B4DA /* selectDataPickView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectDataPickView.xib; sourceTree = "<group>"; };
+		4EE04D961BA171AD0057B4DA /* HFInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFInstance.h; sourceTree = "<group>"; };
+		4EE04D971BA171AD0057B4DA /* HFInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFInstance.m; sourceTree = "<group>"; };
+		4EE04D991BA282EB0057B4DA /* UserDefaultsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsTool.h; sourceTree = "<group>"; };
+		4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsTool.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
-		8BC7216D1B9D23AE001E440A /* ModeSettingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModeSettingCellView.h; sourceTree = "<group>"; };
-		8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModeSettingCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +241,14 @@
 			children = (
 				4ED920CB1B957D57001B823F /* HomeViewController.h */,
 				4ED920CC1B957D57001B823F /* HomeViewController.m */,
+				4ECAC5E11B9E927100425190 /* SettingModelViewController.h */,
+				4ECAC5E21B9E927100425190 /* SettingModelViewController.m */,
+				4ECAC5E71B9EDF8000425190 /* ModelEditViewController.h */,
+				4ECAC5E81B9EDF8000425190 /* ModelEditViewController.m */,
+				4ECAC5EA1B9FC3F200425190 /* CustomModelViewController.h */,
+				4ECAC5EB1B9FC3F200425190 /* CustomModelViewController.m */,
+				4E4E5E771BA02907008C594E /* CustomTimeViewController.h */,
+				4E4E5E781BA02907008C594E /* CustomTimeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -223,6 +270,8 @@
 				4EBF80E71B93FAE700C0E099 /* Model */,
 				4EBF80E81B93FAE700C0E099 /* Other */,
 				4EBF80ED1B93FAE700C0E099 /* View */,
+				4EE04D991BA282EB0057B4DA /* UserDefaultsTool.h */,
+				4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -269,6 +318,10 @@
 				4EBF80EB1B93FAE700C0E099 /* Info.plist */,
 				4EBF80EC1B93FAE700C0E099 /* main.m */,
 				4ED920C81B9578BC001B823F /* PCH.pch */,
+				4ECAC5E41B9EBB1A00425190 /* HFConst.h */,
+				4ECAC5E51B9EBB1A00425190 /* HFConst.m */,
+				4EE04D961BA171AD0057B4DA /* HFInstance.h */,
+				4EE04D971BA171AD0057B4DA /* HFInstance.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -292,7 +345,6 @@
 		8B2303DB1B9698E700644702 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8BC7216C1B9D235D001E440A /* modeSeting */,
 				4EBBD99E1B9C198E003C6E2A /* ASValueTrackingSlider */,
 				4EBBD9A31B9C198E003C6E2A /* loopProgress */,
 				4EBBD9B11B9C1D3B003C6E2A /* HomeCollectionView.h */,
@@ -300,6 +352,15 @@
 				4EBBD9AC1B9C1A00003C6E2A /* HomeCollectionViewCell.h */,
 				4EBBD9AD1B9C1A00003C6E2A /* HomeCollectionViewCell.m */,
 				4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */,
+				4ECAC5F01B9FC9C600425190 /* CustomModelTableViewCell.h */,
+				4ECAC5F11B9FC9C600425190 /* CustomModelTableViewCell.m */,
+				4ECAC5F21B9FC9C600425190 /* CustomModelTableViewCell.xib */,
+				4E4E5E7A1BA033E4008C594E /* SelectWeekView.h */,
+				4E4E5E7B1BA033E4008C594E /* SelectWeekView.m */,
+				4E4E5E7D1BA033F8008C594E /* SelectWeekView.xib */,
+				4EE04D911BA151380057B4DA /* selectDataPickView.h */,
+				4EE04D921BA151380057B4DA /* selectDataPickView.m */,
+				4EE04D931BA151380057B4DA /* selectDataPickView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -309,22 +370,17 @@
 			children = (
 				8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */,
 				8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */,
+				4ECAC5ED1B9FC57900425190 /* CustomModel.h */,
+				4ECAC5EE1B9FC57900425190 /* CustomModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		8BC7216C1B9D235D001E440A /* modeSeting */ = {
-			isa = PBXGroup;
-			children = (
-				8BC7216D1B9D23AE001E440A /* ModeSettingCellView.h */,
-				8BC7216E1B9D23AE001E440A /* ModeSettingCellView.m */,
-			);
-			path = modeSeting;
 			sourceTree = "<group>";
 		};
 		8BC721701B9D2A28001E440A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4ECAC5DE1B9E826A00425190 /* UserMenuViewController.h */,
+				4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -414,10 +470,13 @@
 			files = (
 				4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */,
 				4EBBD9B01B9C1A00003C6E2A /* HomeCollectionViewCell.xib in Resources */,
+				4E4E5E7E1BA033F8008C594E /* SelectWeekView.xib in Resources */,
 				4ED920CA1B957C8E001B823F /* Home.storyboard in Resources */,
 				4EBF80EF1B93FAE700C0E099 /* Main.storyboard in Resources */,
 				4EBF80EE1B93FAE700C0E099 /* LaunchScreen.xib in Resources */,
 				4EBF80BF1B93F98D00C0E099 /* Images.xcassets in Resources */,
+				4ECAC5F41B9FC9C600425190 /* CustomModelTableViewCell.xib in Resources */,
+				4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,15 +543,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
+				4ECAC5EC1B9FC3F200425190 /* CustomModelViewController.m in Sources */,
+				4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */,
+				4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */,
+				4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */,
+				4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */,
+				4ECAC5F31B9FC9C600425190 /* CustomModelTableViewCell.m in Sources */,
 				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,
-				8BC7216F1B9D23AE001E440A /* ModeSettingCellView.m in Sources */,
+				4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
+				4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */,
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
 				4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */,
+				4E4E5E791BA02907008C594E /* CustomTimeViewController.m in Sources */,
 				4EBF80F41B93FAE700C0E099 /* main.m in Sources */,
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
+				4ECAC5E91B9EDF8000425190 /* ModelEditViewController.m in Sources */,
 				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
+				4EE04D9B1BA282EB0057B4DA /* UserDefaultsTool.m in Sources */,
+				4ECAC5EF1B9FC57900425190 /* CustomModel.m in Sources */,
 				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,
 				4EBBD9AF1B9C1A00003C6E2A /* HomeCollectionViewCell.m in Sources */,
 			);
@@ -602,6 +672,7 @@
 			baseConfigurationReference = 4C063B83B514A70B7BF862BE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",
@@ -619,6 +690,7 @@
 			baseConfigurationReference = 00A4B6F4B23544FD64EB5C29 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",

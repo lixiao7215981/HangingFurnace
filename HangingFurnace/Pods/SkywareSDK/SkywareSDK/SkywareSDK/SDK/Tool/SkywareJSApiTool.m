@@ -9,9 +9,10 @@
 #import "SkywareJSApiTool.h"
 #import "BaseDelegate.h"
 #import <CoreLocationTool.h>
+#import <UIWindow+Extension.h>
 #define KBaseDelegate  ((BaseDelegate *)[UIApplication sharedApplication].delegate)
 
-@interface SkywareJSApiTool ()
+@interface SkywareJSApiTool ()<UIActionSheetDelegate>
 {
     CoreLocationTool *locationTool;
 }
@@ -51,14 +52,22 @@
             }else if([str isEqualToString:@"goback"]){
                 [KBaseDelegate.navigationController popViewControllerAnimated:YES];
             }else if ([str isEqualToString:@"gomenu"]){
-                
+                [self showMenuActionSheet];
             }else if ([str isEqualToString:@"goshare"]){
-                
+                [SVProgressHUD showSuccessWithStatus:@"敬请期待!"];
             }
         }];
         return NO;
     }
     return YES;
+}
+
+- (void) showMenuActionSheet
+{
+    UIActionSheet *seet =  [[UIActionSheet alloc] initWithTitle:@"更多" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"修改设备名称",@"检查固件升级",@"解除连接",@"反馈", nil] ;
+    
+    [seet showInView:[UIWindow getCurrentWindow]];
+    
 }
 
 - (void) getMethodWithTypeArray:(NSArray *) typeArray WebView:(UIWebView *) webView WithDeviceInfo:(SkywareDeviceInfoModel *) deviceInfo
@@ -103,7 +112,6 @@
  */
 - (void) onRecvDevStatusData:(NSData *) data ToWebView:(UIWebView *) webView
 {
-    NSLog(@"%@",[data JSONString]);
     [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"onRecvDevStatus('%@')",[data JSONString]]];
 }
 

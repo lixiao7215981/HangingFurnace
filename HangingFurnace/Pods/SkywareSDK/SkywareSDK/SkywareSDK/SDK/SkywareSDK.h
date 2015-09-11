@@ -62,6 +62,7 @@
 #import "SkywareDeviceTool.h"
 #import "SkywareMQTTTool.h"
 #import "SkywareJSApiTool.h"
+#import "MQTT_Tool.h"
 
 
 
