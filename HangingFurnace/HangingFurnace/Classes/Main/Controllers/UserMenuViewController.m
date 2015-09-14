@@ -13,6 +13,8 @@
 #import "DeviceManagerViewController.h"
 #import "SystemFeedBackViewController.h"
 #import "AddDeviceViewController.h"
+#import "HelpViewController.h"
+#import "SettingViewController.h"
 #import <SkywareUIConst.h>
 
 @interface UserMenuViewController ()
@@ -77,17 +79,19 @@
         [self.navigationController pushViewController:deviceVC animated:YES];
     }];
     
-    BaseArrowCellItem *settingItem = [BaseArrowCellItem  createBaseCellItemWithIcon:nil AndTitle:@"设置" SubTitle:nil ClickOption:^{
-        [SVProgressHUD showSuccessWithStatus:@"稍后添加（图片也要加）"];
+    BaseArrowCellItem *settingItem = [BaseArrowCellItem  createBaseCellItemWithIcon:@"user_setting" AndTitle:@"设置" SubTitle:nil ClickOption:^{
+        SettingViewController *settingVC = [[SettingViewController alloc]init];
+        [self.navigationController pushViewController:settingVC animated:YES];
     }];
     
     BaseCellItemGroup *group2 = [BaseCellItemGroup createGroupWithItem:@[buyItem,deviceManagerItem,addDeviceItem,settingItem]];
     
     BaseArrowCellItem *helpItem = [BaseArrowCellItem  createBaseCellItemWithIcon:@"icon_setting_help" AndTitle:@"帮助中心" SubTitle:nil ClickOption:^{
-        [SVProgressHUD showSuccessWithStatus:@"敬请期待！"];
+        HelpViewController *helpVC = [[HelpViewController alloc]init];
+        [self.navigationController pushViewController:helpVC animated:YES];
     }];
     
-    BaseArrowCellItem *dutyItem = [BaseArrowCellItem  createBaseCellItemWithIcon:nil AndTitle:@"免责声明" SubTitle:nil ClickOption:^{
+    BaseArrowCellItem *notification = [BaseArrowCellItem  createBaseCellItemWithIcon:@"notice" AndTitle:@"通知" SubTitle:nil ClickOption:^{
         [SVProgressHUD showSuccessWithStatus:@"敬请期待！"];
     }];
     
@@ -108,7 +112,7 @@
     sectionLabel.textAlignment = NSTextAlignmentCenter;
     sectionLabel.backgroundColor = kRGBColor(231, 231, 231, 1);
     
-    BaseCellItemGroup *group3 = [BaseCellItemGroup createGroupWithHeadView:sectionLabel AndFootView:nil OrItem:@[helpItem,dutyItem,feedbackItem,aboutItem]];
+    BaseCellItemGroup *group3 = [BaseCellItemGroup createGroupWithHeadView:sectionLabel AndFootView:nil OrItem:@[notification,helpItem,feedbackItem,aboutItem]];
     
     [self.dataList removeAllObjects];
     [self.dataList addObject:group1];

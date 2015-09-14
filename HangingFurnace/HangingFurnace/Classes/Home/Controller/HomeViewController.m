@@ -143,7 +143,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     self.sliderMin.text = [NSString stringWithFormat:@"%ld°C",min];
     self.sliderMax.text = [NSString stringWithFormat:@"%ld°C",max];
     
-    NSLog(@"%ld---%ld---%ld",[instance.tRange.firstObject integerValue],[instance.tRange.lastObject integerValue],instance.defaultTem);
+    //    NSLog(@"%ld---%ld---%ld",[instance.tRange.firstObject integerValue],[instance.tRange.lastObject integerValue],instance.defaultTem);
     
 }
 

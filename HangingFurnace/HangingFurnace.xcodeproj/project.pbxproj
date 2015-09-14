@@ -27,6 +27,8 @@
 		4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80EB1B93FAE700C0E099 /* Info.plist */; };
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
 		4EC8088D1BA66EC000EE8243 /* HomeTopStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8088C1BA66EC000EE8243 /* HomeTopStateView.m */; };
+		4EC808901BA6CCD200EE8243 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8088F1BA6CCD200EE8243 /* HelpViewController.m */; };
+		4EC808931BA6CFD600EE8243 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC808921BA6CFD600EE8243 /* SettingViewController.m */; };
 		4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */; };
 		4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E21B9E927100425190 /* SettingModelViewController.m */; };
 		4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E51B9EBB1A00425190 /* HFConst.m */; };
@@ -93,6 +95,10 @@
 		4EBF80EC1B93FAE700C0E099 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4EC8088B1BA66EC000EE8243 /* HomeTopStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTopStateView.h; sourceTree = "<group>"; };
 		4EC8088C1BA66EC000EE8243 /* HomeTopStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTopStateView.m; sourceTree = "<group>"; };
+		4EC8088E1BA6CCD200EE8243 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		4EC8088F1BA6CCD200EE8243 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		4EC808911BA6CFD600EE8243 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		4EC808921BA6CFD600EE8243 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		4ECAC5DE1B9E826A00425190 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
 		4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
 		4ECAC5E11B9E927100425190 /* SettingModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingModelViewController.h; sourceTree = "<group>"; };
@@ -386,6 +392,10 @@
 			children = (
 				4ECAC5DE1B9E826A00425190 /* UserMenuViewController.h */,
 				4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */,
+				4EC8088E1BA6CCD200EE8243 /* HelpViewController.h */,
+				4EC8088F1BA6CCD200EE8243 /* HelpViewController.m */,
+				4EC808911BA6CFD600EE8243 /* SettingViewController.h */,
+				4EC808921BA6CFD600EE8243 /* SettingViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -562,6 +572,8 @@
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
 				4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */,
 				4E4E5E791BA02907008C594E /* CustomTimeViewController.m in Sources */,
+				4EC808931BA6CFD600EE8243 /* SettingViewController.m in Sources */,
+				4EC808901BA6CCD200EE8243 /* HelpViewController.m in Sources */,
 				4EBF80F41B93FAE700C0E099 /* main.m in Sources */,
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,

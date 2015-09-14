@@ -11,8 +11,8 @@
 #import <SkywareUIInstance.h>
 #import "UserLoginViewController.h"
 
-#define SMS_SDKAppKey    @"888af4137d99"
-#define SMS_SDKAppSecret  @"907cae6bb1ecc40c41182c0109b61a21"
+#define SMS_SDKAppKey    @"a6137b7d9ee4"
+#define SMS_SDKAppSecret  @"df67c3d2a08511a78582b4ce0c2b7184"
 
 @interface AppDelegate ()
 
@@ -36,10 +36,10 @@
     
     // 设置 App_id
     SkywareInstanceModel *skywareInstance = [SkywareInstanceModel sharedSkywareInstanceModel];
-    skywareInstance.app_id = 1;
+    skywareInstance.app_id = 8;
     
     SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
-    UIM.All_button_bgColor = [UIColor blueColor];
+    UIM.All_button_bgColor = kSystemRedBtnColor;
     UIM.All_view_bgColor = kSystemLoginViewBackageColor;
     
     LXFrameWorkInstance *LXM = [LXFrameWorkInstance sharedLXFrameWorkInstance];
