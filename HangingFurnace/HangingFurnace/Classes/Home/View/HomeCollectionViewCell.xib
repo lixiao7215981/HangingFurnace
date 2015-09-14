@@ -19,17 +19,29 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="winter" translatesAutoresizingMaskIntoConstraints="NO" id="bKu-ja-cQk">
-                        <rect key="frame" x="327" y="202" width="43" height="17"/>
-                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfC-Mk-85S">
+                        <rect key="frame" x="320" y="199" width="50" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="1zb-du-5n9"/>
+                            <constraint firstAttribute="height" constant="30" id="ZwF-E4-GNe"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="winter">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="summer"/>
+                        <connections>
+                            <action selector="switchSeason:" destination="gTV-IL-0wX" eventType="touchUpInside" id="F3Z-GB-mdE"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bKu-ja-cQk" secondAttribute="bottom" constant="10" id="Hwa-MD-skY"/>
+                <constraint firstAttribute="bottom" secondItem="pfC-Mk-85S" secondAttribute="bottom" id="UsP-pL-ytx"/>
                 <constraint firstAttribute="centerX" secondItem="o2j-Ay-Q1t" secondAttribute="centerX" id="Z5l-bn-40b"/>
-                <constraint firstAttribute="trailing" secondItem="bKu-ja-cQk" secondAttribute="trailing" constant="20" id="bIT-sb-hzc"/>
+                <constraint firstAttribute="trailing" secondItem="pfC-Mk-85S" secondAttribute="trailing" constant="20" id="eQT-Wc-joz"/>
                 <constraint firstItem="o2j-Ay-Q1t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="gmR-Su-a7D"/>
             </constraints>
             <size key="customSize" width="390" height="248"/>
@@ -40,6 +52,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="summer" width="43" height="17"/>
         <image name="winter" width="43" height="17"/>
     </resources>
 </document>

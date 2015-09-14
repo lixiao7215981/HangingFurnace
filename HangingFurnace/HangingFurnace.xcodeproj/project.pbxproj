@@ -26,6 +26,7 @@
 		4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */; };
 		4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80EB1B93FAE700C0E099 /* Info.plist */; };
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
+		4EC8088D1BA66EC000EE8243 /* HomeTopStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EC8088C1BA66EC000EE8243 /* HomeTopStateView.m */; };
 		4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */; };
 		4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E21B9E927100425190 /* SettingModelViewController.m */; };
 		4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAC5E51B9EBB1A00425190 /* HFConst.m */; };
@@ -90,6 +91,8 @@
 		4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4EBF80EB1B93FAE700C0E099 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EBF80EC1B93FAE700C0E099 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4EC8088B1BA66EC000EE8243 /* HomeTopStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTopStateView.h; sourceTree = "<group>"; };
+		4EC8088C1BA66EC000EE8243 /* HomeTopStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTopStateView.m; sourceTree = "<group>"; };
 		4ECAC5DE1B9E826A00425190 /* UserMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMenuViewController.h; sourceTree = "<group>"; };
 		4ECAC5DF1B9E826A00425190 /* UserMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMenuViewController.m; sourceTree = "<group>"; };
 		4ECAC5E11B9E927100425190 /* SettingModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingModelViewController.h; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				4EE04D911BA151380057B4DA /* selectDataPickView.h */,
 				4EE04D921BA151380057B4DA /* selectDataPickView.m */,
 				4EE04D931BA151380057B4DA /* selectDataPickView.xib */,
+				4EC8088B1BA66EC000EE8243 /* HomeTopStateView.h */,
+				4EC8088C1BA66EC000EE8243 /* HomeTopStateView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */,
 				4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */,
 				4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */,
+				4EC8088D1BA66EC000EE8243 /* HomeTopStateView.m in Sources */,
 				4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */,
 				4ECAC5F31B9FC9C600425190 /* CustomModelTableViewCell.m in Sources */,
 				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,

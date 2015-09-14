@@ -10,8 +10,6 @@
 
 @interface HFConst : NSObject
 
-/** 更改设备模式以后发送通知 */
-extern NSString * const kChangeDeviceModelNotification;
 
 /** 选择自定义模式重复天之后发送通知 */
 extern NSString * const kSelectCustomWeekDateNotification;

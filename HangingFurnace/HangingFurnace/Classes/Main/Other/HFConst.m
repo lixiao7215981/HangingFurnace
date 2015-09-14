@@ -10,8 +10,6 @@
 
 @implementation HFConst
 
-NSString * const kChangeDeviceModelNotification = @"kChangeDeviceModelNotification";
-
 NSString * const kSelectCustomWeekDateNotification = @"kSelectCustomWeekDateNotification";
 
 NSString * const kSelectCustomDatePickNotification = @"kSelectCustomDatePickNotification";

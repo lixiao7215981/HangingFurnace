@@ -27,8 +27,6 @@
     [self addDataList];
     [self addTableFootView];
     
-    
-    
     [kNotificationCenter addObserver:self selector:@selector(selectWeekViewCenterBtnClick:) name:kSelectCustomWeekDateNotification object:nil];
 }
 
@@ -60,6 +58,10 @@
 
 - (void)addTimer
 {
+    if (self.dataList.count >= 8) {
+        [SVProgressHUD showErrorWithStatus:@"最多只能添加8个时间段"];
+        return;
+    }
     CustomTimeViewController *timeVC = [[CustomTimeViewController alloc] init];
     CustomModel *customModel = [CustomModel createCustomModelWithOpenTime:@"--:--" CloseTime:@"--:--" Temperature:@"-" isOpen:NO];
     timeVC.customModel = customModel;
@@ -118,7 +120,7 @@
         section_0_cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         section_0_cell.detailTextLabel.textColor = [UIColor lightGrayColor];
         section_0_cell.textLabel.text = @"重复:";
-        section_0_cell.detailTextLabel.text = @"周一、周二、周三、周四";
+        section_0_cell.detailTextLabel.text = @"周一、周二、周三、周四、周五、周六、周日";
         return section_0_cell;
     }else{
         
@@ -164,7 +166,10 @@
 - (void) clickSelectDate
 {
     SelectWeekView *weekView = [SelectWeekView createSelectWeekView];
-    weekView.defineStr = @"周一、周二、周五";
+    
+    CustomModelTableViewCell *customCell = (CustomModelTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0 ]];
+    weekView.defineStr = customCell.detailTextLabel.text;
+    
     UIButton *cover = [UIButton newAutoLayoutView];
     [cover addTarget:weekView action:@selector(cleanMethod) forControlEvents:UIControlEventTouchUpInside];
     cover.backgroundColor = [UIColor blackColor];

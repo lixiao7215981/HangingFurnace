@@ -17,6 +17,10 @@
 
 @property (nonatomic,strong) NSMutableArray *hourArray;
 @property (nonatomic,strong) NSMutableArray *minuteArray;
+/**
+ *  温度范围的数组
+ */
+@property (nonatomic,strong) NSMutableArray *tRangeArray;
 
 @end
 
@@ -26,8 +30,26 @@
     [super viewDidLoad];
     [self setNavTitle:@"自定义时间"];
     [self.dataList addObjectsFromArray:@[@"开启",@"关闭",@"温度"]];
+    [self addNavRightBtn];
     
     [kNotificationCenter addObserver:self selector:@selector(selectDatePickViewCenterBtnClick:) name:kSelectCustomDatePickNotification object:nil];
+    
+    
+}
+
+#pragma mark - Method
+- (void) addNavRightBtn
+{
+    __weak typeof (self.dataList) data = self.dataList;
+    __weak typeof (self.tableView) tableView = self.tableView;
+    __weak typeof (self.navigationController) nav = self.navigationController;
+    [self setRightBtnWithImage:nil orTitle:@"确定" ClickOption:^{
+        [data enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+            NSLog(@"%@",cell.detailTextLabel.text);
+        }];
+        [nav popViewControllerAnimated:YES];
+    }];
 }
 
 #pragma mark - NotificationCenter
@@ -122,7 +144,6 @@
     }
 }
 
-
 #pragma mark - UIPickerViewDataSource,UIPickerViewDelegate
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
@@ -137,8 +158,7 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
-#warning 假数据
-        return 10;
+        return self.tRangeArray.count;
     }else{
         if (component == 0) { // 小时
             return self.hourArray.count;
@@ -159,8 +179,7 @@
     NSAttributedString *attributedString = nil;
     
     if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
-#warning 假数据
-        attributedString = [[NSAttributedString alloc] initWithString:@"40°C" attributes:attributeDict];
+        attributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@°C",self.tRangeArray[row]] attributes:attributeDict];
     }else{
         if (component == 0) {
             attributedString = [[NSAttributedString alloc] initWithString:self.hourArray[row] attributes:attributeDict];
@@ -176,6 +195,21 @@
 }
 
 #pragma mark - 懒加载
+
+- (NSMutableArray *)tRangeArray
+{
+    if (!_tRangeArray) {
+        _tRangeArray = [[NSMutableArray alloc] init];
+        HFInstance *instance = [HFInstance sharedHFInstance];
+        NSArray *tRange = instance.tRange;
+        NSInteger min = [tRange.firstObject integerValue];
+        NSInteger max = [tRange.lastObject integerValue];
+        for (NSInteger i = min; i<=max ; i++) {
+            [_tRangeArray addObject:@(i)];
+        }
+    }
+    return _tRangeArray;
+}
 
 - (NSMutableArray *)hourArray
 {

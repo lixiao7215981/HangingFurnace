@@ -40,8 +40,16 @@
 {
     Method existing = class_getInstanceMethod(self, @selector(layoutSubviews));
     Method new = class_getInstanceMethod(self, @selector(_autolayout_replacementLayoutSubviews));
-    
     method_exchangeImplementations(existing, new);
+}
+
+/**
+ *  切换季节
+ *  default  ： 冬季
+ *  selected ： 夏季
+ */
+- (IBAction)switchSeason:(UIButton *)sender {
+    sender.selected = !sender.selected;
 }
 
 - (void)_autolayout_replacementLayoutSubviews
@@ -54,9 +62,11 @@
 - (void)awakeFromNib {
     
     CGFloat CirX = kWindowWidth * 0.5 - self.LoopWH *0.5;
-    CGFloat CirY = 15;
-    _circleView = [[TCircleView alloc] initWithFrame:CGRectMake(CirX, CirY, self.LoopWH, self.LoopWH)];;
-//    _circleView.persentage = 10;
+    CGFloat CirY = 7;
+    _circleView = [[TCircleView alloc] initWithFrame:CGRectMake(CirX, CirY, self.LoopWH, self.LoopWH)];
+    
+    // 默认大小
+    //    _circleView.persentage = 10;
     
     [self addSubview:_circleView];
     _topLabel = [UILabel newAutoLayoutView];
@@ -165,7 +175,7 @@
 {
     if (_topBottomFont == 0) {
         if (IS_IPHONE_4_OR_LESS) {
-            _topBottomFont = 11;
+            _topBottomFont = 9;
         }else if (IS_IPHONE_5){
             _topBottomFont = 13;
         }else if (IS_IPHONE_6){

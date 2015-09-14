@@ -14,11 +14,13 @@ typedef enum {
     hotwater_fun,    //  热水
 }deviceFunction;
 
+
 // 采暖方式
 typedef enum {
     heating_radiator,   // 暖气片采暖
     heating_floor,     //  地暖采暖
 }heatingState;
+
 
 // 设备正在运行的模式
 typedef enum {
@@ -28,6 +30,7 @@ typedef enum {
     economy,         //经济模式
     custom,         //自定义模式
 }heatingDeviceModel;
+
 
 typedef enum {
     convention,   //常规模式
@@ -77,6 +80,10 @@ LXSingletonH(HFInstance)
  *  采暖------设备模式选择 Array
  */
 @property (nonatomic,strong) NSArray *deviceHeatingModelArray;
+/**
+ *  采暖------设备模时间段 Array
+ */
+@property (nonatomic,strong) NSMutableArray *deviceHeatingDateArray;
 
 
 

@@ -79,7 +79,9 @@
     modelName.text = self.dataList[indexPath.row];
     [modelName autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [modelName autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:40];
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    if (instance.deviceFunState == heating_fun) {
+        cell.accessoryType = UITableViewCellAccessoryDetailButton;
+    }
     return cell;
 }
 
@@ -89,20 +91,26 @@
     _selectCell.imageView.image = nil;
     _selectCell = [tableView cellForRowAtIndexPath:indexPath];
     _selectCell.imageView.image = [UIImage imageNamed:@"modeSet_access"];
-    [kNotificationCenter postNotificationName:kChangeDeviceModelNotification object:nil userInfo:@{@"deviceModel":@(indexPath.row)}];
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    if (instance.deviceFunState == heating_fun) {
+        instance.heating_select_model = (heatingDeviceModel)indexPath.row ;
+    }else if (instance.deviceFunState == hotwater_fun){
+        instance.hotwater_select_model = (hotwaterDeviceModel)indexPath.row;
+    }
     //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == self.dataList.count - 1) {
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    if (indexPath.row == self.dataList.count - 1 && instance.deviceFunState == heating_fun) {
         CustomModelViewController *custom = [[CustomModelViewController alloc] init];
         custom.navtext = self.dataList[indexPath.row];
         [self.navigationController pushViewController:custom animated:YES];
     }else{
         ModelEditViewController *modelEditVC = [[ModelEditViewController alloc]init];
         modelEditVC.navtext = self.dataList[indexPath.row];
-        modelEditVC.dateArray = @[@"2",@"10",@"20"];
+        modelEditVC.dateArray = instance.deviceHeatingDateArray[indexPath.row];
         modelEditVC.isEdit = NO; // 禁止点击
         [self.navigationController pushViewController:modelEditVC animated:YES];
     }

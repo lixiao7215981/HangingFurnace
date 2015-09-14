@@ -36,6 +36,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *deviceModelLabel;
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
+/***  首页的分页展示 */
+@property (weak, nonatomic) IBOutlet UIPageControl *pageVC;
 
 /**
  *  Slider 温度数值
@@ -59,9 +61,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     // 冬季模式下默认为采暖 测试默认是地暖
     HFInstance *instance = [HFInstance sharedHFInstance];
-    instance.deviceFunState = heating_fun;
-    instance.heatingState = heating_radiator;
-    instance.heating_select_model = ceaseless_run;
+    instance.heatingState = heating_floor;
     [self warmOneselfBtnClick:nil];
     
     // 注册CollectionViewCell
@@ -75,23 +75,27 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self.dataList addObject:@(1)];
     [self.dataList addObject:@(2)];
     
-    [kNotificationCenter addObserver:self selector:@selector(deviceModelChange:) name:kChangeDeviceModelNotification object:nil];
     
+    self.pageVC.numberOfPages= self.dataList.count;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //    [self updateByMode];
+    // 改变设备工作的模式
+    [self deviceModelChange];
+    [self updateByMode];
 }
 
-//- (void)deviceModelChange:(NSNotification *)nfa
-//{
-//    NSDictionary *params = nfa.userInfo;
-//    _deviceModel = [params[@"deviceModel"] integerValue];
-//    HFInstance *instance = [HFInstance sharedHFInstance];
-//    self.deviceModelLabel.text = [instance.deviceHeatingModelArray objectAtIndex:_deviceModel];
-//}
+- (void)deviceModelChange
+{
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    if (instance.deviceFunState == heating_fun) {
+        self.deviceModelLabel.text = [instance.deviceHeatingModelArray objectAtIndex:instance.heating_select_model];
+    }else if (instance.deviceFunState == hotwater_fun){
+        self.deviceModelLabel.text = [instance.deviceHotwaterModelArray objectAtIndex:instance.hotwater_select_model];
+    }
+}
 
 - (void) setNavBarBtn
 {
@@ -110,7 +114,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         [MainDelegate.navigationController pushViewController:add animated:YES];
     }];
 }
-
 
 #pragma mark -----------温度指示
 -(void)setTSliderView
@@ -213,7 +216,8 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     // 计算当前页数
-    //    NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    self.pageVC.currentPage = page;
 }
 
 #pragma mark - UITapGestureRecognizer
@@ -233,6 +237,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     HFInstance *instance = [HFInstance sharedHFInstance];
     instance.deviceFunState = heating_fun;
     [self updateByMode];
+    self.deviceModelLabel.text = [instance.deviceHeatingModelArray objectAtIndex:instance.heating_select_model];
 }
 
 /**
@@ -244,6 +249,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     HFInstance *instance = [HFInstance sharedHFInstance];
     instance.deviceFunState = hotwater_fun;
     [self updateByMode];
+    self.deviceModelLabel.text = [instance.deviceHotwaterModelArray objectAtIndex:instance.hotwater_select_model];
 }
 
 #pragma mark - 懒加载
