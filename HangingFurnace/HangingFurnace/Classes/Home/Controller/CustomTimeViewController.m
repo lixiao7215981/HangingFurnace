@@ -16,7 +16,7 @@
 }
 
 @property (nonatomic,strong) NSMutableArray *hourArray;
-@property (nonatomic,strong) NSMutableArray *minuteArray;
+//@property (nonatomic,strong) NSMutableArray *minuteArray;
 /**
  *  温度范围的数组
  */
@@ -138,9 +138,11 @@
         
     }else{
         NSArray *array = [define componentsSeparatedByString:@":"];
-        [array enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
-            [pick.pickView selectRow:[[str getTheCorrect] integerValue] inComponent:idx animated:YES];
-        }];
+//        [array enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
+//            [pick.pickView selectRow:[[str getTheCorrect] integerValue] inComponent:idx animated:YES];
+//        }];
+        
+        [pick.pickView selectRow:[[array.firstObject getTheCorrect] integerValue] inComponent:0 animated:YES];
     }
 }
 
@@ -148,11 +150,12 @@
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
-        return 1;
-    }else{
-        return 2;
-    }
+//    if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
+//        return 1;
+//    }else{
+//        return 2;
+//    }
+    return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -160,11 +163,11 @@
     if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
         return self.tRangeArray.count;
     }else{
-        if (component == 0) { // 小时
+//        if (component == 0) { // 小时
             return self.hourArray.count;
-        }else{// 分钟
-            return self.minuteArray.count;
-        }
+//        }else{// 分钟
+//            return self.minuteArray.count;
+//        }
     }
 }
 
@@ -181,11 +184,11 @@
     if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
         attributedString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@°C",self.tRangeArray[row]] attributes:attributeDict];
     }else{
-        if (component == 0) {
+//        if (component == 0) {
             attributedString = [[NSAttributedString alloc] initWithString:self.hourArray[row] attributes:attributeDict];
-        }else{
-            attributedString = [[NSAttributedString alloc] initWithString:self.minuteArray[row] attributes:attributeDict];
-        }
+//        }else{
+//            attributedString = [[NSAttributedString alloc] initWithString:self.minuteArray[row] attributes:attributeDict];
+//        }
     }
     
     UILabel *labelView = [[UILabel alloc] init];
@@ -222,15 +225,15 @@
     return _hourArray;
 }
 
-- (NSMutableArray *)minuteArray
-{
-    if (!_minuteArray) {
-        _minuteArray = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 60; i++) {
-            [_minuteArray addObject:[NSString stringWithFormat:@"%.2d 分",i]];
-        }
-    }
-    return _minuteArray;
-}
+//- (NSMutableArray *)minuteArray
+//{
+//    if (!_minuteArray) {
+//        _minuteArray = [[NSMutableArray alloc] init];
+//        for (int i = 0; i < 60; i++) {
+//            [_minuteArray addObject:[NSString stringWithFormat:@"%.2d 分",i]];
+//        }
+//    }
+//    return _minuteArray;
+//}
 
 @end

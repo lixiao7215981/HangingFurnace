@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import <PgySDK/PgyManager.h>
 #import <SMS_SDK/SMS_SDK.h>
 #import <SkywareUIInstance.h>
 #import "UserLoginViewController.h"
 
 #define SMS_SDKAppKey    @"a6137b7d9ee4"
 #define SMS_SDKAppSecret  @"df67c3d2a08511a78582b4ce0c2b7184"
+#define PGY_SDKAppKey  @"e7366e1d2769f9f8a8820f6f8b3274bf"
 
 @interface AppDelegate ()
 
@@ -39,7 +41,7 @@
     skywareInstance.app_id = 8;
     
     SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
-    UIM.All_button_bgColor = kSystemRedBtnColor;
+    UIM.All_button_bgColor = kSystemBtnBGColor;
     UIM.All_view_bgColor = kSystemLoginViewBackageColor;
     
     LXFrameWorkInstance *LXM = [LXFrameWorkInstance sharedLXFrameWorkInstance];
@@ -53,7 +55,12 @@
     [SMS_SDK registerApp:SMS_SDKAppKey withSecret:SMS_SDKAppSecret];
     [SMS_SDK enableAppContactFriends:NO];
     
-    
+    //关闭用户反馈功能
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+    // 蒲公英启动
+    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_SDKAppKey];
+    // 检查更新
+    [[PgyManager sharedPgyManager] checkUpdate];
     
     return YES;
 }

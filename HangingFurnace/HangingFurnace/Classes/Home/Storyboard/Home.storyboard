@@ -254,25 +254,25 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30℃" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD0-h0-8l2">
-                                                <rect key="frame" x="20" y="74" width="28" height="15"/>
+                                                <rect key="frame" x="20" y="73" width="28" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80℃" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIM-EF-KiT">
-                                                <rect key="frame" x="553" y="74" width="28" height="15"/>
+                                                <rect key="frame" x="552" y="73" width="28" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wfg-Ln-Qtd" customClass="ASValueTrackingSlider">
-                                                <rect key="frame" x="36" y="24" width="540" height="31"/>
+                                                <rect key="frame" x="36" y="23" width="540" height="31"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="dXG-GZ-mMw"/>
                                                 </constraints>
                                             </slider>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="T_setting" translatesAutoresizingMaskIntoConstraints="NO" id="qp8-P0-osi">
-                                                <rect key="frame" x="20" y="44" width="560" height="30"/>
+                                                <rect key="frame" x="20" y="43" width="560" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="mRQ-Iv-7mI"/>
                                                 </constraints>
@@ -323,10 +323,10 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="无定时模式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRV-nH-GyA">
-                                                <rect key="frame" x="494" y="16" width="60" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无定时模式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRV-nH-GyA">
+                                                <rect key="frame" x="494" y="15" width="60" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="moreRight" translatesAutoresizingMaskIntoConstraints="NO" id="zXX-Wr-Wo7">
@@ -395,7 +395,9 @@
                         <outlet property="deviceModelLabel" destination="NRV-nH-GyA" id="mHD-cH-U2e"/>
                         <outlet property="homeBtnH" destination="FZp-ZJ-e76" id="36J-gr-Luz"/>
                         <outlet property="hotWaterBtn" destination="eUd-Mq-9TU" id="sqj-Gc-dOV"/>
+                        <outlet property="modelSettingLabel" destination="t8h-4B-ggl" id="WF5-ZQ-7zt"/>
                         <outlet property="pageVC" destination="dCb-La-2Nt" id="dKS-bf-J5U"/>
+                        <outlet property="settingTlabel" destination="R01-Dq-SYy" id="lwf-S1-wkx"/>
                         <outlet property="sliderMax" destination="bIM-EF-KiT" id="D2Z-Dc-UON"/>
                         <outlet property="sliderMin" destination="LD0-h0-8l2" id="PGW-qi-bBv"/>
                         <outlet property="tempretureSliderView" destination="wfg-Ln-Qtd" id="i3K-nR-VzX"/>

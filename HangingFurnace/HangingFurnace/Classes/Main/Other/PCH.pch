@@ -19,7 +19,7 @@
 #import "UserDefaultsTool.h"
 
 #define kSystemLoginViewBackageColor kRGBColor(255, 255, 255, 1)
-#define kSystemRedBtnColor kRGBColor(200, 31, 2, 1)
+#define kSystemBtnBGColor kRGBColor(95, 194, 6, 1)
 
 
 //  HomeController AllCell Height

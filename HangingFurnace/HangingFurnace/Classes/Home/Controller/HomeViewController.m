@@ -32,8 +32,12 @@
 @property (weak, nonatomic) IBOutlet ASValueTrackingSlider *tempretureSliderView;
 /***  温度颜色图片的高度 */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *T_colorImgViewH;
+/***  模式设定Label */
+@property (weak, nonatomic) IBOutlet UILabel *modelSettingLabel;
 /***  当前模式 */
 @property (weak, nonatomic) IBOutlet UILabel *deviceModelLabel;
+/***  温度设定Label */
+@property (weak, nonatomic) IBOutlet UILabel *settingTlabel;
 /*** 首页的CollectionView */
 @property (weak, nonatomic) IBOutlet HomeCollectionView *CollectionView;
 /***  首页的分页展示 */
@@ -182,6 +186,11 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _State_setH.constant = HomeiPhone6_State;
         _bottomViewH.constant = HomeiPhone6_1 + HomeiPhone6_3*3;
         _T_colorImgViewH.constant = HomeiPhone6_T_colorsettingimg;
+        self.warmOneselfBtn.titleLabel.font = [UIFont systemFontOfSize:19];
+        self.hotWaterBtn.titleLabel.font = [UIFont systemFontOfSize:19];
+        self.modelSettingLabel.font = [UIFont systemFontOfSize:16];
+        self.deviceModelLabel.font = [UIFont systemFontOfSize:15];
+        self.settingTlabel.font = [UIFont systemFontOfSize:16];
     }else if (IS_IPHONE_6P){
         _homeBtnH.constant = HomeiPhone6plus_3;
         _T_setH.constant = HomeiPhone6plus_1;
@@ -190,6 +199,11 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _State_setH.constant = HomeiPhone6plus_State;
         _bottomViewH.constant = HomeiPhone6plus_1 + HomeiPhone6plus_3*3;
         _T_colorImgViewH.constant = HomeiPhone6plus_T_colorsettingimg;
+        self.warmOneselfBtn.titleLabel.font = [UIFont systemFontOfSize:19];
+        self.hotWaterBtn.titleLabel.font = [UIFont systemFontOfSize:19];
+        self.modelSettingLabel.font = [UIFont systemFontOfSize:16];
+        self.deviceModelLabel.font = [UIFont systemFontOfSize:15];
+        self.settingTlabel.font = [UIFont systemFontOfSize:16];
     }
 }
 

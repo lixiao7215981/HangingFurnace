@@ -420,7 +420,8 @@ static void * ASValueTrackingSliderBoundsContext = &ASValueTrackingSliderBoundsC
     [self setNumberFormatter:tempFormatter];
     self.popUpViewCornerRadius = 16.0;
     self.font = [UIFont systemFontOfSize:15];
-    self.textColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    self.textColor = [UIColor whiteColor];
+    self.popUpViewColor = kRGBColor(251, 78, 13, 1);
     
     UIImage *tumbImage= [UIImage imageNamed:@"T-cursor"];
     //设置指示图标样式

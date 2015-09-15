@@ -52,7 +52,8 @@
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([[[UITextInputMode currentInputMode]primaryLanguage] isEqualToString:@"emoji"]) {
+    UITextInputMode *currentInputMode = textField.textInputMode;
+    if ([currentInputMode.primaryLanguage isEqualToString:@"emoji"]) {
         return NO;
     }
     return YES;
