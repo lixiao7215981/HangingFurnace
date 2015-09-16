@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 skyware. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseCellTableViewController.h"
 #import "SkywareUIConst.h"
 #import "UserLoginViewController.h"
 #import "UserEditNickNameViewController.h"
@@ -14,7 +14,7 @@
 #import <UIImage+Extension.h>
 #import <PathTool.h>
 
-@interface UserAccountViewController : BaseTableViewController
+@interface UserAccountViewController : BaseCellTableViewController
 
 /**
  *  用户 NickName

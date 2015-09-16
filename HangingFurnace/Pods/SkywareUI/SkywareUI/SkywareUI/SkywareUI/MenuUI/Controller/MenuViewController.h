@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 skyware. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseCellTableViewController.h"
 #import "SystemAboutViewController.h"
 #import "SystemFeedBackViewController.h"
 #import "UserAccountViewController.h"
@@ -15,6 +15,6 @@
 #import "AddDeviceViewController.h"
 #import "SkywareUIConst.h"
 
-@interface MenuViewController : BaseTableViewController
+@interface MenuViewController : BaseCellTableViewController
 
 @end

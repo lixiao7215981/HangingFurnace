@@ -87,7 +87,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -123,7 +123,6 @@
         section_0_cell.detailTextLabel.text = @"周一、周二、周三、周四、周五、周六、周日";
         return section_0_cell;
     }else{
-        
         NSString *customCellID = @"CustomModelTableViewCell";
         CustomModelTableViewCell *customCell = [tableView dequeueReusableCellWithIdentifier:customCellID];
         if (customCell == nil) {

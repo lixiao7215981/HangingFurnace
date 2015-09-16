@@ -22,6 +22,7 @@
     [super viewDidLoad];
     [self setNavTitle:@"模式设定"];
     [self addDataList];
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
@@ -47,7 +48,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60;
+    return 50;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,12 +74,19 @@
     
     UILabel *modelName = [UILabel newAutoLayoutView];
     [cell.contentView addSubview:modelName];
-    modelName.textColor = [UIColor blackColor];
+    modelName.textColor = kRGBColor(82, 82, 82, 1);
     modelName.font = [UIFont systemFontOfSize:17];
     modelName.textAlignment = NSTextAlignmentCenter;
     modelName.text = self.dataList[indexPath.row];
     [modelName autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [modelName autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:40];
+    
+//    UIView *line = [UIView newAutoLayoutView];
+//    line.backgroundColor = [UIColor lightGrayColor];
+//    [cell.contentView addSubview:line];
+//    [line autoSetDimension:ALDimensionHeight toSize:0.5];
+//    [line autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
+    
     if (instance.deviceFunState == heating_fun) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
@@ -97,6 +105,7 @@
     }else if (instance.deviceFunState == hotwater_fun){
         instance.hotwater_select_model = (hotwaterDeviceModel)indexPath.row;
     }
+    [tableView reloadData];
     //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

@@ -30,6 +30,11 @@
 #define HomeiPhone5s_or_less_State 40
 #define HomeiPhone5s_or_less_T_colorsettingimg 24
 
+//---------------iPhone5、5s------------------
+//#define HomeiPhone5s_or_less_3 40
+//#define HomeiPhone5s_or_less_1 80
+//#define HomeiPhone5s_or_less_State 40
+//#define HomeiPhone5s_or_less_T_colorsettingimg 24
 //---------------iPhone6------------------
 #define HomeiPhone6_3 54
 #define HomeiPhone6_1 95

@@ -178,7 +178,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         _State_setH.constant = HomeiPhone5s_or_less_State;
         _bottomViewH.constant = HomeiPhone5s_or_less_1 + HomeiPhone5s_or_less_3*3;
         _T_colorImgViewH.constant = HomeiPhone5s_or_less_T_colorsettingimg;
-    }else if (IS_IPHONE_6){
+    }else if (IS_IPHONE_6_OR_6S){
         _homeBtnH.constant = HomeiPhone6_3;
         _T_setH.constant = HomeiPhone6_1;
         _S_setH.constant = HomeiPhone6_3;
@@ -191,7 +191,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         self.modelSettingLabel.font = [UIFont systemFontOfSize:16];
         self.deviceModelLabel.font = [UIFont systemFontOfSize:15];
         self.settingTlabel.font = [UIFont systemFontOfSize:16];
-    }else if (IS_IPHONE_6P){
+    }else if (IS_IPHONE_6P_OR_6PS){
         _homeBtnH.constant = HomeiPhone6plus_3;
         _T_setH.constant = HomeiPhone6plus_1;
         _S_setH.constant = HomeiPhone6plus_3;
@@ -232,6 +232,11 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 计算当前页数
     NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
     self.pageVC.currentPage = page;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%ld",indexPath.row);
 }
 
 #pragma mark - UITapGestureRecognizer

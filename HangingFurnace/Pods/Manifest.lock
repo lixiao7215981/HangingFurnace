@@ -27,7 +27,7 @@ PODS:
     - FMDB/common
   - HF_SmartLink (1.0.0)
   - IQKeyboardManager (3.3.1)
-  - LXFrameWork_OC (2.5.0):
+  - LXFrameWork_OC (2.5.1):
     - AFNetworking
     - FMDB
     - IQKeyboardManager
@@ -40,7 +40,7 @@ PODS:
     - SVProgressHUD
     - ZipArchive
   - MJExtension (2.5.10)
-  - MJRefresh (2.4.9)
+  - MJRefresh (2.4.10)
   - MQTTClient (0.2.6)
   - PureLayout (3.0.1)
   - Reachability (3.2)
@@ -50,7 +50,7 @@ PODS:
   - SkywareSDK (1.0.4):
     - HF_SmartLink
     - MQTTClient
-  - SkywareUI (1.0.9):
+  - SkywareUI (1.1.0):
     - LXFrameWork_OC
     - SkywareSDK
     - SMS_SDK
@@ -67,15 +67,15 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   HF_SmartLink: be555619eec31c5b875cf8f4d0161e8eed265c03
   IQKeyboardManager: 860a5b9df32cc1435a3e967a08ed87de3e59c12e
-  LXFrameWork_OC: 1c9bebc78004c5b3c11ac46b04e11d13178d2d79
+  LXFrameWork_OC: ba6ced20017dbea6f0f27c26df573397943f8023
   MJExtension: 944fb5a12bceb9b866914527f66101566e66292b
-  MJRefresh: be84acb912d0a66364f76a75426698a39528e2ed
+  MJRefresh: e52328552ed9cbfce3501e3820b18bf7643c65cc
   MQTTClient: f3af97fd4e26e0644364cb24e809b9646afce202
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SkywareSDK: 40f0fb014183a18c91ffdf5aa58b4c418ff7a1c2
-  SkywareUI: a316618113044ad5dad589f887367532d8e73960
+  SkywareUI: 3685c2083c26dfd2d519f95568b16ee99057b08b
   SMS_SDK: 4dc6b8a23e2eb4787d1b9d8adabf1eb801fac118
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1

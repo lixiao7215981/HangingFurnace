@@ -9,7 +9,7 @@
 #import "ModelEditViewController.h"
 
 #define timeTableH 240
-#define btn_cell_Margin 20;
+#define btn_cell_Margin 25;
 
 @interface ModelEditViewController ()
 {
@@ -119,7 +119,7 @@
         [point setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [point setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [point setBackgroundImage:[UIImage imageNamed:@"point_select"] forState:UIControlStateSelected];
-        point.layer.cornerRadius = 20;
+        point.layer.cornerRadius = viewW * 0.5;
         point.clipsToBounds = YES;
         point.userInteractionEnabled = self.isEdit;
         point.frame = CGRectMake(appX,appY, viewW, viewH);

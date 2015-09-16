@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 skyware. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "BaseCellTableViewController.h"
 #import "DeviceEditInfoViewController.h"
 #import "SkywareUIConst.h"
 
-@interface DeviceManagerViewController : BaseTableViewController
+@interface DeviceManagerViewController : BaseCellTableViewController
 
 @end

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dF0-Kk-ZO4">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -44,7 +45,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eeq-6l-x5n" kind="push" id="KfT-Vx-qKS"/>
+                                    <segue destination="eeq-6l-x5n" kind="show" id="3du-vg-Hog"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hQ-qv-CMU">
@@ -54,7 +55,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="E1K-Ka-Mjk" kind="push" id="h9s-Ue-YnO"/>
+                                    <segue destination="E1K-Ka-Mjk" kind="show" id="Fa5-d9-EYe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNY-q4-o44">
@@ -120,7 +121,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Fn9-e6-yIn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNY-wZ-nLk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,7 +252,6 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="wja-ys-aL3"/>
                     <connections>
                         <outlet property="againPassword" destination="z7t-bG-aHc" id="tk4-DN-K69"/>
                         <outlet property="code" destination="2fp-AL-JiO" id="FCb-wW-TIy"/>

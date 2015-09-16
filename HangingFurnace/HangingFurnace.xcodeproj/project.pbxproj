@@ -42,7 +42,6 @@
 		4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D921BA151380057B4DA /* selectDataPickView.m */; };
 		4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE04D931BA151380057B4DA /* selectDataPickView.xib */; };
 		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
-		4EE04D9B1BA282EB0057B4DA /* UserDefaultsTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -123,8 +122,6 @@
 		4EE04D931BA151380057B4DA /* selectDataPickView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectDataPickView.xib; sourceTree = "<group>"; };
 		4EE04D961BA171AD0057B4DA /* HFInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFInstance.h; sourceTree = "<group>"; };
 		4EE04D971BA171AD0057B4DA /* HFInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFInstance.m; sourceTree = "<group>"; };
-		4EE04D991BA282EB0057B4DA /* UserDefaultsTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultsTool.h; sourceTree = "<group>"; };
-		4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultsTool.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -279,8 +276,6 @@
 				4EBF80E71B93FAE700C0E099 /* Model */,
 				4EBF80E81B93FAE700C0E099 /* Other */,
 				4EBF80ED1B93FAE700C0E099 /* View */,
-				4EE04D991BA282EB0057B4DA /* UserDefaultsTool.h */,
-				4EE04D9A1BA282EB0057B4DA /* UserDefaultsTool.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -579,7 +574,6 @@
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
 				4ECAC5E91B9EDF8000425190 /* ModelEditViewController.m in Sources */,
 				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
-				4EE04D9B1BA282EB0057B4DA /* UserDefaultsTool.m in Sources */,
 				4ECAC5EF1B9FC57900425190 /* CustomModel.m in Sources */,
 				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,
 				4EBBD9AF1B9C1A00003C6E2A /* HomeCollectionViewCell.m in Sources */,

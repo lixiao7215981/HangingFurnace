@@ -6,8 +6,6 @@
 //  Copyright (c) 2015年 skyware. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
-
-@interface SettingViewController : BaseTableViewController
+@interface SettingViewController : BaseCellTableViewController
 
 @end

@@ -82,6 +82,9 @@
 
 - (NSString *)selectStrWithSelectWeek:(NSArray *) selectWeek
 {
+//    if (selectWeek.count == 7) {
+//        return @"每天";
+//    }
     NSMutableString *subStr = [NSMutableString string];
     [selectWeek enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSInteger tag = [obj integerValue];
@@ -90,7 +93,7 @@
     if (subStr &&subStr.length) {
         return [subStr substringToIndex:subStr.length -1];
     }
-    return @"不重复";
+    return @"永不";
 }
 
 - (void)setDefineStr:(NSString *)defineStr

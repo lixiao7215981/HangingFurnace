@@ -16,14 +16,14 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科枫燃气采暖水炉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2j-Ay-Q1t">
                         <rect key="frame" x="139" y="5" width="112" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfC-Mk-85S">
-                        <rect key="frame" x="320" y="194" width="50" height="30"/>
+                        <rect key="frame" x="327" y="195" width="43" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="1zb-du-5n9"/>
-                            <constraint firstAttribute="height" constant="30" id="ZwF-E4-GNe"/>
+                            <constraint firstAttribute="width" constant="43" id="Ddd-uP-gKj"/>
+                            <constraint firstAttribute="height" constant="32" id="da9-RN-mUl"/>
                         </constraints>
                         <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                         <state key="normal" image="winter">
@@ -39,14 +39,15 @@
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="pfC-Mk-85S" secondAttribute="bottom" constant="5" id="UsP-pL-ytx"/>
+                <constraint firstAttribute="bottom" secondItem="pfC-Mk-85S" secondAttribute="bottom" constant="2" id="3ep-OF-gqd"/>
                 <constraint firstAttribute="centerX" secondItem="o2j-Ay-Q1t" secondAttribute="centerX" id="Z5l-bn-40b"/>
-                <constraint firstAttribute="trailing" secondItem="pfC-Mk-85S" secondAttribute="trailing" constant="20" id="eQT-Wc-joz"/>
+                <constraint firstAttribute="trailing" secondItem="pfC-Mk-85S" secondAttribute="trailing" constant="20" id="egY-wV-g9h"/>
                 <constraint firstItem="o2j-Ay-Q1t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="gmR-Su-a7D"/>
             </constraints>
             <size key="customSize" width="390" height="248"/>
             <connections>
                 <outlet property="deviceName" destination="o2j-Ay-Q1t" id="lG5-jX-eSv"/>
+                <outlet property="seasonBtn" destination="pfC-Mk-85S" id="u6I-Qu-3L3"/>
             </connections>
             <point key="canvasLocation" x="510" y="420.5"/>
         </collectionViewCell>

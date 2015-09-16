@@ -15,12 +15,15 @@
     UILabel *_centerLabel;
     UILabel *_topLabel;
     UILabel *_bottomLabel;
+    CGFloat progress;
 }
 
 /***  设备的名称 */
 @property (weak, nonatomic) IBOutlet UILabel *deviceName;
 /***  转圈的圆 */
 @property (strong, nonatomic) TCircleView *circleView;
+/***  切换季节的按钮 */
+@property (weak, nonatomic) IBOutlet UIButton *seasonBtn;
 
 
 /***  Cell加载完成后的高度 */
@@ -60,14 +63,11 @@
 }
 
 - (void)awakeFromNib {
-    
+    // 默认大小
+    progress = 15 / 100;
     CGFloat CirX = kWindowWidth * 0.5 - self.LoopWH *0.5;
     CGFloat CirY = 7;
     _circleView = [[TCircleView alloc] initWithFrame:CGRectMake(CirX, CirY, self.LoopWH, self.LoopWH)];
-    
-    // 默认大小
-    //    _circleView.persentage = 10;
-    
     [self addSubview:_circleView];
     _topLabel = [UILabel newAutoLayoutView];
     _topLabel.text = @"壁炉温度";
@@ -103,7 +103,6 @@
 - (void) setPersentageWith:(NSTimer *) params
 {
     CGFloat end = [params.userInfo floatValue]/100;
-    static CGFloat progress = 15 / 100;
     if (progress <= end){
         progress += 0.01;
         _circleView.persentage = progress;
@@ -125,13 +124,13 @@
         if (IS_IPHONE_4_OR_LESS) {
             bottomViewH = HomeiPhone5s_or_less_1 + HomeiPhone5s_or_less_3*3;
             _selfH = kWindowHeight - HomeiPhone5s_or_less_State - bottomViewH - 64;
-        }else if (IS_IPHONE_5){
+        }else if (IS_IPHONE_5_OR_5S){
             bottomViewH = HomeiPhone5s_or_less_1 + HomeiPhone5s_or_less_3*3;
             _selfH = kWindowHeight - HomeiPhone5s_or_less_State - bottomViewH - 64;
-        }else if (IS_IPHONE_6){
+        }else if (IS_IPHONE_6_OR_6S){
             bottomViewH = HomeiPhone6_1 + HomeiPhone6_3*3;
             _selfH = kWindowHeight - HomeiPhone6_State - bottomViewH - 64;
-        }else if (IS_IPHONE_6P){
+        }else if (IS_IPHONE_6P_OR_6PS){
             bottomViewH = HomeiPhone6plus_1 + HomeiPhone6plus_3*3;
             _selfH = kWindowHeight - HomeiPhone6plus_State - bottomViewH - 64;
         }
@@ -144,11 +143,11 @@
     if (_LoopWH == 0) {
         if (IS_IPHONE_4_OR_LESS) {
             _LoopWH =  self.selfH - 10;
-        }else if (IS_IPHONE_5){
+        }else if (IS_IPHONE_5_OR_5S){
             _LoopWH =  self.selfH - 5;
-        }else if (IS_IPHONE_6){
+        }else if (IS_IPHONE_6_OR_6S){
             _LoopWH =  self.selfH - 15;
-        }else if (IS_IPHONE_6P){
+        }else if (IS_IPHONE_6P_OR_6PS){
             _LoopWH =  self.selfH - 10;
         }
     }
@@ -160,11 +159,11 @@
     if (_centerFont == 0) {
         if (IS_IPHONE_4_OR_LESS) {
             _centerFont = 60;
-        }else if (IS_IPHONE_5){
+        }else if (IS_IPHONE_5_OR_5S){
             _centerFont = 90;
-        }else if (IS_IPHONE_6){
+        }else if (IS_IPHONE_6_OR_6S){
             _centerFont = 90;
-        }else if (IS_IPHONE_6P){
+        }else if (IS_IPHONE_6P_OR_6PS){
             _centerFont = 100;
         }
     }
@@ -176,15 +175,20 @@
     if (_topBottomFont == 0) {
         if (IS_IPHONE_4_OR_LESS) {
             _topBottomFont = 9;
-        }else if (IS_IPHONE_5){
+        }else if (IS_IPHONE_5_OR_5S){
             _topBottomFont = 13;
-        }else if (IS_IPHONE_6){
+        }else if (IS_IPHONE_6_OR_6S){
             _topBottomFont = 13;
-        }else if (IS_IPHONE_6P){
+        }else if (IS_IPHONE_6P_OR_6PS){
             _topBottomFont = 20;
         }
     }
     return _topBottomFont;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self switchSeason:self.seasonBtn];
 }
 
 @end
