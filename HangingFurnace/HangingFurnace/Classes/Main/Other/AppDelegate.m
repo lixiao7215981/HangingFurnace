@@ -24,17 +24,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
-    self.window.rootViewController = loginRegister;
-    self.navigationController = (UINavigationController *)loginRegister;
-    [self.window makeKeyAndVisible];
-    
-    UIApplication *app = [UIApplication sharedApplication];
-    [app setStatusBarHidden:NO];
-    [app setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     
     // 设置 App_id
     SkywareInstanceModel *skywareInstance = [SkywareInstanceModel sharedSkywareInstanceModel];
@@ -48,8 +37,17 @@
     LXM.NavigationBar_bgColor = kRGBColor(200, 31, 2, 1);
     LXM.NavigationBar_textColor = [UIColor whiteColor];
     LXM.backState = writeBase;
+
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
+    self.window.rootViewController = loginRegister;
+    self.navigationController = (UINavigationController *)loginRegister;
+    [self.window makeKeyAndVisible];
     
-    
+    UIApplication *app = [UIApplication sharedApplication];
+    [app setStatusBarHidden:NO];
+    [app setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // 启动ShareSDK 的短信功能
     [SMS_SDK registerApp:SMS_SDKAppKey withSecret:SMS_SDKAppSecret];

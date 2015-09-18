@@ -42,7 +42,7 @@
     }else if([item isKindOfClass:[BaseSubtitleCellItem class]]){
         cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleSubtitle];
     }else{
-        cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleDefault];
+        cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleSubtitle];
     }
     cell.items = item;
     return cell;

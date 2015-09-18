@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E045F8A1BAABE4A009356DA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E045F891BAABE4A009356DA /* WebViewController.m */; };
 		4E4E5E791BA02907008C594E /* CustomTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E5E781BA02907008C594E /* CustomTimeViewController.m */; };
 		4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E4E5E7B1BA033E4008C594E /* SelectWeekView.m */; };
 		4E4E5E7E1BA033F8008C594E /* SelectWeekView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E4E5E7D1BA033F8008C594E /* SelectWeekView.xib */; };
@@ -42,6 +43,7 @@
 		4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D921BA151380057B4DA /* selectDataPickView.m */; };
 		4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE04D931BA151380057B4DA /* selectDataPickView.xib */; };
 		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
+		4EE789091BA9522600635387 /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE789081BA9522600635387 /* NotifyViewController.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		00A4B6F4B23544FD64EB5C29 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		30C9AF198BFE5B95A31DCB26 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C063B83B514A70B7BF862BE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		4E045F881BAABE4A009356DA /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		4E045F891BAABE4A009356DA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		4E4E5E771BA02907008C594E /* CustomTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTimeViewController.h; sourceTree = "<group>"; };
 		4E4E5E781BA02907008C594E /* CustomTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTimeViewController.m; sourceTree = "<group>"; };
 		4E4E5E7A1BA033E4008C594E /* SelectWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWeekView.h; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		4EE04D931BA151380057B4DA /* selectDataPickView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectDataPickView.xib; sourceTree = "<group>"; };
 		4EE04D961BA171AD0057B4DA /* HFInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFInstance.h; sourceTree = "<group>"; };
 		4EE04D971BA171AD0057B4DA /* HFInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFInstance.m; sourceTree = "<group>"; };
+		4EE789071BA9522600635387 /* NotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewController.h; sourceTree = "<group>"; };
+		4EE789081BA9522600635387 /* NotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyViewController.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -391,6 +397,10 @@
 				4EC8088F1BA6CCD200EE8243 /* HelpViewController.m */,
 				4EC808911BA6CFD600EE8243 /* SettingViewController.h */,
 				4EC808921BA6CFD600EE8243 /* SettingViewController.m */,
+				4EE789071BA9522600635387 /* NotifyViewController.h */,
+				4EE789081BA9522600635387 /* NotifyViewController.m */,
+				4E045F881BAABE4A009356DA /* WebViewController.h */,
+				4E045F891BAABE4A009356DA /* WebViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -553,6 +563,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
+				4EE789091BA9522600635387 /* NotifyViewController.m in Sources */,
 				4ECAC5EC1B9FC3F200425190 /* CustomModelViewController.m in Sources */,
 				4ECAC5E61B9EBB1A00425190 /* HFConst.m in Sources */,
 				4EE04D941BA151380057B4DA /* selectDataPickView.m in Sources */,
@@ -573,6 +584,7 @@
 				4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */,
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
 				4ECAC5E91B9EDF8000425190 /* ModelEditViewController.m in Sources */,
+				4E045F8A1BAABE4A009356DA /* WebViewController.m in Sources */,
 				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
 				4ECAC5EF1B9FC57900425190 /* CustomModel.m in Sources */,
 				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,

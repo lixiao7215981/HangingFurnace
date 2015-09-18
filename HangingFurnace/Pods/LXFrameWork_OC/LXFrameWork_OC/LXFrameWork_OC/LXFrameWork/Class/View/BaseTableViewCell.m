@@ -37,6 +37,7 @@
     if (self) {
         self.textLabel.font = [UIFont systemFontOfSize:titleTextFont];
         self.detailTextLabel.font = [UIFont systemFontOfSize:detailTextFont];
+        self.detailTextLabel.textColor = [UIColor lightGrayColor];
     }
     return self;
 }

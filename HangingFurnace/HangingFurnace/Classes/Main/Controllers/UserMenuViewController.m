@@ -15,6 +15,7 @@
 #import "AddDeviceViewController.h"
 #import "HelpViewController.h"
 #import "SettingViewController.h"
+#import "NotifyViewController.h"
 #import <SkywareUIConst.h>
 
 @interface UserMenuViewController ()
@@ -92,7 +93,8 @@
     }];
     
     BaseArrowCellItem *notification = [BaseArrowCellItem  createBaseCellItemWithIcon:@"notice" AndTitle:@"通知" SubTitle:nil ClickOption:^{
-        [SVProgressHUD showSuccessWithStatus:@"敬请期待！"];
+        NotifyViewController *nogify = [[NotifyViewController alloc]init];
+        [self.navigationController pushViewController:nogify animated:YES];
     }];
     
     BaseArrowCellItem *feedbackItem = [BaseArrowCellItem  createBaseCellItemWithIcon:@"icon_setting_feedback" AndTitle:@"问题反馈" SubTitle:nil ClickOption:^{
