@@ -9,7 +9,7 @@
 #import "SettingModelViewController.h"
 #import "CustomModelViewController.h"
 #import "ModelEditViewController.h"
-
+#import "SendCommandManager.h"
 @interface SettingModelViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableViewCell *_selectCell;
@@ -106,7 +106,8 @@
         instance.hotwater_select_model = (hotwaterDeviceModel)indexPath.row;
     }
     [tableView reloadData];
-    //    [self.navigationController popToRootViewControllerAnimated:YES];
+    //发送指令
+    [SendCommandManager sendModeCmd];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
@@ -124,6 +125,14 @@
         [self.navigationController pushViewController:modelEditVC animated:YES];
     }
 }
+
+
+-(void)sendHotWaterMode
+{
+    
+}
+
+
 
 
 @end

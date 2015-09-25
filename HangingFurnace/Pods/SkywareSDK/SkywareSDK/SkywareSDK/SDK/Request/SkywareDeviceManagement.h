@@ -51,4 +51,13 @@
  */
 + (void) DevicePushCMDWithData:(NSArray *)data;
 
+/**
+ *  大循环中----发送二进制指令
+ *
+ *  @param data base64编码前的原始NSString指令
+ */
+
++(void)DevicePushcmdWithWillEncodeData:(NSString *)data;
+
+
 @end

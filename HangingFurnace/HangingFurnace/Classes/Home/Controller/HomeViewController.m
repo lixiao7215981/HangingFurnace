@@ -12,9 +12,13 @@
 #import "TempretureSetModel.h"
 #import "UserMenuViewController.h"
 #import "SettingModelViewController.h"
+#import "DeviceData.h"
+#import "UtilConversion.h"
+#import "DeviceStatusConst.h"
+#import "SendCommandManager.h"
 #import <AddDeviceViewController.h>
 
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDelegate>
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,ASValueTrackingSliderDelegate,MQTT_ToolDelegate>
 
 // ----------------屏幕适配---------------
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *homeBtnH;
@@ -66,8 +70,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 冬季模式下默认为采暖 测试默认是地暖
     HFInstance *instance = [HFInstance sharedHFInstance];
     instance.heatingState = heating_floor;
-    [self warmOneselfBtnClick:nil];
-    
+//    [self warmOneselfBtnClick:nil];
     // 注册CollectionViewCell
     [self registerCollectionNib];
     //设置温度指示
@@ -75,12 +78,16 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 适配
     [self setScreenDisplay];
     
+//    [self.dataList addObject:@(1)];
+//    [self.dataList addObject:@(2)];
+//    
+//    self.pageVC.numberOfPages= self.dataList.count;
+  
+    // 创建 MQTT
+    MQTT_Tool *mqtt = [MQTT_Tool sharedMQTT_Tool];
+    mqtt.delegate = self;
     
-    [self.dataList addObject:@(1)];
-    [self.dataList addObject:@(2)];
-    
-    
-    self.pageVC.numberOfPages= self.dataList.count;
+    [self downloadDeviceList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,6 +97,61 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     [self deviceModelChange];
     [self updateByMode];
 }
+
+
+/**
+ *  获取设备列表
+ */
+-(void)downloadDeviceList
+{
+#warning 假数据
+    NSString *sourceStr = @"0x200x010x100x100x210x010x00";
+    NSData* sampleData = [sourceStr dataUsingEncoding:NSUTF8StringEncoding]; //开机，夏季
+    NSString * base64String = [sampleData base64EncodedStringWithOptions:0];
+    NSDictionary *dictionaryOne = @{@"device_id":@"111111",@"device_mac":@"111",@"device_sn":@"123456",@"device_name":@"我的房间",
+                                         @"device_online":@"1",
+                                        @"device_data":base64String,
+                                         };
+    
+    SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dictionaryOne];
+    NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:0];//base64解码
+    NSString *result = [NSString stringWithUTF8String:[dataFromString bytes]];
+    
+    dev.device_data = [[DeviceData alloc] initWithBase64String:result];
+    [self.dataList insertObject:dev atIndex:0];
+
+//    [SkywareDeviceManagement DeviceGetAllDevicesSuccess:^(SkywareResult *result) {
+//        [SVProgressHUD dismiss];
+//        if ([result.message intValue] == 200) {
+//            NSArray *jsonArray =result.result;
+//            //首先清空列表
+//            [self.dataList removeAllObjects];
+////            [self.dataList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+////                [self.client unsubscribe:kTopic(((DeviceVo *)obj).deviceMac) withCompletionHandler:^{
+////                    NSLog(@"取消订阅设备------%@",((DeviceVo *)obj).deviceMac);
+////                }];
+////            }];
+//            [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                NSDictionary *dic = (NSDictionary *)obj;
+//                SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dic];
+//                NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:dic[@"device_data"] options:0];//base64解码
+//                NSString *result = [NSString stringWithUTF8String:[dataFromString bytes]];
+//                dev.device_data = [[DeviceData alloc] initWithBase64String:result];
+//                [self.dataList insertObject:dev atIndex:idx];
+//                [MQTT_Tool subscribeToTopicWithMAC:dev.device_mac atLevel:0];//添加订阅设备
+//
+//            }];
+//        }
+//    } failure:^(SkywareResult *result) {
+//        [SVProgressHUD dismiss];
+//        if([result.message  intValue] == 404) {//没有设备
+//           
+//        }else{
+//            [SVProgressHUD showErrorWithStatus:@"获取设备列表失败"];
+//        }
+//    }];
+}
+
 
 - (void)deviceModelChange
 {
@@ -119,6 +181,17 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     }];
 }
 
+//下载完设备列表后刷新界面
+-(void)refreshViewAfterDownloadedData
+{
+ 
+    
+    
+    
+    
+    
+    
+}
 #pragma mark -----------温度指示
 -(void)setTSliderView
 {
@@ -135,7 +208,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     //    NSArray *colorsWarmer = [NSArray arrayWithObjects:kRGBColor(113, 173, 197, 0.8),[UIColor colorWithHue:0.0 saturation:0.8 brightness:1.0 alpha:1.0], nil];
     //    NSArray *positionWarmer = @[@20,  @70];
     //        [self.tempretureSliderView setPopUpViewAnimatedColors:colorsWarmer withPositions:positionWarmer];
-    
     HFInstance *instance = [HFInstance sharedHFInstance];
     NSInteger min = [instance.tRange.firstObject integerValue];
     NSInteger max = [instance.tRange.lastObject integerValue];
@@ -146,7 +218,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     
     self.sliderMin.text = [NSString stringWithFormat:@"%ld°C",min];
     self.sliderMax.text = [NSString stringWithFormat:@"%ld°C",max];
-    
     //    NSLog(@"%ld---%ld---%ld",[instance.tRange.firstObject integerValue],[instance.tRange.lastObject integerValue],instance.defaultTem);
     
 }
@@ -158,6 +229,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     //存储设定的值
     HFInstance *instance = [HFInstance sharedHFInstance];
     instance.defaultTem = (NSInteger)slider.value;
+    [SendCommandManager sendSettingTempretureCmd];
 }
 
 -(void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider
@@ -223,7 +295,8 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeCollectionViewCell *collectionViewCell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellID forIndexPath:indexPath];
-    [collectionViewCell setTemperatureWithT:80];
+//    [collectionViewCell setTemperatureWithT:80];
+    collectionViewCell.deviceInfo = self.dataList[indexPath.row];
     return collectionViewCell;
 }
 
@@ -232,6 +305,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     // 计算当前页数
     NSInteger page = scrollView.contentOffset.x / scrollView.bounds.size.width;
     self.pageVC.currentPage = page;
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -246,7 +320,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
 }
 
 #pragma mark -- ButtonClick
-
 /**
  *  点击了采暖按钮
  */
@@ -257,6 +330,7 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     instance.deviceFunState = heating_fun;
     [self updateByMode];
     self.deviceModelLabel.text = [instance.deviceHeatingModelArray objectAtIndex:instance.heating_select_model];
+    [SendCommandManager sendModeCmd];
 }
 
 /**
@@ -269,7 +343,36 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     instance.deviceFunState = hotwater_fun;
     [self updateByMode];
     self.deviceModelLabel.text = [instance.deviceHotwaterModelArray objectAtIndex:instance.hotwater_select_model];
+    [SendCommandManager sendModeCmd];
 }
+
+
+/**
+ *  开关机，wifi,添加设备
+ *
+ *  @param sender 开关机按钮
+ */
+- (IBAction)changePower:(UIButton *)sender {
+    long index = self.pageVC.currentPage;
+    SkywareDeviceInfoModel *deviceInfo = [self.dataList objectAtIndex:index];
+    if ([deviceInfo.device_online intValue] == DeviceOnlineOn) {
+        DeviceData *data = deviceInfo.device_data;
+        if([data.btnPower intValue] == DevicePowerOn){ //设备开机，发送关机指令
+            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x100x00"];
+        }else{//设备关机，发送开机指令
+            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x100x01"];
+        }
+    }else{
+        //设备不在线
+    }
+}
+
+
+- (void)MQTTnewMessage:(MQTTSession *)session data:(NSData *)data onTopic:(NSString *)topic qos:(MQTTQosLevel)qos
+{
+    NSLog(@"--Cell_MQTT:%@",[data JSONString]);
+}
+
 
 #pragma mark - 懒加载
 - (NSMutableArray *)dataList

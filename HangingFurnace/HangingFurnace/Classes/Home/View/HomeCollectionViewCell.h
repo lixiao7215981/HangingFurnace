@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeviceData.h"
 
 @interface HomeCollectionViewCell : UICollectionViewCell
 
-- (void) setTemperatureWithT:(double) t;
+@property (nonatomic,strong)  SkywareDeviceInfoModel *deviceInfo;//设备信息
+
+//- (void) setTemperatureWithT:(double) t;
 
 @end

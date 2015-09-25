@@ -7,12 +7,11 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "fire@2x.png"
+      "filename" : "fire_5@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "fire@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {

@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavTitle:self.navtext];
+//    self setRightView:<#^UIView *(void)rightViewBlock#>
     self.tableView.separatorStyle = UITableViewScrollPositionNone;
     [self addDataList];
     [self addTableFootView];

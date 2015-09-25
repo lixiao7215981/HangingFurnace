@@ -45,6 +45,9 @@
 		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
 		4EE789091BA9522600635387 /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE789081BA9522600635387 /* NotifyViewController.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
+		8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */; };
+		8BCAFBBA1BB3F588003DE2A8 /* UtilConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */; };
+		8BFEA72A1BB528C100C723FF /* SendCommandManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFEA7291BB528C100C723FF /* SendCommandManager.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +133,13 @@
 		4EE789081BA9522600635387 /* NotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyViewController.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
+		8BCAFBB31BB3D971003DE2A8 /* DeviceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceData.h; sourceTree = "<group>"; };
+		8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceData.m; sourceTree = "<group>"; };
+		8BCAFBB61BB3DEDA003DE2A8 /* DeviceStatusConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceStatusConst.h; sourceTree = "<group>"; };
+		8BCAFBB81BB3F588003DE2A8 /* UtilConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilConversion.h; sourceTree = "<group>"; };
+		8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilConversion.m; sourceTree = "<group>"; };
+		8BFEA7281BB528C100C723FF /* SendCommandManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommandManager.h; sourceTree = "<group>"; };
+		8BFEA7291BB528C100C723FF /* SendCommandManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommandManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +241,7 @@
 		4EBF80D71B93FAE700C0E099 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8BCAFBB71BB3F574003DE2A8 /* Util */,
 				4EBF80DD1B93FAE700C0E099 /* Main */,
 				4EBF80D81B93FAE700C0E099 /* Home */,
 			);
@@ -380,10 +391,15 @@
 		8BA6A9041B9C795B00537F67 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8BCAFBB61BB3DEDA003DE2A8 /* DeviceStatusConst.h */,
 				8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */,
 				8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */,
 				4ECAC5ED1B9FC57900425190 /* CustomModel.h */,
 				4ECAC5EE1B9FC57900425190 /* CustomModel.m */,
+				8BCAFBB31BB3D971003DE2A8 /* DeviceData.h */,
+				8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */,
+				8BFEA7281BB528C100C723FF /* SendCommandManager.h */,
+				8BFEA7291BB528C100C723FF /* SendCommandManager.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,6 +419,15 @@
 				4E045F891BAABE4A009356DA /* WebViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8BCAFBB71BB3F574003DE2A8 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8BCAFBB81BB3F588003DE2A8 /* UtilConversion.h */,
+				8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -562,6 +587,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BCAFBBA1BB3F588003DE2A8 /* UtilConversion.m in Sources */,
 				4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */,
 				4EE789091BA9522600635387 /* NotifyViewController.m in Sources */,
 				4ECAC5EC1B9FC3F200425190 /* CustomModelViewController.m in Sources */,
@@ -575,6 +601,7 @@
 				4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
 				4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */,
+				8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */,
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
 				4EBBD9A81B9C198E003C6E2A /* ASValuePopUpView.m in Sources */,
 				4E4E5E791BA02907008C594E /* CustomTimeViewController.m in Sources */,
@@ -585,6 +612,7 @@
 				4ED920CD1B957D57001B823F /* HomeViewController.m in Sources */,
 				4ECAC5E91B9EDF8000425190 /* ModelEditViewController.m in Sources */,
 				4E045F8A1BAABE4A009356DA /* WebViewController.m in Sources */,
+				8BFEA72A1BB528C100C723FF /* SendCommandManager.m in Sources */,
 				4EBBD9A91B9C198E003C6E2A /* ASValueTrackingSlider.m in Sources */,
 				4ECAC5EF1B9FC57900425190 /* CustomModel.m in Sources */,
 				4EBBD9AA1B9C198E003C6E2A /* TCircleView+BaseConfiguration.m in Sources */,

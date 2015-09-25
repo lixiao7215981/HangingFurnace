@@ -37,4 +37,56 @@
     }];
 }
 
+-(void)setDeviceData:(DeviceData *)deviceData
+{
+    _deviceData = deviceData;
+    if (_deviceData.isAntifreezeOpen) {//防冻
+    }
+    if (_deviceData.isPumpOpen) {//水泵
+    }
+    if (_deviceData.isFanOpen) {//风机
+        _flabellum.hidden = NO;
+    }else{
+        _flabellum.hidden = YES;
+    }
+    if (_deviceData.flameLevel == 0) {//火焰
+        _fire.hidden = YES;
+    }else{
+        _fire.hidden = NO;
+        if (_deviceData.flameLevel == 1) {
+            _fire.image =[UIImage imageNamed:@"fire_1"];
+        }else if (_deviceData.flameLevel == 2){
+            _fire.image =[UIImage imageNamed:@"fire_2"];
+        }else if (_deviceData.flameLevel == 3){
+            _fire.image =[UIImage imageNamed:@"fire_3"];
+        }else if (_deviceData.flameLevel == 4){
+            _fire.image =[UIImage imageNamed:@"fire_4"];
+        }else if (_deviceData.flameLevel == 5){
+            _fire.image =[UIImage imageNamed:@"fire_5"];
+        }else if (_deviceData.flameLevel == 6){
+            _fire.image =[UIImage imageNamed:@"fire_6"];
+        }
+    }
+
+    if (deviceData.seasonWinter) { //冬季
+        _snowflake.hidden = NO;
+    }else{ //夏季
+        _snowflake.hidden = YES;
+    }
+    HFInstance *instance = [HFInstance sharedHFInstance];
+    if (instance.deviceFunState == heating_fun) { //只有采暖模式里面有定时模式
+        if (instance.heating_select_model == ceaseless_run) { //无定时
+            _timing.hidden = YES;
+        }else {
+            _timing.hidden = NO;
+        }
+    }else{
+        _timing.hidden = YES;
+    }
+    
+    
+}
+
+
+
 @end

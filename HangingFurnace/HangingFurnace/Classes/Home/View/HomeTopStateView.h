@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "DeviceData.h"
 @interface HomeTopStateView : UIView
 
 /**
@@ -38,6 +38,9 @@
  *  火焰
  */
 @property (nonatomic,weak)IBOutlet UIImageView *fire;
+
+
+@property (nonatomic,strong) DeviceData *deviceData;//设备信息
 
 
 @end
