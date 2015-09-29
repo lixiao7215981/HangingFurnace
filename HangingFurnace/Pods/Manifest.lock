@@ -47,7 +47,7 @@ PODS:
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
-  - SkywareSDK (1.0.4):
+  - SkywareSDK (1.0.5):
     - HF_SmartLink
     - MQTTClient
   - SkywareUI (1.1.0):
@@ -74,7 +74,7 @@ SPEC CHECKSUMS:
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SkywareSDK: 40f0fb014183a18c91ffdf5aa58b4c418ff7a1c2
+  SkywareSDK: 054dd69fdd87b50b10dec014b406e4ce69a16a9b
   SkywareUI: 3685c2083c26dfd2d519f95568b16ee99057b08b
   SMS_SDK: 4dc6b8a23e2eb4787d1b9d8adabf1eb801fac118
   SSZipArchive: 11801759495fa4efb7512ef652eb0042d68305d7
