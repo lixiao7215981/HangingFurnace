@@ -11,14 +11,20 @@
 #define KBaseDelegate  ((BaseDelegate *)[UIApplication sharedApplication].delegate)
 @implementation UIWindow (Extension)
 
-+ (UIWindow *) changeWindowRootViewController:(UIViewController *) viewController
++ (UIWindow *) changeWindowRootViewController:(UIViewController *) viewController animated:(BOOL)animated
 {
     UIWindow *window = KBaseDelegate.window;
-    [UIView transitionFromView:window.rootViewController.view toView:viewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+    if (animated) {
+        [UIView transitionFromView:window.rootViewController.view toView:viewController.view duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished) {
+            window.rootViewController = viewController;
+            [window makeKeyAndVisible];
+            KBaseDelegate.navigationController = (UINavigationController *)viewController;
+        }];
+    }else{
         window.rootViewController = viewController;
         [window makeKeyAndVisible];
         KBaseDelegate.navigationController = (UINavigationController *)viewController;
-    }];
+    }
     return window;
 }
 
