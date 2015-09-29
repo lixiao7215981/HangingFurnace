@@ -12,5 +12,6 @@
 
 @property (nonatomic,strong) NSMutableArray *arrPlanWeek;
 @property (nonatomic,strong) NSString *cmd;
+@property (nonatomic,strong) NSString *planId;//创建成功的计划任务的id
 
 @end

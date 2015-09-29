@@ -58,6 +58,7 @@
         theModel.openTime  = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
         theModel.closeTime = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;
         theModel.temperature = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]].detailTextLabel.text;
+        theModel.isOpen = YES;
         //保存时间
         NSDictionary *accountDetails = @{@"timeModel":theModel,
                                         @"index":@(_index),

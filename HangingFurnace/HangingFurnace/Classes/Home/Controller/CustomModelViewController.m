@@ -20,7 +20,7 @@
 
 @interface CustomModelViewController ()<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
-@property (nonatomic,strong) NSMutableArray *selectedWeekNumbers;
+//@property (nonatomic,strong) NSMutableArray *selectedWeekNumbers;
 @property (nonatomic,strong) CustomPlan *planModel;
 @end
 
@@ -62,10 +62,6 @@ static int lengthTimerTempreture;
 
 -(void)downloadCustomData
 {
-    self.planModel = [[CustomPlan alloc] init];
-    self.planModel.arrPlanWeek = [NSMutableArray arrayWithObjects:@"1",@"3",nil];
-    [self.tableView reloadData];
-    
     SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
     [SkywareHttpTool HttpToolGetWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:nil requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
         //        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:json options:NSJSONReadingMutableLeaves error:nil];
@@ -73,21 +69,24 @@ static int lengthTimerTempreture;
             _planModel = [[CustomPlan alloc] init];
             NSArray *resultArray = json[@"result"];
             //* * * * 1,2,3
-            NSString *weekString = [resultArray.firstObject objectForKey:@"plan"];
-            NSString *weeks =[weekString componentsSeparatedByString:@" "].lastObject;
-            NSArray *weedNumbers = [weeks componentsSeparatedByString:@","];
-            [weedNumbers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                [_planModel.arrPlanWeek addObject:obj];
-            }];
-            //解析时间段和温度
-            NSString *test = [resultArray.firstObject objectForKey:@"cmd"];
-            NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:[resultArray.firstObject objectForKey:@"cmd"] options:0];//base64解码
-            if (dataFromString) {
-                NSString *result = [NSString stringWithUTF8String:[dataFromString bytes]];
-                _planModel.cmd = result;
-                [self encodeToCustomModel];
+            if (resultArray.count) {
+                NSString *weekString = [resultArray.firstObject objectForKey:@"plan"];
+                NSString *weeks =[weekString componentsSeparatedByString:@" "].lastObject;
+                NSArray *weedNumbers = [weeks componentsSeparatedByString:@","];
+                [weedNumbers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    [_planModel.arrPlanWeek addObject:obj];
+                }];
+                _planModel.planId = [resultArray.firstObject objectForKey:@"id"];
+                //解析时间段和温度
+//                NSString *test = [resultArray.firstObject objectForKey:@"cmd"];
+                NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:[resultArray.firstObject objectForKey:@"cmd"] options:0];//base64解码
+                if (dataFromString) {
+                    NSString *result = [[NSString alloc] initWithData:dataFromString encoding:NSUTF8StringEncoding];
+                    _planModel.cmd = result;
+                    [self encodeToCustomModel];
+                }
             }
-            [self.tableView reloadData];
+          [self.tableView reloadData];
         }
         [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
@@ -96,6 +95,10 @@ static int lengthTimerTempreture;
     }];
     
 #warning test
+//    self.planModel = [[CustomPlan alloc] init];
+//    self.planModel.arrPlanWeek = [NSMutableArray arrayWithObjects:@"1",@"3",nil];
+//    [self.tableView reloadData];
+    
 //    _planModel = [[CustomPlan alloc] init];
 //    _planModel.cmd = @"0x0108060x040x160x050x05";//@"0000 0001 0000 1000 0000 0000   4 22 5 5"
 //       [self.tableView reloadData];
@@ -103,7 +106,7 @@ static int lengthTimerTempreture;
 -(void)encodeToCustomModel
 {
     NSString *stepTime = [UtilConversion toBinaryFromHex:[_planModel.cmd substringWithRange:NSMakeRange(2, 6)]];
-    NSLog(@"the binary is %@",[UtilConversion toBinaryFromHex:stepTime]) ;
+    NSLog(@"the binary is %@",stepTime) ;
     NSString *tempretures = [_planModel.cmd substringFromIndex:8];
     NSArray *tempArrays =  [tempretures componentsSeparatedByString:@"0x"];
     NSMutableArray *decimalTempretureArrays = [NSMutableArray new];//10进制温度存储
@@ -129,17 +132,18 @@ static int lengthTimerTempreture;
         NSString *theStep = [stepTime substringWithRange:NSMakeRange(i, 1)];
         NSString *theNextStep = [stepTime substringWithRange:NSMakeRange(i+1, 1)];
         if ([theStep isEqualToString:@"1"]&&[theNextStep isEqualToString:@"0"]) {
-            [closeTimes addObject:@(i)];
+            [closeTimes addObject:@(i+1)];
         }
     }
     //设置温度 结束时间-开始时间
     NSMutableArray *tempDatalist = [NSMutableArray new];
     [openTimes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         CustomModel *modelTime
-        = [CustomModel createCustomModelWithOpenTime:[NSString stringWithFormat:@"%d",[obj intValue]] CloseTime:[NSString stringWithFormat:@"%d",[[closeTimes objectAtIndex:idx] intValue]] Temperature:[decimalTempretureArrays objectAtIndex:0] isOpen:YES];
+        = [CustomModel createCustomModelWithOpenTime:[NSString stringWithFormat:@"%d 时",[obj intValue]] CloseTime:[NSString stringWithFormat:@"%d 时",[[closeTimes objectAtIndex:idx] intValue]] Temperature:[NSString stringWithFormat:@"%d °C",[decimalTempretureArrays.firstObject intValue]] isOpen:YES];
         //设置温度
         [tempDatalist addObject:modelTime];
     }];
+    lengthTimerTempreture = 0;
     [tempDatalist enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         CustomModel *model = obj;
         int start,end,length;
@@ -147,7 +151,9 @@ static int lengthTimerTempreture;
         end = [model.closeTime intValue];
         length = end - start;
         lengthTimerTempreture +=length;
-        model.temperature =[NSString stringWithFormat:@"%d",[[decimalTempretureArrays objectAtIndex:lengthTimerTempreture-1] intValue]];
+        if (lengthTimerTempreture-1 < decimalTempretureArrays.count) {
+            model.temperature =[NSString stringWithFormat:@"%d °C",[[decimalTempretureArrays objectAtIndex:lengthTimerTempreture-1] intValue]];
+        }
         [self.dataList addObject:model];
     }];
 }
@@ -240,7 +246,6 @@ static int lengthTimerTempreture;
             @"5":@"周五",
             @"6":@"周六",
             @"0":@"周日"};
-    
     if (!indexPath.section) {
         UITableViewCell *section_0_cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"section_0"];
         section_0_cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -329,7 +334,7 @@ static int lengthTimerTempreture;
     }];
 }
 
-
+#pragma mark 发送添加任务或者修改任务到服务器
 -(void)sendCmdToServer
 {
     //将时间段整合成3个字节
@@ -357,7 +362,7 @@ static int lengthTimerTempreture;
 //        [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加时间信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
 //        return;
 //    }
-    if (!_selectedWeekNumbers.count) {
+    if (!_planModel.arrPlanWeek.count) {
         [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加重复日期" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
         return;
     }
@@ -371,15 +376,22 @@ static int lengthTimerTempreture;
     
     NSMutableString *tempkNumbers = [NSMutableString new];
     NSString *weekNumbers;
-    [_selectedWeekNumbers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [_planModel.arrPlanWeek enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         [tempkNumbers appendString:[NSString stringWithFormat:@"%ld,",[obj integerValue]]];
     }];
     if (tempkNumbers.length) {
        weekNumbers =  [tempkNumbers substringToIndex:tempkNumbers.length - 1];
     }
-    NSDictionary *dic = @{@"hour":@"12",@"min":@"12",@"cmd":encodeStr,@"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]};
-    NSData *timerData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    NSDictionary *dic;
+    if (_planModel.planId.length) {//已经有计划，修改计划
+        dic =    @{@"id":_planModel.planId,@"hour":@"12",@"min":@"12",@"cmd":encodeStr,@"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]};
+    }else{ //添加计划
+        dic =     @{@"hour":@"12",@"min":@"12",@"cmd":encodeStr,@"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]};
+    }
+    NSMutableArray *arrDic = [[NSMutableArray alloc] initWithObjects:dic, nil];
+    NSData *timerData = [NSJSONSerialization dataWithJSONObject:arrDic options:NSJSONWritingPrettyPrinted error:nil];
     NSString *stepString = [[NSString alloc] initWithData:timerData encoding:NSUTF8StringEncoding];
+    
     NSMutableDictionary *dicTimers = [NSMutableDictionary new];
     [dicTimers setObject:stepString forKey:@"job"];
     [self DeviceCustomMode:dicTimers Success:^(SkywareResult *result) {
@@ -393,33 +405,34 @@ static int lengthTimerTempreture;
     }];
 }
 
-
 - (void)DeviceCustomMode:(NSDictionary *)parameser Success:(void (^)(SkywareResult *))success failure:(void (^)(SkywareResult *))failure
 {
+    //这里需要判断是修改还是添加 --如果是添加则调用post方法，如果是修改则调用put方法
     SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
-    [SkywareHttpTool HttpToolPostWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:parameser requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
-        [SkywareHttpTool responseHttpToolWithJson:json Success:success failure:failure];
-        NSLog(@"hello");
-        
-    } failure:^(NSError *error) {
-        
-    }];
+    if (_planModel!=nil) { //修改设备
+        [SkywareHttpTool HttpToolPutWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:parameser requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
+            [SkywareHttpTool responseHttpToolWithJson:json Success:success failure:failure];
+        } failure:^(NSError *error) {
+            NSLog(@"其它错误：%@",error.description);
+        }];
+    }else{
+        [SkywareHttpTool HttpToolPostWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:parameser requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
+            [SkywareHttpTool responseHttpToolWithJson:json Success:success failure:failure];
+        } failure:^(NSError *error) {
+            NSLog(@"其它错误：%@",error.description);
+        }];
+    }
 }
+
+
 #pragma mark - NotificationCenter
 - (void)selectWeekViewCenterBtnClick:(NSNotification *) nsf
 {
     NSString *selectWeekStr = nsf.userInfo[@"selectWeekStr"];
-    _selectedWeekNumbers = nsf.userInfo[@"selectedNumber"];
+    _planModel.arrPlanWeek = nsf.userInfo[@"selectedNumber"];
     UITableViewCell *section_0_cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     section_0_cell.detailTextLabel.text = selectWeekStr;
 }
 
--(NSMutableArray *)selectedWeekNumbers
-{
-    if (_selectedWeekNumbers) {
-        _selectedWeekNumbers = [NSMutableArray new];
-    }
-    return _selectedWeekNumbers;
-}
 
 @end
