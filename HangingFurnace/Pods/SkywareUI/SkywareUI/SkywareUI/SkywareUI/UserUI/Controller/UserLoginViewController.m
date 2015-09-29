@@ -48,7 +48,7 @@
             SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
             instance.token = result.token;
             [SVProgressHUD dismiss];
-            [UIWindow changeWindowRootViewController:[[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateInitialViewController]];
+            [UIWindow changeWindowRootViewController:[[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateInitialViewController] animated:YES];
         } failure:^(SkywareResult *result) {
             [SVProgressHUD showErrorWithStatus:@"自动登录失败,请重新输入用户名密码"];
         }];
@@ -79,7 +79,7 @@
         instance.token = result.token;
         
         [SVProgressHUD dismiss];
-        [UIWindow changeWindowRootViewController:[[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateInitialViewController]];
+        [UIWindow changeWindowRootViewController:[[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateInitialViewController] animated:YES];
     } failure:^(SkywareResult *result) {
         if ([result.message isEqualToString:@"404"]) {
             [SVProgressHUD showErrorWithStatus:@"您还没有注册，请先注册"];
