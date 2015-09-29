@@ -1,6 +1,5 @@
 //
 //  UIView+Extension.h
-//  HM新浪微博
 //
 //  Created by 李晓 on 14-10-7.
 //  Copyright (c) 2014年 itcast. All rights reserved.

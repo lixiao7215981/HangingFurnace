@@ -17,7 +17,7 @@
  *
  *  @return 切换成功后的Window
  */
-+ (UIWindow *) changeWindowRootViewController:(UIViewController *) viewController;
++ (UIWindow *) changeWindowRootViewController:(UIViewController *) viewController animated:(BOOL)animated;
 
 /**
  *  获取当前最上面显示的窗口

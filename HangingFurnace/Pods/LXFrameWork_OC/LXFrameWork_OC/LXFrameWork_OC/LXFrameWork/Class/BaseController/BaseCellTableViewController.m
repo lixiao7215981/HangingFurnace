@@ -41,8 +41,10 @@
         cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleValue1];
     }else if([item isKindOfClass:[BaseSubtitleCellItem class]]){
         cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleSubtitle];
-    }else{
+    }else if ([item isKindOfClass:[BaseSwitchCellItem class]]){
         cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleSubtitle];
+    }else{
+        cell = [BaseTableViewCell createProfileBaseCellWithTableView:tableView andCellStyle:UITableViewCellStyleDefault];
     }
     cell.items = item;
     return cell;
