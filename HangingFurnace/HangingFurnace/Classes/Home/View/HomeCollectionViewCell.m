@@ -8,6 +8,7 @@
 
 #import "HomeCollectionViewCell.h"
 #import "TCircleView.h"
+#import "SendCommandManager.h"
 
 @interface HomeCollectionViewCell ()
 {
@@ -55,11 +56,7 @@
 - (IBAction)switchSeason:(UIButton *)sender {
     sender.selected = !sender.selected;
     _currentDeviceData.seasonWinter = sender.selected;
-    if (_currentDeviceData.seasonWinter) { //冬季
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x200x01"];
-    }else{//夏季
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x200x02"];
-    }
+    [SendCommandManager sendSeasonChangeCmd:_skywareInfo];
 }
 
 - (void)_autolayout_replacementLayoutSubviews
@@ -85,25 +82,26 @@
     _bottomLabel.text = @"水压2.3bar";
     [self addSubview:_bottomLabel];
     //如果没有设备 --则显示“未添加设备，无法设定模式”
-    if (_deviceInfo == nil) {
+    if (_skywareInfo == nil) {
         _deviceName.text = @"未添加设备，无法设定模式";
     }
 }
 
 
 //根据模型跟新视图----当前水温，当前气压，夏季（冬季），
--(void)setDeviceInfo:(SkywareDeviceInfoModel *)deviceInfo
+-(void)setSkywareInfo:(SkywareDeviceInfoModel *)skywareInfo
 {
-    _deviceInfo = deviceInfo;
-    if (_deviceInfo) {
-        [SkywareInstanceModel sharedSkywareInstanceModel].device_id = deviceInfo.device_id;//发送指令时需要用
-        _currentDeviceData = deviceInfo.device_data;
-        _deviceName.text = deviceInfo.device_name;
+    _skywareInfo = skywareInfo;
+    if (_skywareInfo) {
+        _currentDeviceData = skywareInfo.device_data;
+        _deviceName.text = skywareInfo.device_name;
         _seasonBtn.selected = !_currentDeviceData.seasonWinter;
         _bottomLabel.text =[NSString stringWithFormat:@"水压%.1lfbar",_currentDeviceData.currentPressure];//当前水压
         [self setTemperatureWithT:_currentDeviceData.currentTempreture];
     }
 }
+
+
 
 - (void)layoutSubviews
 {

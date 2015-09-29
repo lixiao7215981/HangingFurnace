@@ -73,7 +73,7 @@
     }else{ //夏季
         _snowflake.hidden = YES;
     }
-    HFInstance *instance = [HFInstance sharedHFInstance];
+    HFInstance *instance = deviceData.totalInstance;
     if (instance.deviceFunState == heating_fun) { //只有采暖模式里面有定时模式
         if (instance.heating_select_model == ceaseless_run) { //无定时
             _timing.hidden = YES;

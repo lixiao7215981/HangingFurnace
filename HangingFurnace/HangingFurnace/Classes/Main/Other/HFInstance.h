@@ -39,7 +39,7 @@ typedef enum {
 
 
 @interface HFInstance : NSObject
-LXSingletonH(HFInstance)
+//LXSingletonH(HFInstance)
 
 /**
  *  当前选择的是“取暖”还是“热水”

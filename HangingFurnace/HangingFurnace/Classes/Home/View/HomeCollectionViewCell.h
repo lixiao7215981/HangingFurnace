@@ -11,7 +11,7 @@
 
 @interface HomeCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic,strong)  SkywareDeviceInfoModel *deviceInfo;//设备信息
+@property (nonatomic,strong)  SkywareDeviceInfoModel *skywareInfo;//设备信息
 
 //- (void) setTemperatureWithT:(double) t;
 

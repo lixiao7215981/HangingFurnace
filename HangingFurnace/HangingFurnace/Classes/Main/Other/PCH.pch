@@ -47,5 +47,11 @@
 #define HomeiPhone6plus_State 55
 #define HomeiPhone6plus_T_colorsettingimg 36
 
+
+//自定义模式-----
+#define ServersURL @"http://v1.skyware.com.cn/api"
+#define kSearchPlan(DeviceId)  [NSString stringWithFormat:@"cronJob/%@",DeviceId]
+
+
 #endif
 #endif

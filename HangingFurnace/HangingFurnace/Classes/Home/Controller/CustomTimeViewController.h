@@ -7,10 +7,14 @@
 //
 
 #import "BaseTableViewController.h"
+#import <SkywareDeviceInfoModel.h>
 #import "CustomModel.h"
 
 @interface CustomTimeViewController : BaseTableViewController
 
 @property (nonatomic,strong) CustomModel *customModel;
+@property (nonatomic,assign) NSInteger indexOfTimer;
+
+@property (nonatomic,strong) SkywareDeviceInfoModel *skywareInfo;
 
 @end

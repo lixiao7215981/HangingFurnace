@@ -44,6 +44,9 @@
 		4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE04D931BA151380057B4DA /* selectDataPickView.xib */; };
 		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
 		4EE789091BA9522600635387 /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE789081BA9522600635387 /* NotifyViewController.m */; };
+		8B6331881BB84705006BE7D5 /* HCHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331851BB84705006BE7D5 /* HCHttpManager.m */; };
+		8B6331891BB84705006BE7D5 /* HCHttpProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331871BB84705006BE7D5 /* HCHttpProject.m */; };
+		8B63318C1BB912FD006BE7D5 /* CustomPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B63318B1BB912FD006BE7D5 /* CustomPlan.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */; };
 		8BCAFBBA1BB3F588003DE2A8 /* UtilConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */; };
@@ -85,7 +88,7 @@
 		4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		4EBBD9B11B9C1D3B003C6E2A /* HomeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionView.h; sourceTree = "<group>"; };
 		4EBBD9B21B9C1D3B003C6E2A /* HomeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionView.m; sourceTree = "<group>"; };
-		4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangingFurnace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EBF80AE1B93F98D00C0E099 /* 科汉达.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "科汉达.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF80BE1B93F98D00C0E099 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4EBF80C71B93F98D00C0E099 /* HangingFurnaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangingFurnaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF80CC1B93F98D00C0E099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +134,12 @@
 		4EE04D971BA171AD0057B4DA /* HFInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFInstance.m; sourceTree = "<group>"; };
 		4EE789071BA9522600635387 /* NotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewController.h; sourceTree = "<group>"; };
 		4EE789081BA9522600635387 /* NotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyViewController.m; sourceTree = "<group>"; };
+		8B6331841BB84705006BE7D5 /* HCHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHttpManager.h; sourceTree = "<group>"; };
+		8B6331851BB84705006BE7D5 /* HCHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHttpManager.m; sourceTree = "<group>"; };
+		8B6331861BB84705006BE7D5 /* HCHttpProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHttpProject.h; sourceTree = "<group>"; };
+		8B6331871BB84705006BE7D5 /* HCHttpProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHttpProject.m; sourceTree = "<group>"; };
+		8B63318A1BB912FD006BE7D5 /* CustomPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlan.h; sourceTree = "<group>"; };
+		8B63318B1BB912FD006BE7D5 /* CustomPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlan.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
 		8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempretureSetModel.m; sourceTree = "<group>"; };
 		8BCAFBB31BB3D971003DE2A8 /* DeviceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceData.h; sourceTree = "<group>"; };
@@ -206,7 +215,7 @@
 		4EBF80AF1B93F98D00C0E099 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */,
+				4EBF80AE1B93F98D00C0E099 /* 科汉达.app */,
 				4EBF80C71B93F98D00C0E099 /* HangingFurnaceTests.xctest */,
 			);
 			name = Products;
@@ -400,6 +409,8 @@
 				8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */,
 				8BFEA7281BB528C100C723FF /* SendCommandManager.h */,
 				8BFEA7291BB528C100C723FF /* SendCommandManager.m */,
+				8B63318A1BB912FD006BE7D5 /* CustomPlan.h */,
+				8B63318B1BB912FD006BE7D5 /* CustomPlan.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +435,10 @@
 		8BCAFBB71BB3F574003DE2A8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				8B6331841BB84705006BE7D5 /* HCHttpManager.h */,
+				8B6331851BB84705006BE7D5 /* HCHttpManager.m */,
+				8B6331861BB84705006BE7D5 /* HCHttpProject.h */,
+				8B6331871BB84705006BE7D5 /* HCHttpProject.m */,
 				8BCAFBB81BB3F588003DE2A8 /* UtilConversion.h */,
 				8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */,
 			);
@@ -450,7 +465,7 @@
 			);
 			name = HangingFurnace;
 			productName = HangingFurnace;
-			productReference = 4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */;
+			productReference = 4EBF80AE1B93F98D00C0E099 /* 科汉达.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4EBF80C61B93F98D00C0E099 /* HangingFurnaceTests */ = {
@@ -597,9 +612,12 @@
 				4EC8088D1BA66EC000EE8243 /* HomeTopStateView.m in Sources */,
 				4ECAC5E31B9E927100425190 /* SettingModelViewController.m in Sources */,
 				4ECAC5F31B9FC9C600425190 /* CustomModelTableViewCell.m in Sources */,
+				8B63318C1BB912FD006BE7D5 /* CustomPlan.m in Sources */,
 				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,
 				4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */,
+				8B6331891BB84705006BE7D5 /* HCHttpProject.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
+				8B6331881BB84705006BE7D5 /* HCHttpManager.m in Sources */,
 				4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */,
 				8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */,
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,
@@ -733,7 +751,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "科汉达";
 			};
 			name = Debug;
 		};
@@ -751,7 +769,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "科汉达";
 			};
 			name = Release;
 		};

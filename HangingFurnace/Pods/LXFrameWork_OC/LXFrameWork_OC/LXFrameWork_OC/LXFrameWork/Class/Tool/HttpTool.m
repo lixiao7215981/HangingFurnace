@@ -125,6 +125,9 @@
         ser = [AFXMLParserResponseSerializer serializer];
     }
     manager.responseSerializer = ser;
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     if (header) {
         [header enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {

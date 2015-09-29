@@ -68,6 +68,38 @@
 }
 
 
++(NSString *)toBinaryFromHex:(NSString *)strHex
+{
+    NSString *strResult = @"";
+    NSDictionary *dictBinToHax = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                  @"0000",@"0",
+                                  @"0001",@"1",
+                                  @"0010",@"2",
+                                  @"0011",@"3",
+                                  
+                                  @"0100",@"4",
+                                  @"0101",@"5",
+                                  @"0110",@"6",
+                                  @"0111",@"7",
+                                  
+                                  @"1000",@"8",
+                                  @"1001",@"9",
+                                  @"1010",@"A",
+                                  @"1011",@"B",
+                                  
+                                  @"1100",@"C",
+                                  @"1101",@"D",
+                                  @"1110",@"E",
+                                  @"1111",@"F", nil];
+    
+    for (int i = 0;i < [strHex length]; i+=1)
+    {
+        NSString *strBinaryKey = [strHex substringWithRange: NSMakeRange(i, 1)];
+        strResult = [NSString stringWithFormat:@"%@%@",strResult,[dictBinToHax valueForKey:strBinaryKey]];
+    }
+    return  strResult;
+}
+
 +(NSString *)decimalToHex:(NSInteger)num
 {
     NSString *nLetterValue;
@@ -121,6 +153,89 @@
         }
     }
     return str;
+}
+
+
++(NSString*)convertBin:(NSString *)bin
+{
+//    if ([bin length] > 16) {
+//        
+//        NSMutableArray *bins = [NSMutableArray array];
+//        for (int i = 0;i < [bin length]; i += 16) {
+//            [bins addObject:[bin substringWithRange:NSMakeRange(i, 16)]];
+//        }
+//        
+//        NSMutableString *ret = [NSMutableString string];
+//        for (NSString *abin in bins) {
+//            [ret appendString:[UtilConversion convertBin:abin]];
+//        }
+//        return ret;
+//    } else {
+//        int value = 0;
+//        for (int i = 0; i < [bin length]; i++) {
+//            value += pow(2,i)*[[bin substringWithRange:NSMakeRange([bin length]-1-i, 1)] intValue];
+//        }
+//        return [NSString stringWithFormat:@"%X", value];
+//    }
+    
+//     const char* cstr = [bin cStringUsingEncoding: NSASCIIStringEncoding];
+//    
+//    NSUInteger len = strlen(cstr);
+//    const char* lastChar = cstr + len - 1;
+//    NSUInteger curVal = 1;
+//    NSUInteger result = 0;
+//    
+//    while (lastChar >= cstr) {
+//        if (*lastChar == '1')
+//        {
+//            result += curVal;
+//        }
+//        /*
+//         else
+//         {
+//         // Optionally add checks for correct characters here
+//         }
+//         */
+//        lastChar--;
+//        curVal <<= 1;
+//    }
+//    NSString *resultStr = [NSString stringWithFormat: @"%lx", result];
+//    return resultStr;
+    
+    NSMutableString *convertingString = [[NSMutableString alloc] init];
+    for (int x = 0; x < ([bin length]/4); x++) {
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        int d = 0;
+        
+        NSString *A = [NSString stringWithFormat:@"%c", [bin characterAtIndex:(x*4+0)]];
+        NSString *B = [NSString stringWithFormat:@"%c", [bin characterAtIndex:(x*4+1)]];
+        NSString *C = [NSString stringWithFormat:@"%c", [bin characterAtIndex:(x*4+2)]];
+        NSString *D = [NSString stringWithFormat:@"%c", [bin characterAtIndex:(x*4+3)]];
+        
+        
+        if ([A isEqualToString:@"1"]) { a = 8;}
+        
+        if ([B isEqualToString:@"1"]) { b = 4;}
+        
+        if ([C isEqualToString:@"1"]) { c = 2;}
+        
+        if ([D isEqualToString:@"1"]) { d = 1;}
+        
+        int total = a + b + c + d;
+        
+        if (total < 10) { [convertingString appendFormat:@"%i",total]; }
+        else if (total == 10) { [convertingString appendString:@"A"]; }
+        else if (total == 11) { [convertingString appendString:@"B"]; }
+        else if (total == 12) { [convertingString appendString:@"C"]; }
+        else if (total == 13) { [convertingString appendString:@"D"]; }
+        else if (total == 14) { [convertingString appendString:@"E"]; }
+        else if (total == 15) { [convertingString appendString:@"F"]; } 
+        
+    }
+    NSString *convertedHexString = convertingString;
+    return convertedHexString;
 }
 
 

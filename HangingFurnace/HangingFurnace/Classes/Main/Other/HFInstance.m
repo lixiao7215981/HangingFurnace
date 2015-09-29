@@ -9,7 +9,7 @@
 #import "HFInstance.h"
 
 @implementation HFInstance
-LXSingletonM(HFInstance)
+//LXSingletonM(HFInstance)
 
 @synthesize defaultTem = _defaultTem;
 

@@ -131,7 +131,7 @@ static const long  kLength = 4;
 }
 
 -(void)initObject{
-    _totalInstance = [HFInstance sharedHFInstance];
+    _totalInstance = [[HFInstance alloc] init];
 }
 
 -(void)setCmdPower:(NSString *)cmdString //开关机

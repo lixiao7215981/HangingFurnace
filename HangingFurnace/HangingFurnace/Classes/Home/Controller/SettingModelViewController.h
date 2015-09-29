@@ -7,7 +7,9 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import <SkywareDeviceInfoModel.h>
 @interface SettingModelViewController : BaseTableViewController
+
+@property (nonatomic,strong) SkywareDeviceInfoModel *skywareInfo;
 
 @end

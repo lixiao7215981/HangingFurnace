@@ -8,7 +8,7 @@
 
 #import "CustomTimeViewController.h"
 #import "selectDataPickView.h"
-
+#import "DeviceData.h"
 @interface CustomTimeViewController ()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     selectDataPickView *_pick;
@@ -22,6 +22,8 @@
  */
 @property (nonatomic,strong) NSMutableArray *tRangeArray;
 
+@property (nonatomic,strong) HFInstance *currentInstance;
+
 @end
 
 @implementation CustomTimeViewController
@@ -31,24 +33,38 @@
     [self setNavTitle:@"自定义时间"];
     [self.dataList addObjectsFromArray:@[@"开启",@"关闭",@"温度"]];
     [self addNavRightBtn];
-    
+    if (_skywareInfo) {
+        _currentInstance = ((DeviceData *)_skywareInfo.device_data).totalInstance;
+    }
     [kNotificationCenter addObserver:self selector:@selector(selectDatePickViewCenterBtnClick:) name:kSelectCustomDatePickNotification object:nil];
-    
-    
 }
 
 #pragma mark - Method
 - (void) addNavRightBtn
 {
-    __weak typeof (self.dataList) data = self.dataList;
+//    __weak typeof (self.dataList) data = self.dataList;
     __weak typeof (self.tableView) tableView = self.tableView;
     __weak typeof (self.navigationController) nav = self.navigationController;
+    __weak typeof (self.customModel) theModel = self.customModel;
+    __weak typeof (self.indexOfTimer) _index = self.indexOfTimer;
+    __weak typeof (self) _weakSelf = self;
     [self setRightBtnWithImage:nil orTitle:@"确定" ClickOption:^{
-        [data enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
-            NSLog(@"%@",cell.detailTextLabel.text);
-        }];
+//        [data enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            UITableViewCell *cell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]];
+//            NSLog(@"%@",cell.detailTextLabel.text);
+//        }];
+//        [nav popViewControllerAnimated:YES];
+        
+        theModel.openTime  = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
+        theModel.closeTime = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;
+        theModel.temperature = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]].detailTextLabel.text;
+        //保存时间
+        NSDictionary *accountDetails = @{@"timeModel":theModel,
+                                        @"index":@(_index),
+                                         };
+        [kNotificationCenter postNotificationName:@"TimeSetingNotification" object:_weakSelf userInfo:accountDetails];
         [nav popViewControllerAnimated:YES];
+
     }];
 }
 
@@ -203,8 +219,7 @@
 {
     if (!_tRangeArray) {
         _tRangeArray = [[NSMutableArray alloc] init];
-        HFInstance *instance = [HFInstance sharedHFInstance];
-        NSArray *tRange = instance.tRange;
+        NSArray *tRange = _currentInstance.tRange;
         NSInteger min = [tRange.firstObject integerValue];
         NSInteger max = [tRange.lastObject integerValue];
         for (NSInteger i = min; i<=max ; i++) {

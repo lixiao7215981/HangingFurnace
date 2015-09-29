@@ -15,10 +15,12 @@ typedef enum DeviceStatus
     DeviceLock = 0,//设备已经锁定
     DeviceUnLock = 1,//设备未锁定
     
-    DevicePowerOff  = 0,
-    DevicePowerOn  = 1,
-    DeviceOnlineOff  = 0,
-    DeviceOnlineOn = 1,
+//    DevicePowerOff  = 0,
+//    DevicePowerOn  = 1,
+    
+//    DeviceOnlineOff  = 0,
+//    DeviceOnlineOn = 1,
+    
 }DeviceStatus;
 
 

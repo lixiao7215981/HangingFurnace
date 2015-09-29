@@ -23,9 +23,9 @@
 
 - (NSString *)temperature
 {
-    if (_temperature.length) {
-        return [NSString stringWithFormat:@"%@°C",_temperature];
-    }
+//    if (_temperature.length) {
+//        return [NSString stringWithFormat:@"%@°C",_temperature];
+//    }
     return _temperature;
 }
 

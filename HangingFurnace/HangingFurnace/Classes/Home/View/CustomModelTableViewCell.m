@@ -34,4 +34,13 @@
     return cell;
 }
 
+- (IBAction)openOrClose:(UISwitch *)sender {
+    if (self.switchBlock) {
+        self.switchBlock(sender);
+    }
+}
+
+
+
+
 @end

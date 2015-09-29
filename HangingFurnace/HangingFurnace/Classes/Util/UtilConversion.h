@@ -27,6 +27,15 @@
 +(NSString *)stringFromHexCharacter:(NSString *)strChar;
 
 /**
+ *  将16进制字符串，转成二进制字符串
+ *
+ *  @param strHex @"7fefff78"
+ *
+ *  @return @"1111111111011111111111101111000"
+ */
++(NSString *)toBinaryFromHex:(NSString *)strHex;
+
+/**
  *  将16进制的字符串转成十进制的数字
  *  eg. 0100--->256
  *  @param hexStr 16进制字符串  eg.0210  不包含0x
@@ -44,6 +53,16 @@
  *  @return 十六进制的String
  */
 +(NSString *)decimalToHex:(NSInteger)num;
+
+/**
+ *  将二进制字符串转为 16进制字符串
+ *
+ *  @param bin @“0000001011001101”
+ *
+ *  @return @“02CD”
+ */
++(NSString*)convertBin:(NSString *)bin;
+
 
 
 @end

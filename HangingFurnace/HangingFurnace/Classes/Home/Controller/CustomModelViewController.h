@@ -7,12 +7,14 @@
 //
 
 #import "BaseTableViewController.h"
-
+#import <SkywareDeviceInfoModel.h>
 @interface CustomModelViewController : BaseTableViewController
 
 /**
  *  NavBar Title
  */
 @property (nonatomic,copy) NSString *navtext;
+
+@property (nonatomic,strong) SkywareDeviceInfoModel *skywareInfo;//当前设备信息
 
 @end

@@ -25,7 +25,7 @@
 }
 
 - (IBAction)CenterBtnClick:(UIButton *)sender {
-    [kNotificationCenter postNotificationName:kSelectCustomWeekDateNotification object:nil userInfo:@{@"selectWeekStr":[self centerMethod]}];
+    [kNotificationCenter postNotificationName:kSelectCustomWeekDateNotification object:nil userInfo:@{@"selectWeekStr":[self centerMethod],@"selectedNumber":[self getSelectedWeekNumber]}];
    [self cleanMethod];
 }
 
@@ -55,6 +55,12 @@
             self.cleanClick();
         }
     }];
+}
+
+-(NSArray *)getSelectedWeekNumber
+{
+    NSArray *weekNumbers = [self selectNumberWithSelectWeek:_selectWeek];
+    return weekNumbers;
 }
 
 - (NSString *) centerMethod
@@ -95,6 +101,20 @@
     }
     return @"永不";
 }
+
+
+- (NSArray *)selectNumberWithSelectWeek:(NSArray *) selectWeek
+{
+    NSMutableArray *numberArray = [NSMutableArray new];
+    [selectWeek enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSInteger tag = [obj integerValue];
+        [numberArray addObject:[self.dataWeekNumber objectAtIndex:tag]];
+    }];
+    return numberArray;
+}
+
+
+
 
 - (void)setDefineStr:(NSString *)defineStr
 {
@@ -144,7 +164,7 @@
 - (NSArray *)dataWeekNumber
 {
     if (!_dataWeekNumber) {
-        _dataWeekNumber = @[@"",@(1),@(2),@(3),@(4),@(5),@(6),@(7)];
+        _dataWeekNumber = @[@"",@(1),@(2),@(3),@(4),@(5),@(6),@(0)];
     }
     return _dataWeekNumber;
 }

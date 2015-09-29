@@ -14,6 +14,7 @@
 {
     UITableViewCell *_selectCell;
 }
+@property (nonatomic,strong) HFInstance *currentInstance;
 @end
 
 @implementation SettingModelViewController
@@ -22,17 +23,19 @@
     [super viewDidLoad];
     [self setNavTitle:@"模式设定"];
     [self addDataList];
-//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 
 - (void) addDataList
 {
-    HFInstance *instance = [HFInstance sharedHFInstance];
-    if (instance.deviceFunState == heating_fun) {
-        self.dataList = [NSMutableArray arrayWithArray: instance.deviceHeatingModelArray];
-    }else if (instance.deviceFunState == hotwater_fun){
-        self.dataList = [NSMutableArray arrayWithArray: instance.deviceHotwaterModelArray];
+    if (_skywareInfo) {
+        DeviceData *deviceData = _skywareInfo.device_data;
+        _currentInstance = deviceData.totalInstance;
+        if (_currentInstance.deviceFunState == heating_fun) {
+            self.dataList = [NSMutableArray arrayWithArray: _currentInstance.deviceHeatingModelArray];
+        }else if (_currentInstance.deviceFunState == hotwater_fun){
+            self.dataList = [NSMutableArray arrayWithArray: _currentInstance.deviceHotwaterModelArray];
+        }
     }
 }
 
@@ -53,20 +56,19 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HFInstance *instance = [HFInstance sharedHFInstance];
     NSString *cellID = @"settingModelCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    if (instance.deviceFunState == heating_fun) {
-        if (instance.heating_select_model == indexPath.row) {
+    if (_currentInstance.deviceFunState == heating_fun) {
+        if (_currentInstance.heating_select_model == indexPath.row) {
             cell.imageView.image = [UIImage imageNamed:@"modeSet_access"];
             _selectCell = cell;
         }
-    }else if (instance.deviceFunState == hotwater_fun){
-        if (instance.hotwater_select_model == indexPath.row) {
+    }else if (_currentInstance.deviceFunState == hotwater_fun){
+        if (_currentInstance.hotwater_select_model == indexPath.row) {
             cell.imageView.image = [UIImage imageNamed:@"modeSet_access"];
             _selectCell = cell;
         }
@@ -87,7 +89,7 @@
 //    [line autoSetDimension:ALDimensionHeight toSize:0.5];
 //    [line autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
     
-    if (instance.deviceFunState == heating_fun) {
+    if (_currentInstance.deviceFunState == heating_fun) {
         cell.accessoryType = UITableViewCellAccessoryDetailButton;
     }
     return cell;
@@ -99,33 +101,31 @@
     _selectCell.imageView.image = nil;
     _selectCell = [tableView cellForRowAtIndexPath:indexPath];
     _selectCell.imageView.image = [UIImage imageNamed:@"modeSet_access"];
-    HFInstance *instance = [HFInstance sharedHFInstance];
-    if (instance.deviceFunState == heating_fun) {
-        instance.heating_select_model = (heatingDeviceModel)indexPath.row ;
-    }else if (instance.deviceFunState == hotwater_fun){
-        instance.hotwater_select_model = (hotwaterDeviceModel)indexPath.row;
+    if (_currentInstance.deviceFunState == heating_fun) {
+        _currentInstance.heating_select_model = (heatingDeviceModel)indexPath.row ;
+    }else if (_currentInstance.deviceFunState == hotwater_fun){
+        _currentInstance.hotwater_select_model = (hotwaterDeviceModel)indexPath.row;
     }
     [tableView reloadData];
     //发送指令
-    [SendCommandManager sendModeCmd];
+    [SendCommandManager sendModeCmd:_skywareInfo];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    HFInstance *instance = [HFInstance sharedHFInstance];
-    if (indexPath.row == self.dataList.count - 1 && instance.deviceFunState == heating_fun) {
+    if (indexPath.row == self.dataList.count - 1 && _currentInstance.deviceFunState == heating_fun) {
         CustomModelViewController *custom = [[CustomModelViewController alloc] init];
         custom.navtext = self.dataList[indexPath.row];
+        custom.skywareInfo = _skywareInfo;
         [self.navigationController pushViewController:custom animated:YES];
     }else{
         ModelEditViewController *modelEditVC = [[ModelEditViewController alloc]init];
         modelEditVC.navtext = self.dataList[indexPath.row];
-        modelEditVC.dateArray = instance.deviceHeatingDateArray[indexPath.row];
+        modelEditVC.dateArray = _currentInstance.deviceHeatingDateArray[indexPath.row];
         modelEditVC.isEdit = NO; // 禁止点击
         [self.navigationController pushViewController:modelEditVC animated:YES];
     }
 }
-
 
 -(void)sendHotWaterMode
 {
