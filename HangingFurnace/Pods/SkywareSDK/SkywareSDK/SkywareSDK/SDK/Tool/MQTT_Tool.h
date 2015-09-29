@@ -30,6 +30,17 @@
 LXSingletonH(MQTT_Tool)
 
 @property (nonatomic,weak) id<MQTT_ToolDelegate> delegate;
+
+/**
+ *  App 获取到焦点后重新订阅设备
+ */
++ (void) CreateMQTTSection;
+
+/**
+ *  App 失去焦点后关闭订阅设备
+ */
++ (void) CloseMQTTSecction;
+
 /**
  *  订阅设备
  *

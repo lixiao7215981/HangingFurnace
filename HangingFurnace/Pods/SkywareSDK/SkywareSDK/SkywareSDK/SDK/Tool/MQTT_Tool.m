@@ -8,6 +8,7 @@
 
 #import "MQTT_Tool.h"
 #import "SkywareSDK.h"
+
 @interface MQTT_Tool ()<MQTTSessionDelegate>
 
 @end
@@ -16,12 +17,16 @@
 
 LXSingletonM(MQTT_Tool)
 
-/**
- *  MQTT_Session
- */
 static MQTTSession *_secction;
+static NSTimer *_time;
+static NSMutableDictionary *_subscribeDic;
 
 + (void)initialize
+{
+    _subscribeDic = [NSMutableDictionary dictionary];
+}
+
++ (void) CreateMQTTSection
 {
     // 创建 MQTT
     SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
@@ -29,22 +34,57 @@ static MQTTSession *_secction;
     _secction = [[MQTTSession alloc] initWithClientId: clintId];
     [_secction setDelegate:[MQTT_Tool sharedMQTT_Tool]];
     [_secction connectAndWaitToHost:kMQTTServerHost port:1883 usingSSL:NO];
+    
+    if (_subscribeDic.count) {
+        [_subscribeDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {
+            [_secction subscribeAndWaitToTopic:value atLevel:MQTTQosLevelAtLeastOnce];
+        }];
+    }
 }
+
++ (void) CloseMQTTSecction
+{
+    [_secction closeAndWait];
+}
+
+#pragma mark - 添加测试方法
+
++ (void)addTimeTest
+{
+    _time = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(updateTimer:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_time forMode:NSRunLoopCommonModes];
+}
+
++ (void)updateTimer:(NSTimer *) timer
+{
+    NSLog(@"MQTT_State = %ld",_secction.status);
+}
+
+#pragma mark - Method
 
 + (void) subscribeToTopicWithMAC:(NSString *)mac atLevel:(MQTTQosLevel)qosLevel
 {
+    if (!_secction) {
+        return;
+    }
+    BOOL subscribeTure;
     if (qosLevel == 0) {
-        [_secction subscribeToTopic:kTopic(mac) atLevel:MQTTQosLevelAtLeastOnce];
+        subscribeTure = [_secction subscribeAndWaitToTopic:kTopic(mac) atLevel:MQTTQosLevelAtLeastOnce];
     }else{
-        [_secction subscribeToTopic:kTopic(mac) atLevel:qosLevel];
+        subscribeTure =  [_secction subscribeAndWaitToTopic:kTopic(mac) atLevel:qosLevel];
+    }
+    if (subscribeTure) {
+        [_subscribeDic setValue:kTopic(mac) forKey:mac];
     }
 }
 
 + (void) unbscribeToTopicWithMAC:(NSString *)mac
 {
-    [_secction unsubscribeTopic:mac];
+    BOOL subscribeTure = [_secction unsubscribeTopic:mac];
+    if (subscribeTure) {
+        [_subscribeDic removeObjectForKey:mac];
+    }
 }
-
 
 #pragma mark - MQTT_ToolDelegate
 
