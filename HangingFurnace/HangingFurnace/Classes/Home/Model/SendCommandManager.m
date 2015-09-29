@@ -21,21 +21,21 @@
     HFInstance *instance = deviceData.totalInstance;
     if (instance.deviceFunState == heating_fun) { //采暖
         if (instance.heating_select_model == ceaseless_run) { //无定时模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x210xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x210xFF"];
         }else if (instance.heating_select_model == business_one){ //商务模式1
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x220xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x220xFF"];
         }else if (instance.heating_select_model == business_two){ //商务模式2
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x230xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x230xFF"];
         }else if (instance.heating_select_model == economy){ //经济模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x240xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x240xFF"];
         }else if (instance.heating_select_model == custom){ //自定义模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x250xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x250xFF"];
         }
     }else{ //热水
         if (instance.hotwater_select_model == convention) { //常规模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x110xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x110xFF"];
         }else if (instance.hotwater_select_model == comfortable){ //舒适模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x120xFF"];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x120xFF"];
         }
     }
 }
@@ -48,19 +48,19 @@
     HFInstance *instance = deviceData.totalInstance;
     if (instance.deviceFunState == heating_fun) { //采暖
         if (instance.heating_select_model == ceaseless_run) { //无定时模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x210x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x210x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }else if (instance.heating_select_model == business_one){ //商务模式1
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x220x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x220x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }else if (instance.heating_select_model == business_two){ //商务模式2
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x230x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x230x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }else if (instance.heating_select_model == economy){ //经济模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x240x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x240x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }
     }else{ //热水
         if (instance.hotwater_select_model == convention) { //常规模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x110x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x110x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }else if (instance.hotwater_select_model == comfortable){ //舒适模式
-            [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:[NSString stringWithFormat:@"0x120x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
+            [SkywareDeviceManagement DevicePushCMDWithEncodeData:[NSString stringWithFormat:@"0x120x%@",[UtilConversion decimalToHex:instance.defaultTem]]];
         }
     }
 }
@@ -70,9 +70,9 @@
     [self setDeviceId:skywareInfo];
     DeviceData *data = skywareInfo.device_data;
     if(data.btnPower.boolValue){ //设备开机，发送关机指令
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x100x00"];
+        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x100x00"];
     }else{//设备关机，发送开机指令
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x100x01"];
+        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x100x01"];
     }
 }
 
@@ -83,10 +83,10 @@
     DeviceData *data = skywareInfo.device_data;
     if (data.seasonWinter) { //冬季
         NSLog(@"冬季0x200x01");
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x200x01"];
+        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x200x01"];
     }else{//夏季
         NSLog(@"夏季0x200x01");
-        [SkywareDeviceManagement DevicePushcmdWithWillEncodeData:@"0x200x02"];
+        [SkywareDeviceManagement DevicePushCMDWithEncodeData:@"0x200x02"];
     }
 
 }

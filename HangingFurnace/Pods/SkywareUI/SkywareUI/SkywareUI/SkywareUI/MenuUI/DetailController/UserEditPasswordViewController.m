@@ -73,7 +73,7 @@
             instance.token = nil;
             // 调回到登陆界面
             UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
-            [UIWindow changeWindowRootViewController:loginRegister];
+            [UIWindow changeWindowRootViewController:loginRegister animated:YES];
         });
         
     } failure:^(SkywareResult *result) {

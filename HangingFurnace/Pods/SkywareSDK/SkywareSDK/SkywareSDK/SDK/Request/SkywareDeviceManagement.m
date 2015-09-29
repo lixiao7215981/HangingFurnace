@@ -146,4 +146,36 @@
     return commandv;
 }
 
++(void) DevicePushCMDWithEncodeData:(NSString *)data
+{
+    NSData* sampleData = [data dataUsingEncoding:NSUTF8StringEncoding];
+    NSString * encodeStr = [sampleData base64EncodedStringWithOptions:0]; //进行base64位编码
+    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if (!instance) return;
+    [params setObject: instance.device_id forKey:@"device_id"];
+    [params setObject:[SkywareDeviceManagement controlCommandvWithEncodedString:encodeStr] forKey:@"commandv"];
+    [SkywareDeviceManagement DevicePushCMD:params Success:^(SkywareResult *result) {
+        NSLog(@"指令发送成功---%@",params);
+        [SVProgressHUD dismiss];
+    } failure:^(SkywareResult *result) {
+        NSLog(@"指令发送失败");
+        [SVProgressHUD dismiss];
+    }];
+}
+
+/**
+ *  拼接指令串
+ */
++(NSMutableString *)controlCommandvWithEncodedString:(NSString *)encodeData
+{
+    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    NSMutableString  *commandv ;
+    commandv= [NSMutableString stringWithString:@"{\"sn\":"];
+    [commandv appendFormat: @"%ld",instance.sn];
+    [commandv appendFormat:@",\"cmd\":\"%@\",\"data\":[",encodeData];
+    [commandv appendString:@"]}\n"];
+    return commandv;
+}
+
 @end

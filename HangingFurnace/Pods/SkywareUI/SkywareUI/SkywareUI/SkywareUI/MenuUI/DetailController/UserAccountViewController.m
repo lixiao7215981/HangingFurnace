@@ -137,7 +137,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             // 调回到登陆界面
             UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
-            [UIWindow changeWindowRootViewController:loginRegister];
+            [UIWindow changeWindowRootViewController:loginRegister animated:YES];
             
         });
     }
