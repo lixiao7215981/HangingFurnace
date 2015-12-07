@@ -80,6 +80,7 @@
     [self addSubview:_centerLabel];
     _bottomLabel = [UILabel newAutoLayoutView];
     _bottomLabel.text = @"水压2.3bar";
+    _centerLabel.text = @"26°";
     [self addSubview:_bottomLabel];
     //如果没有设备 --则显示“未添加设备，无法设定模式”
     if (_skywareInfo == nil) {
@@ -100,7 +101,6 @@
         [self setTemperatureWithT:_currentDeviceData.currentTempreture];
     }
 }
-
 
 
 - (void)layoutSubviews
@@ -128,7 +128,7 @@
 {
     CGFloat end = [params.userInfo floatValue]/100;
     if (progress <= end){
-        progress += 0.01;
+        progress += 0.008;
         _circleView.persentage = progress;
     }else{
         [_timer invalidate];
@@ -210,9 +210,9 @@
     return _topBottomFont;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self switchSeason:self.seasonBtn];
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [self switchSeason:self.seasonBtn];
+//}
 
 @end

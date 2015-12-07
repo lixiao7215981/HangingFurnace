@@ -32,11 +32,10 @@
 +(void)sendSeasonChangeCmd:(SkywareDeviceInfoModel *)skywareInfo;
 
 /**
- *  发送自定义时间模式 --需要服务器端处理
+ *  发送自定义时间模式 --(服务器端有另外的处理方式）
  *
  *  @param skywareInfo <#skywareInfo description#>
  */
-+(void)sendSettingTimeCmd:(SkywareDeviceInfoModel *)skywareInfo;
-
++(void)sendSettingTimeCmd:(SkywareDeviceInfoModel *)skywareInfo withCmdString:(NSString *)cmdString;
 
 @end

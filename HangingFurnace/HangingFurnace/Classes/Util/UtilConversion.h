@@ -11,7 +11,7 @@
 @interface UtilConversion : NSObject
 /**
  *  将16进制的字符串转成十进制的数字 带0x开头
- *  eg. 0x0100--->256
+ *  eg. 0100--->256
  *  @param hexStr 16进制字符串  eg.0x0210
  *
  *  @return 十进制数

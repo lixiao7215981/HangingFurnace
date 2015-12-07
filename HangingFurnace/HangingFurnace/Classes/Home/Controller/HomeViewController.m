@@ -94,66 +94,80 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
  */
 -(void)downloadDeviceList
 {
-#warning 假数据
-    NSString *sourceStr = @"0x200x010x100x100x210x010x00";
-    NSData* sampleData = [sourceStr dataUsingEncoding:NSUTF8StringEncoding]; //开机，夏季
-    NSString * base64String = [sampleData base64EncodedStringWithOptions:0];
-    NSDictionary *dictionaryOne = @{@"device_id":@"100435",@"device_mac":@"111",@"device_sn":@"123456",@"device_name":@"我的房间",
-                                         @"device_online":@"1",
-                                        @"device_data":base64String,
-                                    };
-    SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dictionaryOne];
-    
-    NSDictionary *dictionaryTwo = @{@"device_id":@"100435",@"device_mac":@"111",@"device_sn":@"123456",@"device_name":@"我的卧室",
-                                    @"device_online":@"1",
-                                    @"device_data":base64String,
-                                    };
-    SkywareDeviceInfoModel *devTwo = [SkywareDeviceInfoModel objectWithKeyValues:dictionaryTwo];
-    
-    NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:0];//base64解码
-    NSString *result = [NSString stringWithUTF8String:[dataFromString bytes]];
-    
-    dev.device_data = [[DeviceData alloc] initWithBase64String:result];
-    devTwo.device_data = [[DeviceData alloc] initWithBase64String:result];
-    [self.dataList insertObject:dev atIndex:0];
-    [self.dataList insertObject:devTwo atIndex:1];
-    
-    _currentSkywareInfo = self.dataList.firstObject;
-    self.pageVC.numberOfPages= self.dataList.count;
-    
-//    [SkywareDeviceManagement DeviceGetAllDevicesSuccess:^(SkywareResult *result) {
-//        [SVProgressHUD dismiss];
-//        if ([result.message intValue] == 200) {
-//            NSArray *jsonArray =result.result;
-//            //首先清空列表
-//            [self.dataList removeAllObjects];
-////            [self.dataList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-////                [self.client unsubscribe:kTopic(((DeviceVo *)obj).deviceMac) withCompletionHandler:^{
-////                    NSLog(@"取消订阅设备------%@",((DeviceVo *)obj).deviceMac);
-////                }];
-////            }];
-//            [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//                NSDictionary *dic = (NSDictionary *)obj;
-//                SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dic];
-//                NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:dic[@"device_data"] options:0];//base64解码
-//                NSString *result = [NSString stringWithUTF8String:[dataFromString bytes]];
-//                dev.device_data = [[DeviceData alloc] initWithBase64String:result];
-//                [self.dataList insertObject:dev atIndex:idx];
-//                [MQTT_Tool subscribeToTopicWithMAC:dev.device_mac atLevel:0];//添加订阅设备
-//            }];
-//            self.pageVC.numberOfPages= self.dataList.count;
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self initViewAfterLoadedData];
-//            });
-//        }
-//    } failure:^(SkywareResult *result) {
-//        [SVProgressHUD dismiss];
-//        if([result.message  intValue] == 404) {//没有设备
-//            self.pageVC.numberOfPages = 1;
-//        }else{
-//            [SVProgressHUD showErrorWithStatus:@"获取设备列表失败"];
-//        }
-//    }];
+    [SkywareDeviceManagement DeviceGetAllDevicesSuccess:^(SkywareResult *result) {
+        [SVProgressHUD dismiss];
+        if ([result.message intValue] == 200) {
+            NSArray *jsonArray =result.result;
+            //首先清空列表
+            [self.dataList removeAllObjects];
+            [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSDictionary *dic = (NSDictionary *)obj;
+                SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dic];
+                NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:dic[@"device_data"] options:0];//base64解码
+                Byte *bytes = (Byte *)[dataFromString bytes];
+                NSString *hexStr=@"";
+                for(int i=0;i<[dataFromString length];i++)
+                {
+                    NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+                    if([newHexStr length]==1)
+                        hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+                    else
+                        hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+                }
+                dev.device_data = [[DeviceData alloc] initWithBase64String:hexStr];
+                [self.dataList insertObject:dev atIndex:idx];
+                [MQTT_Tool subscribeToTopicWithMAC:dev.device_mac atLevel:0];//添加订阅设备
+            }];
+            self.pageVC.numberOfPages= self.dataList.count;
+            if (self.pageVC.numberOfPages <= 1) {
+                self.pageVC.hidden = YES;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self initViewAfterLoadedData];
+            });
+        }
+    } failure:^(SkywareResult *result) {
+        [SVProgressHUD dismiss];
+        if([result.message intValue] == 404) {//没有设备
+            self.pageVC.numberOfPages = 1;
+#warning  test 添加假设备
+            NSString *sourceStr = @"20011010210100411f4215";
+            NSData* sampleData = [sourceStr dataUsingEncoding:NSUTF8StringEncoding]; //开机，夏季
+            NSString * base64String = [sampleData base64EncodedStringWithOptions:0];
+            NSDictionary *dictionaryOne = @{@"device_id":@"100435",@"device_mac":@"111",@"device_sn":@"123456",@"device_name":@"我的房间",
+                                            @"device_online":@"1",
+                                            @"device_data":base64String,
+                                            };
+            SkywareDeviceInfoModel *dev = [SkywareDeviceInfoModel objectWithKeyValues:dictionaryOne];
+            
+            NSDictionary *dictionaryTwo = @{@"device_id":@"100435",@"device_mac":@"111",@"device_sn":@"123456",@"device_name":@"我的卧室",
+                                            @"device_online":@"1",
+                                            @"device_data":base64String,
+                                            };
+            SkywareDeviceInfoModel *devTwo = [SkywareDeviceInfoModel objectWithKeyValues:dictionaryTwo];
+            
+            NSData* dataFromString = [[NSData alloc] initWithBase64EncodedString:base64String options:0];//base64解码
+            Byte *bytes = (Byte *)[dataFromString bytes];
+            NSString *hexStr=@"";
+            for(int i=0;i<[dataFromString length];i++)
+            {
+                NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+                if([newHexStr length]==1)
+                    hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+                else
+                    hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+            }
+            dev.device_data = [[DeviceData alloc] initWithBase64String:hexStr];
+            devTwo.device_data = [[DeviceData alloc] initWithBase64String:hexStr];
+            [self.dataList insertObject:dev atIndex:0];
+//            [self.dataList insertObject:devTwo atIndex:1];
+            _currentSkywareInfo = self.dataList.firstObject;
+            self.pageVC.numberOfPages= self.dataList.count;
+            self.pageVC.hidden = YES;
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"获取设备列表失败"];
+        }
+    }];
 }
 
 - (void)setNavBarBtn
@@ -196,12 +210,6 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
     }
 }
 
-//切换设备后更新指定设备的View
--(void)updateTheSpecifiedView
-{
-    
-}
-
 
 -(void)updatePowerStatus:(SkywareDeviceInfoModel *)skywareInfo
 {
@@ -210,10 +218,10 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
         if ([deviceData.btnPower boolValue]) { //设备开机
             [self setDevicePowerButton:_btnPower withDefalutImage:@"home_power_on" PressedImage:@"home_power_on_down"];
         }else{
-            [self setDevicePowerButton:_btnPower withDefalutImage:@"home_power_off" PressedImage:@"home_power_on_down"];
+            [self setDevicePowerButton:_btnPower withDefalutImage:@"home_power_off" PressedImage:@"home_power_off_down"];
         }
     }else{ //设备离线
-        [self showAlterView];
+        [self showAlterView:@"设备不在线"];
     }
 }
 #pragma mark -----------温度指示
@@ -389,19 +397,25 @@ static NSString *CollectionViewCellID = @"HomeCollectionViewCell";
  */
 - (IBAction)changePower:(UIButton *)sender {
     long index = self.pageVC.currentPage;
-    SkywareDeviceInfoModel *deviceInfo = [self.dataList objectAtIndex:index];
-    if (deviceInfo.device_online.boolValue) {
-        [SendCommandManager sendDeviceOpenCloseCmd:deviceInfo];
+    if (self.dataList.count) {
+        if ( index < self.dataList.count ) {
+            SkywareDeviceInfoModel *deviceInfo = [self.dataList objectAtIndex:index];
+            if (deviceInfo.device_online.boolValue) {
+                [SendCommandManager sendDeviceOpenCloseCmd:deviceInfo];
+            }else{
+                //设备不在线
+            }
+        }
     }else{
-        //设备不在线
+        [self showAlterView:@"您还未添加设备"];
     }
 }
 /**
  *  设备不在线
  */
--(void)showAlterView
+-(void)showAlterView:(NSString *)msg
 {
-    UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"" message:@"设备不在线" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"" message:msg delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alterView show];
 }
 -(void)setDevicePowerButton:(UIButton *)powerBtn withDefalutImage:(NSString *)defaultImage PressedImage:(NSString *)pressedImage
