@@ -12,13 +12,17 @@
 //多个16进制字节转成十进制数
 +(long)toDecimalFromHex:(NSString *)hexStr
 {
-    NSArray *strArr = [hexStr componentsSeparatedByString:@"0x"];
-    NSMutableString *hexJoinString= [NSMutableString new];
-    [strArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [hexJoinString appendString:obj];
-    }];
+//    NSArray *strArr = [hexStr componentsSeparatedByString:@"0x"];
+//    NSMutableString *hexJoinString= [NSMutableString new];
+//    [strArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        [hexJoinString appendString:obj];
+//    }];
+//    long num = 0;
+//    num = [self numFromString:hexJoinString];
+//    return num;
+
     long num = 0;
-    num = [self numFromString:hexJoinString];
+    num = [self numFromString:hexStr];
     return num;
 }
 //十六进制数转十进制数

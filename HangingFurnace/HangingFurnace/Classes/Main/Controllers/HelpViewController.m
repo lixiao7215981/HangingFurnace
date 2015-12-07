@@ -35,10 +35,12 @@
         web.title = @"故障说明";
         [self.navigationController pushViewController:web animated:YES];
     }];
-    //    BaseArrowCellItem *item3 = [BaseArrowCellItem  createBaseCellItemWithIcon:nil AndTitle:@"保养维护" SubTitle:nil ClickOption:^{
-    //        web.URL = @"http://t1.skyware.com.cn/bglinfo";
-    //        [self.navigationController pushViewController:web animated:YES];
-    //    }];
+    BaseArrowCellItem *item3 = [BaseArrowCellItem  createBaseCellItemWithIcon:nil AndTitle:@"保养维护" SubTitle:nil ClickOption:^{
+        WebViewController *web = [[WebViewController alloc] init];
+        web.URL = @"http://t1.skyware.com.cn/bgltending";
+        web.title = @"保养维护";
+        [self.navigationController pushViewController:web animated:YES];
+    }];
     BaseArrowCellItem *item4 = [BaseArrowCellItem  createBaseCellItemWithIcon:nil AndTitle:@"安全注意事项" SubTitle:nil ClickOption:^{
         WebViewController *web = [[WebViewController alloc] init];
         web.URL = @"http://t1.skyware.com.cn/bglsoft";
@@ -46,7 +48,7 @@
         [self.navigationController pushViewController:web animated:YES];
     }];
     
-    BaseCellItemGroup *group = [BaseCellItemGroup createGroupWithItem:@[item1,item2,item4]];
+    BaseCellItemGroup *group = [BaseCellItemGroup createGroupWithItem:@[item1,item2,item3,item4]];
     
     [self.dataList addObject:group];
 }

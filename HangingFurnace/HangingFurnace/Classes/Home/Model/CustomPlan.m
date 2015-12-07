@@ -7,15 +7,13 @@
 //
 
 #import "CustomPlan.h"
-
 @implementation CustomPlan
 
 -(instancetype)init
 {
     self = [super init];
     if (self) {
-        self.arrPlanWeek =[NSMutableArray new];
-        return self;
+//        self.arrPlanWeek =[NSMutableArray new];
     }
     return self;
 }

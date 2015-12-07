@@ -19,6 +19,8 @@
 /***  是否开启 */
 @property (nonatomic,assign) BOOL isOpen;
 
+@property (nonatomic,copy) NSString *ids;
+@property (nonatomic,assign) BOOL isAdd;//是否是添加的新计划
 
 + (instancetype) createCustomModelWithOpenTime:(NSString *) openTime CloseTime:(NSString *)closeTime Temperature:(NSString *)temperature isOpen:(BOOL)isOpen;
 

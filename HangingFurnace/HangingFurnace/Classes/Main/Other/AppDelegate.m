@@ -14,7 +14,7 @@
 
 #define SMS_SDKAppKey    @"a6137b7d9ee4"
 #define SMS_SDKAppSecret  @"df67c3d2a08511a78582b4ce0c2b7184"
-#define PGY_SDKAppKey  @"e7366e1d2769f9f8a8820f6f8b3274bf"
+#define PGY_SDKAppKey  @"319f79a0d2454b97c32df9fd7da8578f"
 
 @interface AppDelegate ()
 
@@ -71,11 +71,12 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [MQTT_Tool CloseMQTTSecction];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    
+    [MQTT_Tool CreateMQTTSection];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

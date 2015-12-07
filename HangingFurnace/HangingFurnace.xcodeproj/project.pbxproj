@@ -50,6 +50,7 @@
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */; };
 		8BCAFBBA1BB3F588003DE2A8 /* UtilConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */; };
+		8BF2ED541BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2ED531BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m */; };
 		8BFEA72A1BB528C100C723FF /* SendCommandManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFEA7291BB528C100C723FF /* SendCommandManager.m */; };
 		E0D3A963254B726E3E84776A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C9AF198BFE5B95A31DCB26 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -88,7 +89,7 @@
 		4EBBD9AE1B9C1A00003C6E2A /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		4EBBD9B11B9C1D3B003C6E2A /* HomeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionView.h; sourceTree = "<group>"; };
 		4EBBD9B21B9C1D3B003C6E2A /* HomeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionView.m; sourceTree = "<group>"; };
-		4EBF80AE1B93F98D00C0E099 /* 科汉达.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "科汉达.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HangingFurnace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF80BE1B93F98D00C0E099 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4EBF80C71B93F98D00C0E099 /* HangingFurnaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangingFurnaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBF80CC1B93F98D00C0E099 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +148,8 @@
 		8BCAFBB61BB3DEDA003DE2A8 /* DeviceStatusConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceStatusConst.h; sourceTree = "<group>"; };
 		8BCAFBB81BB3F588003DE2A8 /* UtilConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilConversion.h; sourceTree = "<group>"; };
 		8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilConversion.m; sourceTree = "<group>"; };
+		8BF2ED521BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSStringHexToBytes.h"; sourceTree = "<group>"; };
+		8BF2ED531BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSStringHexToBytes.m"; sourceTree = "<group>"; };
 		8BFEA7281BB528C100C723FF /* SendCommandManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendCommandManager.h; sourceTree = "<group>"; };
 		8BFEA7291BB528C100C723FF /* SendCommandManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommandManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,7 +218,7 @@
 		4EBF80AF1B93F98D00C0E099 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4EBF80AE1B93F98D00C0E099 /* 科汉达.app */,
+				4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */,
 				4EBF80C71B93F98D00C0E099 /* HangingFurnaceTests.xctest */,
 			);
 			name = Products;
@@ -435,6 +438,7 @@
 		8BCAFBB71BB3F574003DE2A8 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				8BF2ED511BC8B2200040DBC5 /* catagory */,
 				8B6331841BB84705006BE7D5 /* HCHttpManager.h */,
 				8B6331851BB84705006BE7D5 /* HCHttpManager.m */,
 				8B6331861BB84705006BE7D5 /* HCHttpProject.h */,
@@ -443,6 +447,15 @@
 				8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		8BF2ED511BC8B2200040DBC5 /* catagory */ = {
+			isa = PBXGroup;
+			children = (
+				8BF2ED521BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.h */,
+				8BF2ED531BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m */,
+			);
+			path = catagory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,7 +477,7 @@
 			);
 			name = HangingFurnace;
 			productName = HangingFurnace;
-			productReference = 4EBF80AE1B93F98D00C0E099 /* 科汉达.app */;
+			productReference = 4EBF80AE1B93F98D00C0E099 /* HangingFurnace.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4EBF80C61B93F98D00C0E099 /* HangingFurnaceTests */ = {
@@ -496,6 +509,7 @@
 				TargetAttributes = {
 					4EBF80AD1B93F98D00C0E099 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 9RHGQHNHRA;
 					};
 					4EBF80C61B93F98D00C0E099 = {
 						CreatedOnToolsVersion = 6.4;
@@ -600,6 +614,7 @@
 				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,
 				4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */,
 				8B6331891BB84705006BE7D5 /* HCHttpProject.m in Sources */,
+				8BF2ED541BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
 				8B6331881BB84705006BE7D5 /* HCHttpManager.m in Sources */,
 				4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */,
@@ -727,6 +742,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",
@@ -735,7 +753,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "科汉达";
+				PRODUCT_NAME = HangingFurnace;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -745,6 +764,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HangingFurnace/Classes/Main/Lib/Pgy_SDK",
@@ -753,7 +775,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/HangingFurnace/Classes/Main/Other/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "科汉达";
+				PRODUCT_NAME = HangingFurnace;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
