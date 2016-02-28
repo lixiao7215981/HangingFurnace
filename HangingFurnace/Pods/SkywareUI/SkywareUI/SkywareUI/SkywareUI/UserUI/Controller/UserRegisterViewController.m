@@ -19,6 +19,9 @@
 
 @end
 
+/**
+ *  快速注册
+ */
 @implementation UserRegisterViewController
 
 - (void)viewDidLoad {

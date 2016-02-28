@@ -55,10 +55,28 @@
 //        }];
 //        [nav popViewControllerAnimated:YES];
         
+
         theModel.openTime  = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].detailTextLabel.text;
         theModel.closeTime = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]].detailTextLabel.text;
         theModel.temperature = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]].detailTextLabel.text;
         theModel.isOpen = YES;
+        
+       //关闭时间必须大于开始时间
+        if ([theModel.openTime isEqualToString:@"--"]||[theModel.closeTime isEqualToString:@"--"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请设置时间" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            return ;
+        }
+        if ([[theModel.openTime substringToIndex:2] intValue]>=[[theModel.closeTime substringToIndex:2] intValue]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"关闭时间必须大于开启时间" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            return ;
+        }
+        if ([theModel.temperature isEqualToString:@"-"]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"请设置温度" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            return ;
+        }
         //保存时间
         NSDictionary *accountDetails = @{@"timeModel":theModel,
                                         @"index":@(_index),
@@ -154,12 +172,16 @@
     if (_indexPath.row ==2) { // 选择的是温度需要显示一列的温度Pick
         
     }else{
-        NSArray *array = [define componentsSeparatedByString:@":"];
+//        NSArray *array = [define componentsSeparatedByString:@":"];
 //        [array enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
-//            [pick.pickView selectRow:[[str getTheCorrect] integerValue] inComponent:idx animated:YES];
+//            
+//            [pick.pickView selectRow:[[str removeStringFrontZero] integerValue] inComponent:idx animated:YES];
 //        }];
-        
-        [pick.pickView selectRow:[[array.firstObject getTheCorrect] integerValue] inComponent:0 animated:YES];
+        if ([@"--" isEqualToString:define]) {
+             [pick.pickView selectRow:0 inComponent:0 animated:YES];
+        }else{
+            [pick.pickView selectRow:[[define removeStringFrontZero] integerValue] inComponent:0 animated:YES];
+        }
     }
 }
 

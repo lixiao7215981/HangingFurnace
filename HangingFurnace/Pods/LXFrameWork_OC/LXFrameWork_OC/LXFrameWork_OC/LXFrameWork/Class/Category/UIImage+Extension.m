@@ -229,14 +229,6 @@
     return imageCopy;
 }
 
-- (UIImage *)resizeCanvas:(CGSize)sz alignment:(int)alignment {
-    UIGraphicsBeginImageContext(sz);
-    [self drawInRect:CGRectMake((sz.width - self.size.width) / 2.0, sz.height - self.size.height, self.size.width, self.size.height)];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
 + (UIImage *)imageWithColor:(UIColor *)color {
     return [UIImage imageWithColor:color WithSize:CGSizeMake(1.0f, 1.0f)];
 }

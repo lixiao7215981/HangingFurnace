@@ -7,7 +7,7 @@
 //
 
 #import "SkywareAddressWeatherModel.h"
-#import "UIColor+Category.h"
+#import <UIColor+Extension.h>
 
 @implementation SkywareAddressWeatherModel
 

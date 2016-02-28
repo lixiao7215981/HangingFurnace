@@ -37,9 +37,9 @@
  *  根据传入大小生成纯色的图片
  */
 + (UIImage *)imageWithColor:(UIColor *)color WithSize:(CGSize)size;
-
+/**
+ *  按照比例旋转图片，将图片摆正
+ */
 - (UIImage *)scaleAndRotateImage;
-
-- (UIImage *)resizeCanvas:(CGSize)sz alignment:(int)alignment;
 
 @end

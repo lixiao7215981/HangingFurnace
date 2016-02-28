@@ -13,7 +13,7 @@
 @interface DeviceData : NSObject
 
 @property (nonatomic,strong) NSString *btnPower;// 按钮状态开机
-
+//@property (nonatomic,strong) NSString *calibarateTime;// 系统校准时间
 @property (nonatomic,strong) TempretureSetModel *tempretureModel;
 
 //@property (nonatomic,strong) CustomModel *timeOne;

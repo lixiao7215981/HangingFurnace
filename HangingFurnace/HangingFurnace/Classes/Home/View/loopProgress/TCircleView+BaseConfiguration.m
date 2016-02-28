@@ -7,7 +7,7 @@
 //
 
 #import "TCircleView+BaseConfiguration.h"
-#import <UIColor+Category.h>
+#import <UIColor+Extension.h>
 #define DEGREES_TO_RADOANS(x) (M_PI * (x) / 180.0) // 将角度转为弧度
 
 @implementation TCircleView (BaseConfiguration)

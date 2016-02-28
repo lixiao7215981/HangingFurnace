@@ -1,1 +1,1 @@
-../../../LXFrameWork_OC/LXFrameWork_OC/LXFrameWork_OC/LXFrameWork/Class/Controller/QRCodeViewController.h
+../../../LXFrameWork_OC/LXFrameWork_OC/LXFrameWork_OC/LXFrameWork/Class/Controller/Function_VC/QRCodeViewController.h

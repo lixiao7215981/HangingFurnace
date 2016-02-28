@@ -13,7 +13,6 @@
 #import "SelectWeekView.h"
 #import <UIWindow+Extension.h>
 #import "CustomModel.h"
-#import "HCHttpManager.h"
 #import "UtilConversion.h"
 #import "CustomPlan.h"
 #import "NSString+NSStringHexToBytes.h"
@@ -36,18 +35,13 @@
     __weak __typeof(self) _weakSelf = self;
     [self setRightBtnWithImage:nil orTitle:@"确定" ClickOption:^{
         //发送指令
-        [_weakSelf sendCmdToServer];
+        [_weakSelf sendCmdToDevice];
     }];
     self.tableView.separatorStyle = UITableViewScrollPositionNone;
     
     [self addTableFootView];
     [kNotificationCenter addObserver:self selector:@selector(selectWeekViewCenterBtnClick:) name:kSelectCustomWeekDateNotification object:nil];
     [kNotificationCenter addObserver:self selector:@selector(updateTimeTableView:) name:@"TimeSetingNotification" object:nil];
-#warning test ---删除数据
-    CustomModel *model = [[CustomModel alloc] init];
-    model.ids = @"27,28";
-//    [self deletePlan:model];
-#warning test--- end
     //获取数据
     [self downloadCustomData];
     
@@ -68,7 +62,8 @@
 
 -(void)downloadCustomData
 {
-    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    
+    SkywareSDKManager *instance = [SkywareSDKManager sharedSkywareSDKManager];
     [SkywareHttpTool HttpToolGetWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:nil requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
         if ([json[@"message"] intValue] == 200) { //获取成功 -- 有计划任务
             NSArray *resultArray = json[@"result"];
@@ -81,7 +76,9 @@
             for ( int i = 0; i < self.planArray.count; ) {
                 CustomPlan *planOpen = [self.planArray objectAtIndex:i];
                 CustomPlan *planClose = [self.planArray objectAtIndex:i+1];
-                CustomModel *model = [CustomModel createCustomModelWithOpenTime:[NSString stringWithFormat:@"%@ 时",planOpen.hour]  CloseTime:[NSString stringWithFormat:@"%@ 时",planClose.hour] Temperature:[self tempretureEncodeToCustomModelWighString:planOpen.cmd] isOpen:YES];
+//                CustomModel *model = [CustomModel createCustomModelWithOpenTime:[NSString stringWithFormat:@"%@ 时",planOpen.hour]  CloseTime:[NSString stringWithFormat:@"%@ 时",planClose.hour] Temperature:[self tempretureEncodeToCustomModelWighString:planOpen.cmd] isOpen:planOpen.status];
+                
+                CustomModel *model = [CustomModel createCustomModelWithOpenTime:[NSString stringWithFormat:@"%@ 时",planOpen.hour]  CloseTime:[NSString stringWithFormat:@"%@ 时",planClose.hour] Temperature:[NSString stringWithFormat:@"%@°C",planOpen.temp] isOpen:planOpen.status];
                 model.ids = [NSString stringWithFormat:@"%@,%@",planOpen.id,planClose.id];
                 [self.dataList addObject:model];
                 i+=2;
@@ -173,7 +170,7 @@ static const long  valueLengthStep = 2;
         return;
     }
     CustomTimeViewController *timeVC = [[CustomTimeViewController alloc] init];
-    CustomModel *customModel = [CustomModel createCustomModelWithOpenTime:@"--:--" CloseTime:@"--:--" Temperature:@"-" isOpen:NO];
+    CustomModel *customModel = [CustomModel createCustomModelWithOpenTime:@"--" CloseTime:@"--" Temperature:@"-" isOpen:NO];
     customModel.isAdd = YES;
     timeVC.customModel = customModel;
     timeVC.skywareInfo =_skywareInfo;
@@ -235,7 +232,7 @@ static const long  valueLengthStep = 2;
             @"4":@"周四",
             @"5":@"周五",
             @"6":@"周六",
-            @"0":@"周日"};
+            @"7":@"周日"};
     if (!indexPath.section) {
         UITableViewCell *section_0_cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"section_0"];
         section_0_cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -262,7 +259,6 @@ static const long  valueLengthStep = 2;
         __weak __typeof(customCell) _weakCustomCell = customCell;
         customCell.switchBlock = ^(UISwitch *openSwitch){
             _weakCustomCell.custom.isOpen =  openSwitch.isOn;
-            
         };
         return customCell;
     }
@@ -351,14 +347,18 @@ static const long  valueLengthStep = 2;
                         @"min":@"00",
                         @"cmd":model.isOpen?[self encodeBase64String:[NSString stringWithFormat:@"10012125%@",[UtilConversion decimalToHex:[[model.temperature  substringToIndex:model.temperature.length-2] intValue]]]]:@"", //开机
                         @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers],
-                        @"id":[planIDs objectAtIndex:0]
+                        @"id":[planIDs objectAtIndex:0],
+                        @"temp":[model.temperature substringToIndex:model.temperature.length -2],
+                        @"status":[NSString stringWithFormat:@"%d",model.isOpen]
                         };
             dicClose = @{
                          @"hour":[model.closeTime substringToIndex:model.closeTime.length -2],
                          @"min":@"00",
                          @"cmd":model.isOpen?[self encodeBase64String:[NSString stringWithFormat:@"10002125%@",[UtilConversion decimalToHex:[[model.temperature substringToIndex:model.temperature.length -2] intValue]]]]:@"", //关机
                          @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers],
-                         @"id":[planIDs objectAtIndex:1]
+                         @"id":[planIDs objectAtIndex:1],
+                         @"temp":[model.temperature substringToIndex:model.temperature.length -2],
+                         @"status":[NSString stringWithFormat:@"%d",model.isOpen]
                          };
         }else{
             //一个model相当于两个指令----指令需要base64编码
@@ -366,13 +366,18 @@ static const long  valueLengthStep = 2;
                         @"hour":[model.openTime substringToIndex:model.openTime.length-2],
                         @"min":@"00",
                         @"cmd":model.isOpen?[self encodeBase64String:[NSString stringWithFormat:@"10012125%@",[UtilConversion decimalToHex:[[model.temperature  substringToIndex:model.temperature.length-2] intValue]]]]:@"", //开机
-                        @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]
+                        @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers],
+                        @"temp":[model.temperature substringToIndex:model.temperature.length -2],
+                        @"status":[NSString stringWithFormat:@"%d",model.isOpen]
+
                         };
             dicClose = @{
                          @"hour":[model.closeTime substringToIndex:model.closeTime.length -2],
                          @"min":@"00",
                          @"cmd":model.isOpen?[self encodeBase64String:[NSString stringWithFormat:@"10002125%@",[UtilConversion decimalToHex:[[model.temperature substringToIndex:model.temperature.length -2] intValue]]]]:@"", //关机
-                         @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]
+                         @"plan":[NSString stringWithFormat:@"* * %@",weekNumbers],
+                         @"temp":[model.temperature substringToIndex:model.temperature.length -2],
+                         @"status":[NSString stringWithFormat:@"%d",model.isOpen]
                          };
         }
         if (model.isAdd) {
@@ -414,74 +419,96 @@ static const long  valueLengthStep = 2;
             [SVProgressHUD showErrorWithStatus:@"上传失败"];
         } isAddPlan:NO];
     }
-    
-//    //将时间段整合成3个字节
-//    NSMutableArray *tempratures = [NSMutableArray new];
-//    NSMutableString *timeString =[NSMutableString stringWithString:@"000000000000000000000000"] ;
-//    [self.dataList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        CustomModel *model = obj;
-//        NSInteger start,end,tempture,length;
-//        if (model.isOpen) {
-//        start =  [model.openTime intValue];
-//        end = [model.closeTime intValue];
-//        length = end - start;
-//        tempture = [[[NSMutableString stringWithString:model.temperature] stringByReplacingOccurrencesOfString:@"°C" withString:@""] intValue];
-//        NSMutableString *times = [NSMutableString new];
-//        //添加温度设置
-//        for (int j= 0; j< end-start; j++) {
-//            NSString *tem = [NSString stringWithFormat:@"0x%@",[UtilConversion decimalToHex:tempture]];
-//            [tempratures addObject:tem];
-//            [times appendString:@"1"];
-//        }
-//        [timeString replaceCharactersInRange:NSMakeRange(start, end-start) withString:times];
-//        }
-//    }];
-////    if (!times.length) {
-////        [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加时间信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-////        return;
-////    }
-//    if (!self.arrPlanWeek.count) {
-//        [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加重复日期" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
-//        return;
-//    }
-//    NSLog(@"the time binary is %@,the hex is %@",timeString,[UtilConversion convertBin:timeString]);
-//    NSMutableString *timeDataString =[NSMutableString stringWithString:[NSString stringWithFormat:@"%@",[UtilConversion convertBin:timeString]]] ;
-//    [tempratures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        [timeDataString appendString:obj];
-//    }];
-//    NSData* sampleData = [timeDataString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString * encodeStr = [sampleData base64EncodedStringWithOptions:0]; //进行base64位编码
-//    
-//    NSMutableString *tempkNumbers = [NSMutableString new];
-//    NSString *weekNumbers;
-//    [_planModel.arrPlanWeek enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        [tempkNumbers appendString:[NSString stringWithFormat:@"%ld,",[obj integerValue]]];
-//    }];
-//    if (tempkNumbers.length) {
-//       weekNumbers =  [tempkNumbers substringToIndex:tempkNumbers.length - 1];
-//    }
-//    NSDictionary *dic;
-////    if (_planModel.planId.length) {//已经有计划，修改计划
-////        dic =    @{@"id":_planModel.planId,@"hour":@"12",@"min":@"12",@"cmd":encodeStr,@"plan":[NSString stringWithFormat:@"* * %@",weekNumbers]};
-////    }else{ //添加计划
-//        dic =  @{@"hour":@(11),@"min":@(12),@"cmd":@"test",@"plan":[NSString stringWithFormat:@"* * %@",@"1"]};
-////    }
-//    
-//    NSMutableArray *arrDic = [[NSMutableArray alloc] initWithObjects:dic, nil];
-//    NSData *timerData = [NSJSONSerialization dataWithJSONObject:arrDic options:NSJSONWritingPrettyPrinted error:nil];
-//    NSString *stepString = [[NSString alloc] initWithData:timerData encoding:NSUTF8StringEncoding];
-//    NSMutableDictionary *dicTimers = [NSMutableDictionary new];
-//    [dicTimers setObject:stepString forKey:@"job"];
-//    [self DeviceCustomMode:dicTimers Success:^(SkywareResult *result) {
-//        if ([result.message intValue] == 200) {
-//            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }
-//    } failure:^(SkywareResult *errResult) {
-//        NSLog(@"the error is %@",errResult.description);
-//        [SVProgressHUD showErrorWithStatus:@"上传失败"];
-//    }];
 }
+
+-(void)sendCmdToDevice
+{
+    //将时间段整合成3个字节
+    //先排序，再合成3个字节，（时间不允许有交叉）
+    //时间数据有交叉判断
+    //第一个关闭时间与第二个的开启时间，以此类推--------
+    
+#warning 添加假数据
+//    CustomModel *model1 = [CustomModel createCustomModelWithOpenTime:@"2" CloseTime:@"3" Temperature:@"12" isOpen:YES];
+//    CustomModel *model2 = [CustomModel createCustomModelWithOpenTime:@"0" CloseTime:@"1" Temperature:@"15" isOpen:YES];
+//    CustomModel *model3 = [CustomModel createCustomModelWithOpenTime:@"10" CloseTime:@"13" Temperature:@"30" isOpen:YES];
+//    CustomModel *model4 = [CustomModel createCustomModelWithOpenTime:@"5" CloseTime:@"6" Temperature:@"36" isOpen:YES];
+//    CustomModel *model5 = [CustomModel createCustomModelWithOpenTime:@"4" CloseTime:@"5" Temperature:@"28" isOpen:YES];
+//    [self.dataList removeAllObjects];
+//    [self.dataList addObject:model1];
+//    [self.dataList addObject:model2];
+//    [self.dataList addObject:model3];
+//    [self.dataList addObject:model4];
+//    [self.dataList addObject:model5];
+#warning end
+    NSArray *sortedArray =  [self.dataList sortedArrayUsingComparator:cmptr];
+    //检测时间段是否有交叉，将前一个model的关闭时间与后面的开始时间对比 ，如果前面的关闭时间，大于后面的开始时间，则认为时间有交叉
+    for (int i=0; i < sortedArray.count-1; i++) {
+        CustomModel *modelPre = [sortedArray objectAtIndex:i];
+        CustomModel *modelNext = [sortedArray objectAtIndex:i+1];
+        if ([[modelPre.closeTime substringToIndex:2] integerValue]>[[modelNext.openTime substringToIndex:2] integerValue]) {
+            UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"" message:@"时间有交叉" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertV show];
+            break;
+        }
+    }
+    //没有交叉的情况下，将Model拼接成发送指令（OpenTime----CloseTime + 温度）
+    NSMutableArray *tempratures = [NSMutableArray new];
+    NSMutableString *tempratureStr = [NSMutableString new];
+    NSMutableString *timeString =[NSMutableString stringWithString:@"000000000000000000000000"] ;
+    [sortedArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        CustomModel *model = obj;
+        NSInteger start,end,tempture,length;
+        if (model.isOpen) {
+            start =  [[model.openTime substringToIndex:2] intValue];
+            end = [[model.closeTime substringToIndex:2] intValue];
+            length = end - start;
+            tempture = [[model.temperature substringToIndex:2] integerValue];
+            NSMutableString *times = [NSMutableString new];
+            //添加温度设置
+            for (int j= 0; j< end-start; j++) {
+                NSString *tem = [NSString stringWithFormat:@"%@",[UtilConversion decimalToHex:tempture]];
+                [tempratures addObject:tem];
+                [tempratureStr appendString:tem];
+                [times appendString:@"1"];
+            }
+            [timeString replaceCharactersInRange:NSMakeRange(start, end-start) withString:times];
+        }
+    }];
+    if (!self.arrPlanWeek.count) {
+        [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加时间信息" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    if (!self.arrPlanWeek.count) {
+        [[[UIAlertView alloc ]initWithTitle:@"" message:@"请添加重复日期" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+        return;
+    }
+    NSString *combinedTimeCmdStr = [NSString stringWithFormat:@"%@%@",[UtilConversion convertBin:timeString],tempratureStr];
+    //添加星期命令
+    NSMutableString *weekdayString =[NSMutableString stringWithString:@"00000000"] ;
+    [self.arrPlanWeek enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if ([obj intValue]>0 && [obj intValue]<8) {
+            [weekdayString replaceCharactersInRange:NSMakeRange(8-[obj intValue],1) withString:@"1"];
+        }
+    }];
+    NSLog(@"the week:%@",weekdayString);
+    //    NSStrin
+    [SendCommandManager sendSettingTimeCmd:_skywareInfo withCmdString:[NSString stringWithFormat:@"23%@22%@",[UtilConversion convertBin:weekdayString],combinedTimeCmdStr]];
+    NSLog(@"the code:%@",combinedTimeCmdStr);
+    [self sendCmdToServer];
+}
+
+NSComparator cmptr = ^(CustomModel *model1, CustomModel *model2){
+    if ([[model1.openTime substringToIndex:2] integerValue] > [[model2.openTime substringToIndex:2] integerValue]) {
+        return (NSComparisonResult)NSOrderedDescending;
+    }
+    if ([[model1.openTime substringToIndex:2] integerValue] < [[model2.openTime substringToIndex:2] integerValue]) {
+        return (NSComparisonResult)NSOrderedAscending;
+    }
+    return (NSComparisonResult)NSOrderedSame; //相等的时候需要特别考虑
+};
+
+
 
 -(NSString *)encodeBase64String:(NSString *)waitedForEncodeStr
 {
@@ -493,7 +520,7 @@ static const long  valueLengthStep = 2;
 - (void)DeviceCustomMode:(NSDictionary *)parameser Success:(void (^)(SkywareResult *))success failure:(void (^)(SkywareResult *))failure isAddPlan:(BOOL)isAdd
 {
     //这里需要判断是修改还是添加 --如果是添加则调用post方法，如果是修改则调用put方法
-    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    SkywareSDKManager *instance = [SkywareSDKManager sharedSkywareSDKManager];
     if (isAdd) { //添加计划
         [SkywareHttpTool HttpToolPostWithUrl:kSearchPlan(_skywareInfo.device_id) paramesers:parameser requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
             [SkywareHttpTool responseHttpToolWithJson:json Success:success failure:failure];
@@ -516,7 +543,7 @@ static const long  valueLengthStep = 2;
         [urlString appendString:[NSString stringWithFormat:@"%@_",obj]];
     }];
     NSString *requestString = [NSString stringWithFormat:@"%@/%@",kSearchPlan(_skywareInfo.device_id),[urlString substringToIndex:urlString.length -1]];
-    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
+    SkywareSDKManager *instance = [SkywareSDKManager sharedSkywareSDKManager];
     [SkywareHttpTool HttpToolDeleteWithUrl:requestString paramesers:nil requestHeaderField:@{@"token":instance.token} SuccessJson:^(id json) {
         if ([json[@"message"] intValue] == 200) {
             NSLog(@"删除成功");

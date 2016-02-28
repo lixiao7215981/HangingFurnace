@@ -10,35 +10,23 @@
 // 老接口地址：http://doc.skyware.com.cn/protocol/v1.3/S.html
 // 新接口地址：https://github.com/nosun/skyiot/blob/master/protocol/standard/S.md
 
+#define RTServersURL [NSString stringWithFormat:@"http://%@.skyware.com.cn/api",[SkywareSDKManager sharedSkywareSDKManager].service]
+#define kMQTTServerHost [NSString stringWithFormat:@"%@.skyware.com.cn",[SkywareSDKManager sharedSkywareSDKManager].service]
 
-//#ifdef DEBUG
+/** MQTT 订阅设备MAC */
+#define kTopic(deviceMac) [NSString stringWithFormat:@"sjw/%@",deviceMac]
 
-#define RTServersURL @"http://v1.skyware.com.cn/api"
-#define kMQTTServerHost @"v1.skyware.com.cn"
-//#define RT_token @"4pO-TCg"
-//#else
+/** 签名中 apiver(必填项) */
+#define kSignature_apiver [SkywareSDKManager sharedSkywareSDKManager].service
 
-//#define RTServersURL @"http://c2.skyware.com.cn/api"
-//#define kMQTTServerHost @"m1.skyware.com.cn"
-//#define RT_token @"GmF1lD"
-
-//#endif
+/** 签名中需要的key(必填项)  */
+#define kSignature_key @"skyware"
 
 #ifdef DEBUG // 处于开发阶段
 #define NSLog(...) NSLog(__VA_ARGS__)
 #else // 处于发布阶段
 #define NSLog(...)
 #endif
-
-/** MQTT 订阅设备MAC */
-#define kTopic(deviceMac) [NSString stringWithFormat:@"sjw/%@",deviceMac]
-
-/** 签名中 apiver(必填项) */
-#define kSignature_apiver @"v1"
-
-/** 签名中需要的key(必填项)  */
-#define kSignature_key @"skyware"
-
 
 #define kUserDataPath  [[NSString applicationDocumentsDirectory] stringByAppendingPathComponent:@"User.data"]
 
@@ -49,20 +37,21 @@
 #import "SkywareDeviceInfoModel.h"
 #import "SkywareWeatherModel.h"
 #import "SkywareUserInfoModel.h"
-#import "SkywareInstanceModel.h"
+#import "SkywareSDKManager.h"
 #import "SkywareSendCmdModel.h"
 #import "SkywareResult.h"
 #import "SkywareMQTTModel.h"
-#import "SkywareDeviceManagement.h"
-#import "SkywareOthersManagement.h"
-#import "SkywareUserManagement.h"
+#import "SkywareDeviceManager.h"
+#import "SkywareOtherManager.h"
+#import "SkywareUserManager.h"
+#import "SkywareNotificationCenter.h"
 #import "SkywareConst.h"
 #import "SkywareCloudURL.h"
 #import "SkywareHttpTool.h"
 #import "SkywareDeviceTool.h"
 #import "SkywareMQTTTool.h"
 #import "SkywareJSApiTool.h"
-#import "MQTT_Tool.h"
+
 
 
 

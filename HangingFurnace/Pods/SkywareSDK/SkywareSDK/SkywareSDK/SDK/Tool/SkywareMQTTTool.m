@@ -13,16 +13,21 @@
 + (SkywareMQTTModel *)conversionMQTTResultWithData:(NSData *) data
 {
     NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    SkywareMQTTModel *model = [SkywareMQTTModel objectWithKeyValues:dataDict];
+    SkywareMQTTModel *model = [SkywareMQTTModel mj_objectWithKeyValues:dataDict];
     if (model.data.count) { // 手动添加，如果data.cout 有值，说明设备在线
         model.device_online = 1;
+    }else{
+        model.device_online = 0;
     }
     NSMutableDictionary *codeDict = [NSMutableDictionary dictionary];
-    [model.data enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
-        NSArray *separated = [str componentsSeparatedByString:@"::"];
-        [codeDict setObject:separated[1] forKey:separated[0]];
-    }];
-    model.dataDictionary = codeDict;
+    if (model.data.count > 1) {
+        [model.data enumerateObjectsUsingBlock:^(NSString *str, NSUInteger idx, BOOL *stop) {
+            NSArray *separated = [str componentsSeparatedByString:@"::"];
+            if (!separated.count) return ;
+            [codeDict setObject:separated[1] forKey:separated[0]];
+        }];
+        model.dataDictionary = codeDict;
+    }
     return model;
 }
 

@@ -10,6 +10,16 @@
 
 @interface UIBarButtonItem (Extension)
 
+/**
+ *  创建 BarButtonItem
+ *
+ *  @param target     target
+ *  @param action     action
+ *  @param image      ButtonItem 图片
+ *  @param hightImage ButtonItem 高亮图片
+ *
+ *  @return UIBarButtonItem
+ */
 + (UIBarButtonItem *) itemWitchTaget:(id)target action:(SEL) action Image:(NSString *) image highlightImage:(NSString *) hightImage;
 
 @end

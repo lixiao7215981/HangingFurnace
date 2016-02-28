@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+        SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
         self.view.backgroundColor = UIM.Menu_view_bgColor == nil?UIM.All_view_bgColor : UIM.Menu_view_bgColor;
         [self.finishBtn setBackgroundColor:UIM.User_button_bgColor == nil ? UIM.All_button_bgColor :UIM.User_button_bgColor];
     }
@@ -40,7 +40,8 @@
         [SVProgressHUD showErrorWithStatus:@"请输入新昵称"];
         return;
     }
-    [SkywareUserManagement UserEditUserWithParamesers:@{@"user_name":self.user_nickName.text} Success:^(SkywareResult *result) {
+    [SVProgressHUD show];
+    [SkywareUserManager UserEditUserWithParamesers:@{@"user_name":self.user_nickName.text} Success:^(SkywareResult *result) {
         [self.navigationController popViewControllerAnimated:YES];
         [SVProgressHUD showSuccessWithStatus:@"修改成功"];
         [[NSNotificationCenter defaultCenter] postNotificationName:kEditUserNickNameRefreshTableView object:nil userInfo:@{@"user_name":self.user_nickName.text}];

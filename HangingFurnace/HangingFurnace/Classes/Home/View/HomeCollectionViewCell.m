@@ -48,6 +48,21 @@
     method_exchangeImplementations(existing, new);
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self  = [super initWithCoder:aDecoder];
+//    [kNotificationCenter addObserver:self selector:@selector(MQTTMessage:) name:kSkywareNotificationCenterCurrentDeviceMQTT object:nil];
+    return self;
+}
+//#pragma mark - MQTT 消息推送
+//- (void)MQTTMessage:(NSNotification *)not
+//{
+//    SkywareMQTTModel *model = [not.userInfo objectForKey:kSkywareMQTTuserInfoKey];
+//    _currentDeviceData = [[DeviceData alloc] initWithBase64String:[model.data firstObject]];
+//
+//    self.deviceData = deviceM;
+//}
+
 /**
  *  切换季节
  *  default  ： 冬季
@@ -79,12 +94,18 @@
     _centerLabel = [UILabel newAutoLayoutView];
     [self addSubview:_centerLabel];
     _bottomLabel = [UILabel newAutoLayoutView];
-    _bottomLabel.text = @"水压2.3bar";
-    _centerLabel.text = @"26°";
+//    _bottomLabel.text = @"水压2.3bar";
+//    _centerLabel.text = @"26°";
     [self addSubview:_bottomLabel];
     //如果没有设备 --则显示“未添加设备，无法设定模式”
     if (_skywareInfo == nil) {
-        _deviceName.text = @"未添加设备，无法设定模式";
+        _centerLabel.text = @"70°";
+        _bottomLabel.text = @"水压1.0bar";
+#warning  test
+//        _deviceName.text = @"未添加设备，无法设定模式";
+//        _centerLabel.text = @"--°";
+//        _bottomLabel.text = @"水压--bar";
+#warning end test
     }
 }
 
@@ -93,13 +114,21 @@
 -(void)setSkywareInfo:(SkywareDeviceInfoModel *)skywareInfo
 {
     _skywareInfo = skywareInfo;
-    if (_skywareInfo) {
-        _currentDeviceData = skywareInfo.device_data;
-        _deviceName.text = skywareInfo.device_name;
-        _seasonBtn.selected = !_currentDeviceData.seasonWinter;
-        _bottomLabel.text =[NSString stringWithFormat:@"水压%.1lfbar",_currentDeviceData.currentPressure];//当前水压
-        [self setTemperatureWithT:_currentDeviceData.currentTempreture];
-    }
+//用来测试
+    [self setTemperatureWithT:70.0]; //设置当前温度
+
+//    if (_skywareInfo) {
+//        if ([_skywareInfo.device_online boolValue]) {
+//            _currentDeviceData = skywareInfo.device_data;
+//            _deviceName.text = skywareInfo.device_name;
+//            _seasonBtn.selected = !_currentDeviceData.seasonWinter;
+//            _bottomLabel.text =[NSString stringWithFormat:@"水压%.1lfbar",_currentDeviceData.currentPressure];//当前水压
+//            [self setTemperatureWithT:_currentDeviceData.currentTempreture]; //设置当前温度
+//        }else{//设备掉线
+//            _centerLabel.text = @"--°";
+//            _bottomLabel.text =[NSString stringWithFormat:@"水压%.1lfbar",_currentDeviceData.currentPressure];//当前水压
+//        }
+//    }
 }
 
 

@@ -17,15 +17,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        LXFrameWorkInstance *instance = [LXFrameWorkInstance sharedLXFrameWorkInstance];
-        self.backgroundColor = [UIColor clearColor];
-        // 设置背景View
-        _backView = [UIView newAutoLayoutView];
-        _backView.backgroundColor = _backViewBackColor = instance.NavigationBar_bgColor;
-        [self addSubview:_backView];
-        [_backView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+        // 设置 NavBar 背景颜色
+        LXFrameWorkManager *manager = [LXFrameWorkManager sharedLXFrameWorkManager];
+        self.backgroundColor = _BackColor = manager.NavigationBar_bgColor;
         
-        // 设置按钮View
+        // 设置Button View
         _btnView = [UIView newAutoLayoutView];
         _btnView.backgroundColor = [UIColor clearColor];
         [self addSubview:_btnView];
@@ -53,7 +49,7 @@
     CGRect rect = leftView.frame;
     leftView.frame = CGRectZero;
     [_btnView addSubview:leftView];
-    //        leftView.backgroundColor = [UIColor redColor];
+//            leftView.backgroundColor = [UIColor redColor];
     leftView.translatesAutoresizingMaskIntoConstraints = NO;
     [leftView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [leftView autoSetDimensionsToSize:CGSizeMake(rect.size.width == 0 ? 50 : rect.size.width, rect.size.height == 0 ? 44 : rect.size.height)];
@@ -67,7 +63,7 @@
     CGRect rect = rightView.frame;
     rightView.frame = CGRectZero;
     [_btnView addSubview:rightView];
-    //    rightView.backgroundColor = [UIColor blueColor];
+//        rightView.backgroundColor = [UIColor blueColor];
     rightView.translatesAutoresizingMaskIntoConstraints = NO;
     [rightView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [rightView autoSetDimensionsToSize:CGSizeMake(rect.size.width == 0 ? 50 : rect.size.width, rect.size.height == 0 ? 44 : rect.size.height)];
@@ -81,21 +77,15 @@
     CGRect rect = centerView.frame;
     centerView.frame = CGRectZero;
     [_btnView addSubview:centerView];
-    //    centerView.backgroundColor = [UIColor yellowColor];
+//        centerView.backgroundColor = [UIColor yellowColor];
     [centerView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
     [centerView autoAlignAxisToSuperviewAxis:ALAxisVertical];
     [centerView autoSetDimensionsToSize:CGSizeMake(rect.size.width == 0 ? 200 :rect.size.width, rect.size.height == 0 ? 44 : rect.size.height)];
 }
 
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    _backViewBackColor = backgroundColor;
-    _backView.backgroundColor = backgroundColor;
-}
-
 - (void) setScrollNavigationBarBackColor:(UIColor *) color
 {
-    _backView.backgroundColor = color;
+    self.backgroundColor = color;
 }
 
 - (void)setScrollNavigationBarLineBackColor:(UIColor *)color
@@ -103,16 +93,16 @@
     _lineView.backgroundColor = color;
 }
 
-
 - (void)setNavigationBarHiddenShowBtn:(BOOL)isHidden
 {
     if (isHidden) {
         [self setScrollNavigationBarBackColor:[UIColor clearColor]];
         [self setScrollNavigationBarLineBackColor: [UIColor clearColor]];
     }else{
-        [self setScrollNavigationBarBackColor:_backViewBackColor];
+        [self setScrollNavigationBarBackColor:_BackColor];
         [self setScrollNavigationBarLineBackColor: lineView_BackageGroundColor];
     }
 }
+
 
 @end

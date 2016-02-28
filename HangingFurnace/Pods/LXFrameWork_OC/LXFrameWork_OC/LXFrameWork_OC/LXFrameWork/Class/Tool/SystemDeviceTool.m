@@ -17,7 +17,16 @@
     NSString *guid = (__bridge NSString *)newUniqueIDString;
     CFRelease(newUniqueIDString);
     CFRelease(newUniqueID);
-    return([guid lowercaseString]);
+    NSString *UUID = [guid lowercaseString];
+    return UUID;
 }
+
+
++ (NSString *)getApp_Version
+{
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    return [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+}
+
 
 @end

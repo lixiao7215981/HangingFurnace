@@ -16,6 +16,6 @@
 @property (nonatomic,strong) NSString *plan;// 重复时间
 @property (nonatomic,strong) NSString *hour;
 @property (nonatomic,strong) NSString *min;
-
-
+@property (nonatomic,strong) NSString *temp;//设置温度
+@property (nonatomic,assign) BOOL status; //是否开启次计划 （1为开，0为关)
 @end

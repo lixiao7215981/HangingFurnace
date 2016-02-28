@@ -14,7 +14,7 @@
 
 - (void)awakeFromNib
 {
-    SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+    SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
     [self.getCodeBtn setBackgroundColor:UIM.User_button_bgColor == nil? UIM.All_button_bgColor : UIM.User_button_bgColor];
     self.backgroundColor = UIM.User_view_bgColor == nil? UIM.All_view_bgColor : UIM.User_view_bgColor;
 }
@@ -31,8 +31,9 @@
         return;
     }
     if ([self.phoneText.text isPhoneNumber]) {
-        [SkywareUserManagement UserVerifyLoginIdExistsWithLoginid:self.phoneText.text Success:^(SkywareResult *result) {
-            [SVProgressHUD showErrorWithStatus:@"该手机号已被注册"];
+        [SVProgressHUD show];
+        [SkywareUserManager UserVerifyLoginIdExistsWithLoginid:self.phoneText.text Success:^(SkywareResult *result) {
+            [SVProgressHUD showErrorWithStatus:kMessageUserAlreadyRegister];
         } failure:^(SkywareResult *result) {
             [self getCode];
         }];
@@ -43,14 +44,14 @@
 
 - (void) getCode
 {
-    [SVProgressHUD showWithStatus:@"努力获取中..."];
+    [SVProgressHUD showWithStatus:kMessageUserGetCodeLoad];
     [MessageCodeTool getMessageCodeWithPhone:self.phoneText.text Zone:nil Success:^{
         [SVProgressHUD dismiss];
         if (self.option) {
             self.option();
         }
     } Error:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"获取验证码失败，请稍后重试"];
+        [SVProgressHUD showErrorWithStatus:kMessageUserGetCodeError];
     }];
 }
 

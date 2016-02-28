@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SkywareSDK.h"
 #import <HttpTool.h>
-#import <BundleTool.h>
+#import <SystemDeviceTool.h>
 #import <SVProgressHUD.h>
 #import <NSString+Hash.h>
 #import <NSString+Extension.h>
@@ -38,6 +38,13 @@ typedef enum {
  *  @param failure 错误 block
  */
 +(void) responseHttpToolWithJson:(id)json Success:(void(^)(SkywareResult *result)) success failure:(void (^)(SkywareResult *result)) failure;
+
+/**
+ *  请求失败后返回错误信息，做出相应的判断
+ *
+ *  @param Error    返回的错误信息
+ */
++ (void)ErrorLogDispose:(NSError *)error;
 
 /**
  *  发送GET请求

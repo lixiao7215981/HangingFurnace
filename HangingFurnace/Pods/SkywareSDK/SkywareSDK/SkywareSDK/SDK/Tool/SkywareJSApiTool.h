@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SkywareDeviceManagement.h"
+#import "SkywareDeviceManager.h"
+#import "BaseDelegate.h"
+#import <CoreLocationTool.h>
+#import <UIWindow+Extension.h>
+#import <NSObject+JSONCategories.h>
+#define KBaseDelegate  ((BaseDelegate *)[UIApplication sharedApplication].delegate)
+
+@class SkywareJSApiTool;
 
 typedef enum {
     getDeviceInfo = 1,
@@ -16,7 +23,17 @@ typedef enum {
     definal
 }WebType;
 
+
+@protocol SkywareJSApiToolDelegate <NSObject>
+@optional
+
+- (void)SkywareJSApiWillShowMenu:(SkywareJSApiTool *)jsApiTool;
+
+@end
+
 @interface SkywareJSApiTool : NSObject
+
+@property(nonatomic,weak) id<SkywareJSApiToolDelegate> delegate;
 
 /**
  *  拦截WebView的请求,截取请求获得相应的处理

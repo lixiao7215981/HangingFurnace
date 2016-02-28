@@ -17,7 +17,7 @@ static FMDatabase *_db;
 + (void)initialize
 {
     // 1.打开数据库
-    NSString *path = [[NSString applicationDocumentsDirectory] stringByAppendingPathComponent:@"HttpToolLog.sqlite"];
+    NSString *path = [[NSString getApplicationDocumentsDirectory] stringByAppendingPathComponent:@"HttpToolLog.sqlite"];
     _db = [FMDatabase databaseWithPath:path];
     [_db open];
     

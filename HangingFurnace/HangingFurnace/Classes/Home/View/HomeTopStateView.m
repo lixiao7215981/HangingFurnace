@@ -26,7 +26,7 @@
             model.province = userAddress.State;
             model.city = userAddress.City;
             model.district = userAddress.SubLocality;
-            [SkywareOthersManagement UserAddressWeatherParamesers:model Success:^(SkywareResult *result) {
+            [SkywareOtherManager UserAddressWeatherParamesers:model Success:^(SkywareResult *result) {
                 SkywareAddressWeatherModel *weath = [SkywareAddressWeatherModel objectWithKeyValues:result.result];
                 self.wind.text = [NSString stringWithFormat:@"%@%@",weath.wind_direct,weath.wind_power];
                 self.cityState.text = [NSString stringWithFormat:@"%@ %@",weath.area_name,weath.temperature];

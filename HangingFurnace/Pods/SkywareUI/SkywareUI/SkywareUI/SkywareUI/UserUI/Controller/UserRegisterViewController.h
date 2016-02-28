@@ -8,6 +8,9 @@
 
 #import "BaseStepViewController.h"
 
+/**
+ *  快速注册
+ */
 @interface UserRegisterViewController : BaseStepViewController
 
 @end

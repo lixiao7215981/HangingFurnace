@@ -8,8 +8,10 @@
 
 #import "AppDelegate.h"
 #import <PgySDK/PgyManager.h>
-#import <SMS_SDK/SMS_SDK.h>
-#import <SkywareUIInstance.h>
+#import <PgyUpdate/PgyUpdateManager.h>
+#import <SMS_SDK/SMSSDK.h>
+#import <SMS_SDK/SMSSDK+AddressBookMethods.h>
+#import <SkywareUIManager.h>
 #import "UserLoginViewController.h"
 
 #define SMS_SDKAppKey    @"a6137b7d9ee4"
@@ -26,14 +28,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // 设置 App_id
-    SkywareInstanceModel *skywareInstance = [SkywareInstanceModel sharedSkywareInstanceModel];
-    skywareInstance.app_id = 8;
+    SkywareSDKManager *manager = [SkywareSDKManager sharedSkywareSDKManager];
+    manager.app_id = 8;
+    manager.service_type = developer_new;
     
-    SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+    SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
     UIM.All_button_bgColor = kSystemBtnBGColor;
     UIM.All_view_bgColor = kSystemLoginViewBackageColor;
     
-    LXFrameWorkInstance *LXM = [LXFrameWorkInstance sharedLXFrameWorkInstance];
+    LXFrameWorkManager *LXM = [LXFrameWorkManager sharedLXFrameWorkManager];
     LXM.NavigationBar_bgColor = kRGBColor(200, 31, 2, 1);
     LXM.NavigationBar_textColor = [UIColor whiteColor];
     LXM.backState = writeBase;
@@ -50,16 +53,18 @@
     [app setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // 启动ShareSDK 的短信功能
-    [SMS_SDK registerApp:SMS_SDKAppKey withSecret:SMS_SDKAppSecret];
-    [SMS_SDK enableAppContactFriends:NO];
+    [SMSSDK registerApp:SMS_SDKAppKey withSecret:SMS_SDKAppSecret];
+    [SMSSDK enableAppContactFriends:NO];
     
     //关闭用户反馈功能
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
     // 蒲公英启动
     [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_SDKAppKey];
+    //启动更新检查SDK
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_SDKAppKey];
     // 检查更新
-    [[PgyManager sharedPgyManager] checkUpdate];
-    
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
+
     return YES;
 }
 
@@ -71,12 +76,10 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [MQTT_Tool CloseMQTTSecction];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [MQTT_Tool CreateMQTTSection];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

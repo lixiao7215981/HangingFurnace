@@ -15,7 +15,7 @@
 /** Skyware_SDK */
 #import <SkywareDeviceInfoModel.h>
 #import <SkywareDeviceUpdateInfoModel.h>
-#import <SkywareDeviceManagement.h>
+#import <SkywareDeviceManager.h>
 
 /** 添加设备需要的View */
 #import "DeviceSettingSNView.h"
@@ -24,6 +24,9 @@
 #import "DeviceSmartLinkStart.h"
 #import "DeviceSettingErrorView.h"
 #import "DeviceBindingView.h"
+
+/** Skyware_UI */
+#import "SkywareUIConst.h"
 
 typedef enum {
     inputPassword,  // 输入密码
@@ -37,6 +40,6 @@ typedef enum {
 /**
  *  设备的状态，是添加设备，还是离线配置WiFi
  */
-@property (nonatomic,assign) BOOL isAddDevice;
+@property (nonatomic,assign,getter = isAddDevice) BOOL addDevice;
 
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "BaseViewController.h"
-#import "SkywareUIInstance.h"
+#import "SkywareUIManager.h"
 #import <PathTool.h>
 #import <UIWindow+Extension.h>
 
+/**
+ *  用户登录
+ */
 @interface UserLoginViewController : BaseViewController
 
 @end

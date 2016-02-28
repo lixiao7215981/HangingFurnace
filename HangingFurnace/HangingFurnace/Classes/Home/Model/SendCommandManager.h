@@ -10,6 +10,7 @@
 #import <SkywareDeviceInfoModel.h>
 #import "DeviceData.h"
 @interface SendCommandManager : NSObject
+
 /**
  *  发送模式切换指令(只切换模式，不带温度)
  */
@@ -21,7 +22,7 @@
 /**
  *  发送开关机指令
  *
- *  @param skywareInfo <#skywareInfo description#>
+ *  @param skywareInfo
  */
 +(void)sendDeviceOpenCloseCmd:(SkywareDeviceInfoModel *)skywareInfo;
 /**
@@ -32,7 +33,7 @@
 +(void)sendSeasonChangeCmd:(SkywareDeviceInfoModel *)skywareInfo;
 
 /**
- *  发送自定义时间模式 --(服务器端有另外的处理方式）
+ *  发送自定义时间模式 0x22
  *
  *  @param skywareInfo <#skywareInfo description#>
  */

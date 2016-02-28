@@ -27,7 +27,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+        SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
         self.view.backgroundColor = UIM.Menu_view_bgColor == nil?UIM.All_view_bgColor : UIM.Menu_view_bgColor;
         [self.finishBtn setBackgroundColor:UIM.User_button_bgColor == nil ? UIM.All_button_bgColor :UIM.User_button_bgColor];
     }
@@ -61,7 +61,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:self.Password.text forKey:@"login_pwd"];
     [params setObject:self.oldPassword.text forKey:@"login_pwd_old"];
-    [SkywareUserManagement UserEditUserPasswordWithParamesers:params Success:^(SkywareResult *result) {
+    [SVProgressHUD show];
+    [SkywareUserManager UserEditUserPasswordWithParamesers:params Success:^(SkywareResult *result) {
         
         [SVProgressHUD showSuccessWithStatus:@"密码修改成功"];
         
@@ -69,8 +70,8 @@
             // 清除保存的用户名密码
             [NSKeyedArchiver archiveRootObject:[[SkywareResult alloc] init] toFile:[PathTool getUserDataPath]];
             // 清除用户detoken
-            SkywareInstanceModel * instance = [SkywareInstanceModel sharedSkywareInstanceModel];
-            instance.token = nil;
+            SkywareSDKManager *manager = [SkywareSDKManager sharedSkywareSDKManager];
+            manager.token = nil;
             // 调回到登陆界面
             UserLoginViewController *loginRegister = [[UIStoryboard storyboardWithName:@"User" bundle:nil] instantiateInitialViewController];
             [UIWindow changeWindowRootViewController:loginRegister animated:YES];

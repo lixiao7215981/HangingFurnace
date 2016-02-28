@@ -13,7 +13,7 @@
 /**
  *  将NSArray或者NSDictionary转化为JsonData
  */
--(NSData*)JSONData;
+- (NSData*)JSONData;
 
 /**
  *  将NSArray或者NSDictionary转化为JsonString

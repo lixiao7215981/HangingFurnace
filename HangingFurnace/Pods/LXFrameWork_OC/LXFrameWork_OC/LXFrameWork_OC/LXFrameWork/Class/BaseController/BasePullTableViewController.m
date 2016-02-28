@@ -18,8 +18,8 @@
     [super viewDidLoad];
     MJRefreshNormalHeader *headRefresh =  [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     MJRefreshAutoNormalFooter *footerRefresh = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    self.tableView.header = headRefresh;
-    self.tableView.footer = footerRefresh;
+    self.tableView.mj_header = headRefresh;
+    self.tableView.mj_footer = footerRefresh;
 }
 
 - (void) loadNewData

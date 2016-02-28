@@ -24,7 +24,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+        SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
         self.view.backgroundColor = UIM.Menu_view_bgColor == nil?UIM.All_view_bgColor : UIM.Menu_view_bgColor;
         [self.commitBtn setBackgroundColor:UIM.User_button_bgColor == nil ? UIM.All_button_bgColor :UIM.User_button_bgColor];
     }
@@ -54,7 +54,8 @@
     SkywareUserFeedBackModel *feedBack = [[SkywareUserFeedBackModel alloc] init];
     feedBack.title = self.titleView.text;
     feedBack.content = self.contentTextView.text;
-    [SkywareUserManagement UserFeedBackWithParamesers:feedBack Success:^(SkywareResult *result) {
+    [SVProgressHUD show];
+    [SkywareUserManager UserFeedBackWithParamesers:feedBack Success:^(SkywareResult *result) {
         [self.navigationController popViewControllerAnimated:YES];
         [SVProgressHUD showSuccessWithStatus:@"感谢您的反馈，我们会尽快处理"];
     } failure:^(SkywareResult *result) {

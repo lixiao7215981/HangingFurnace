@@ -9,7 +9,9 @@
 #import "BaseViewController.h"
 
 @interface BaseViewController ()
+
 @property (nonatomic, strong) IQKeyboardReturnKeyHandler *returnKeyHandler;
+
 @end
 
 @implementation BaseViewController
@@ -19,25 +21,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // 添加自定义的NavigationBar
-    [self.navigationController.navigationBar removeFromSuperview];
-    [self.view addSubview:self.navView];
-    [self.navView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
-    [self.navView autoSetDimension:ALDimensionHeight toSize:64];
+    // 设置默认的View背景颜色
+    LXFrameWorkManager *manager = [LXFrameWorkManager sharedLXFrameWorkManager];
     if (!self.view.backgroundColor) {
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = manager.ViewController_bgColor;
     }
+    // 添加自定义的NavigationBar
+    [self setNavigationBarView];
+    
     // 设置键盘toolbar样式
     self.returnKeyHandler = [[IQKeyboardReturnKeyHandler alloc] initWithViewController:self];
     self.returnKeyHandler.lastTextFieldReturnKeyType = UIReturnKeyDone;
-    self.returnKeyHandler.toolbarManageBehaviour = IQAutoToolbarBySubviews;
     
-    //        self.navView.backgroundColor = [UIColor redColor];
 }
 
 - (void)dealloc
 {
     self.returnKeyHandler = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -46,90 +47,132 @@
     [self.view bringSubviewToFront:self.navView];
 }
 
-- (void)setLeftView:(ViewBlock)leftViewBlock
+#pragma mark - 设置左右中View
+
+- (void)setNavigationBarView
 {
-    UIView *leftView = leftViewBlock();
+    [self.navigationController.navigationBar removeFromSuperview];
+    [self.view addSubview:self.navView];
+    [self.navView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [self.navView autoSetDimension:ALDimensionHeight toSize:64];
+}
+
+- (void)setLeftView:(UIView *)leftView
+{
     self.navView.leftView = leftView;
 }
 
-- (void)setRightView:(ViewBlock)rightViewBlock
+- (void)setRightView:(UIView *)rightView
 {
-    UIView *rightView = rightViewBlock();
     self.navView.rightView = rightView;
 }
 
-- (void)setCenterView:(ViewBlock)centerViewBlock
+- (void)setCenterView:(UIView *)centerView
 {
-    UIView *centerView = centerViewBlock();
     self.navView.centerView = centerView;
 }
 
-- (UIButton *)setBackBtn
+- (void)setCustomNavView:(UIView *)customView
+{
+    [self.navView removeFromSuperview];
+    customView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:customView];
+    [customView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeBottom];
+    [customView autoSetDimension:ALDimensionHeight toSize:64];
+}
+
+- (UIButton *)setNavBackBtn
 {
     UIButton *button = [UIButton newAutoLayoutView];
-    __weak typeof(self) baseView  = self;
-    [self setLeftView:^UIView *{
-        LXFrameWorkInstance *instance = [LXFrameWorkInstance sharedLXFrameWorkInstance];
-        if (instance.backState == writeBase) {
-            [button setImage:[BundleTool getImage:@"Navigationbar_back_write" FromBundle:LXFrameWorkBundle] forState:UIControlStateNormal];
-        }else if(instance.backState == blackBase){
-            [button setImage:[BundleTool getImage:@"navigationbar_back" FromBundle:LXFrameWorkBundle] forState:UIControlStateNormal];
-        }
-        [button addTarget:baseView action:@selector(NavBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        return button;
-    }];
+    LXFrameWorkManager *manager = [LXFrameWorkManager sharedLXFrameWorkManager];
+    if (manager.backState == writeBase) {
+        [button setImage:[BundleTool getImage:@"Navigationbar_back_write" FromBundle:LXFrameWorkBundle] forState:UIControlStateNormal];
+    }else if(manager.backState == blackBase){
+        [button setImage:[BundleTool getImage:@"navigationbar_back" FromBundle:LXFrameWorkBundle] forState:UIControlStateNormal];
+    }
+    [button addTarget:self action:@selector(NavBackBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [self setLeftView:button];
     return button;
 }
 
 - (UILabel *)setNavTitle:(NSString *)title
 {
-    LXFrameWorkInstance *instance = [LXFrameWorkInstance sharedLXFrameWorkInstance];
+    LXFrameWorkManager *manager = [LXFrameWorkManager sharedLXFrameWorkManager];
     UILabel *centerTitle = [UILabel newAutoLayoutView];
     centerTitle.textAlignment = NSTextAlignmentCenter;
     centerTitle.font = BaseNavBarTextFont;
-    centerTitle.textColor = instance.NavigationBar_textColor;
+    centerTitle.textColor = manager.NavigationBar_textColor;
     centerTitle.text = title;
-    [self setCenterView:^UIView *{
-        return centerTitle;
-    }];
+    [self setCenterView:centerTitle];
     return centerTitle;
+}
+
+- (void)setLeftBtnArray:(NSArray *)btnArray
+{
+    [self setLeftView:[self setNavBtnArray:btnArray]];
+}
+
+- (void)setRightBtnArray:(NSArray *)btnArray
+{
+    [self setRightView:[self setNavBtnArray:btnArray]];
+}
+
+- (UIView *) setNavBtnArray:(NSArray *) btnArray
+{
+    UIView *btnView = [UIView newAutoLayoutView];
+    __block CGFloat btnW = 0;
+    __block CGFloat btnH = 35;
+    [btnArray enumerateObjectsUsingBlock:^(UIButton *btn, NSUInteger idx, BOOL *stop) {
+        if (btn.width == 0 || btn.height == 0) {
+            btn.size = CGSizeMake(btnH, btnH);
+        }
+        btn.translatesAutoresizingMaskIntoConstraints = NO;
+        [btnView addSubview:btn];
+        [btn autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+        [btn autoSetDimensionsToSize:btn.size];
+        [btn autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:btn.width * idx];
+        btnW += btn.width;
+    }];
+    btnView.size = CGSizeMake(btnW, 40);
+    return btnView;
 }
 
 - (UIButton *)setLeftBtnWithImage:(UIImage *)image orTitle:(NSString *)title ClickOption:(ClickButton)clickOption
 {
-    LXFrameWorkInstance *instance = [LXFrameWorkInstance sharedLXFrameWorkInstance];
-    BlockButton *button = [BlockButton newAutoLayoutView];
-    button.titleLabel.font = BaseNavBarTextFont;
-    [self setLeftView:^UIView *{
-        if (image) {
-            [button setImage:image forState:UIControlStateNormal];
-        }
-        if (title.length) {
-            [button setTitle:title forState:UIControlStateNormal];
-            [button setTitleColor:instance.NavigationBar_textColor forState:UIControlStateNormal];
-        }
-        button.ClickOption = clickOption;
-        return button;
-    }];
-    return button;
+    UIButton *leftBtn = [self setBtnWithNormalImage:image HighlightedImage:nil SelectedImage:nil DisabledImage:nil OrTitle:title ClickOption:clickOption];
+    [self setLeftView:leftBtn];
+    return leftBtn;
 }
 
 - (UIButton *)setRightBtnWithImage:(UIImage *)image orTitle:(NSString *)title ClickOption:(ClickButton) clickOption
 {
-    LXFrameWorkInstance *instance = [LXFrameWorkInstance sharedLXFrameWorkInstance];
+    UIButton *rightBtn = [self setBtnWithNormalImage:image HighlightedImage:nil SelectedImage:nil DisabledImage:nil OrTitle:title ClickOption:clickOption];
+    [self setRightView:rightBtn];
+    return rightBtn;
+}
+
+- (UIButton *) setBtnWithNormalImage:(UIImage *)normalImg HighlightedImage:(UIImage *)highlightedImg SelectedImage:(UIImage *)selectedImg DisabledImage:(UIImage *)disableImg OrTitle:(NSString *) title ClickOption:(ClickButton) clickOption
+{
+    LXFrameWorkManager *manager = [LXFrameWorkManager sharedLXFrameWorkManager];
     BlockButton *button = [[BlockButton alloc] init];
     button.titleLabel.font = BaseNavBarTextFont;
-    [self setRightView:^UIView *{
-        if (image) {
-            [button setImage:image forState:UIControlStateNormal];
-        }
-        if (title.length) {
-            [button setTitle:title forState:UIControlStateNormal];
-            [button setTitleColor:instance.NavigationBar_textColor forState:UIControlStateNormal];
-        }
-        button.ClickOption = clickOption;
-        return button;
-    }];
+    if (normalImg) {
+        [button setImage:normalImg forState:UIControlStateNormal];
+    }
+    if (highlightedImg) {
+        [button setImage:highlightedImg forState:UIControlStateHighlighted];
+    }
+    if (selectedImg) {
+        [button setImage:selectedImg forState:UIControlStateSelected];
+    }
+    if (disableImg) {
+        [button setImage:disableImg forState:UIControlStateDisabled];
+    }
+    if (title.length) {
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitleColor:manager.NavigationBar_textColor forState:UIControlStateNormal];
+    }
+    button.ClickOption = clickOption;
     return button;
 }
 
@@ -141,6 +184,7 @@
 }
 
 #pragma mark - 懒加载
+
 - (NavigationBar *)navView
 {
     if (!_navView) {

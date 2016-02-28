@@ -31,10 +31,14 @@
     return [[vc alloc] initWithNibName:name bundle:[NSBundle bundleWithPath: BUNDLE_PATH(bundle)]];
 }
 
-+ (NSString *)getApp_Version
++ (NSData *)getFileDataWithName:(NSString *)name FromBundle:(NSString *)bundle
 {
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    return [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    return [NSData dataWithContentsOfFile:[BUNDLE_PATH(bundle) stringByAppendingPathComponent :name]];
+}
+
++ (NSArray *)getArrayWithName:(NSString *)name FromBundle:(NSString *)bundle
+{
+    return [NSArray arrayWithContentsOfFile:[BUNDLE_PATH(bundle) stringByAppendingPathComponent :name]];
 }
 
 @end

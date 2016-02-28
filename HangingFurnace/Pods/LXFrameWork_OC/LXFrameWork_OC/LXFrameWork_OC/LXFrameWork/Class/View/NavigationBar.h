@@ -7,21 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LXFrameWorkInstance.h"
+#import "LXFrameWorkManager.h"
 #import "PureLayout.h"
 
 @interface NavigationBar : UIView
 
 /**
- *  背景View 添加在NavigationBar做背景View
+ *  记录NavBar当前默认显示的 Color
+ *  用于滚动显示NavBar的颜色
  */
-@property (nonatomic,strong) UIView *backView;
+@property (nonatomic,strong) UIColor *BackColor;
 /**
- *  NavigationBar 做背景Color
- */
-@property (nonatomic,strong) UIColor *backViewBackColor;
-/**
- *  left,right,center 所在View
+ *  left,right,center 所在 View
  */
 @property (nonatomic,strong) UIView *btnView;
 /**

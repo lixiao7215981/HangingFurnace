@@ -13,7 +13,6 @@
  *  只能选择一种查询方式
  */
 @interface SkywareDeviceQueryInfoModel : NSObject
-
 /**
  *  根据 SN 查询
  */

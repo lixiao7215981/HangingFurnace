@@ -23,7 +23,6 @@
 		4EBF80EE1B93FAE700C0E099 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80E01B93FAE700C0E099 /* LaunchScreen.xib */; };
 		4EBF80EF1B93FAE700C0E099 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80E11B93FAE700C0E099 /* Main.storyboard */; };
 		4EBF80F01B93FAE700C0E099 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80E31B93FAE700C0E099 /* ViewController.m */; };
-		4EBF80F11B93FAE700C0E099 /* PgySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EBF80E61B93FAE700C0E099 /* PgySDK.framework */; };
 		4EBF80F21B93FAE700C0E099 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */; };
 		4EBF80F31B93FAE700C0E099 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EBF80EB1B93FAE700C0E099 /* Info.plist */; };
 		4EBF80F41B93FAE700C0E099 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBF80EC1B93FAE700C0E099 /* main.m */; };
@@ -44,8 +43,6 @@
 		4EE04D951BA151380057B4DA /* selectDataPickView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EE04D931BA151380057B4DA /* selectDataPickView.xib */; };
 		4EE04D981BA171AD0057B4DA /* HFInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE04D971BA171AD0057B4DA /* HFInstance.m */; };
 		4EE789091BA9522600635387 /* NotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EE789081BA9522600635387 /* NotifyViewController.m */; };
-		8B6331881BB84705006BE7D5 /* HCHttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331851BB84705006BE7D5 /* HCHttpManager.m */; };
-		8B6331891BB84705006BE7D5 /* HCHttpProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B6331871BB84705006BE7D5 /* HCHttpProject.m */; };
 		8B63318C1BB912FD006BE7D5 /* CustomPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B63318B1BB912FD006BE7D5 /* CustomPlan.m */; };
 		8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6A9061B9C796E00537F67 /* TempretureSetModel.m */; };
 		8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCAFBB41BB3D971003DE2A8 /* DeviceData.m */; };
@@ -98,7 +95,6 @@
 		4EBF80E11B93FAE700C0E099 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4EBF80E21B93FAE700C0E099 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4EBF80E31B93FAE700C0E099 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4EBF80E61B93FAE700C0E099 /* PgySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgySDK.framework; sourceTree = "<group>"; };
 		4EBF80E91B93FAE700C0E099 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4EBF80EA1B93FAE700C0E099 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4EBF80EB1B93FAE700C0E099 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,10 +131,6 @@
 		4EE04D971BA171AD0057B4DA /* HFInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFInstance.m; sourceTree = "<group>"; };
 		4EE789071BA9522600635387 /* NotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewController.h; sourceTree = "<group>"; };
 		4EE789081BA9522600635387 /* NotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotifyViewController.m; sourceTree = "<group>"; };
-		8B6331841BB84705006BE7D5 /* HCHttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHttpManager.h; sourceTree = "<group>"; };
-		8B6331851BB84705006BE7D5 /* HCHttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHttpManager.m; sourceTree = "<group>"; };
-		8B6331861BB84705006BE7D5 /* HCHttpProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHttpProject.h; sourceTree = "<group>"; };
-		8B6331871BB84705006BE7D5 /* HCHttpProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHttpProject.m; sourceTree = "<group>"; };
 		8B63318A1BB912FD006BE7D5 /* CustomPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPlan.h; sourceTree = "<group>"; };
 		8B63318B1BB912FD006BE7D5 /* CustomPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPlan.m; sourceTree = "<group>"; };
 		8BA6A9051B9C796E00537F67 /* TempretureSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempretureSetModel.h; sourceTree = "<group>"; };
@@ -159,7 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4EBF80F11B93FAE700C0E099 /* PgySDK.framework in Frameworks */,
 				E0D3A963254B726E3E84776A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,10 +292,8 @@
 			children = (
 				8BC721701B9D2A28001E440A /* Controllers */,
 				4EBF80DF1B93FAE700C0E099 /* LaunchScreen */,
-				4EBF80E41B93FAE700C0E099 /* Lib */,
 				4EBF80E71B93FAE700C0E099 /* Model */,
 				4EBF80E81B93FAE700C0E099 /* Other */,
-				4EBF80ED1B93FAE700C0E099 /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -318,22 +307,6 @@
 				4EBF80E31B93FAE700C0E099 /* ViewController.m */,
 			);
 			path = LaunchScreen;
-			sourceTree = "<group>";
-		};
-		4EBF80E41B93FAE700C0E099 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				4EBF80E51B93FAE700C0E099 /* Pgy_SDK */,
-			);
-			path = Lib;
-			sourceTree = "<group>";
-		};
-		4EBF80E51B93FAE700C0E099 /* Pgy_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				4EBF80E61B93FAE700C0E099 /* PgySDK.framework */,
-			);
-			path = Pgy_SDK;
 			sourceTree = "<group>";
 		};
 		4EBF80E71B93FAE700C0E099 /* Model */ = {
@@ -357,13 +330,6 @@
 				4EE04D971BA171AD0057B4DA /* HFInstance.m */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		4EBF80ED1B93FAE700C0E099 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		698FF34C4CA32B2432ACE017 /* Pods */ = {
@@ -439,10 +405,6 @@
 			isa = PBXGroup;
 			children = (
 				8BF2ED511BC8B2200040DBC5 /* catagory */,
-				8B6331841BB84705006BE7D5 /* HCHttpManager.h */,
-				8B6331851BB84705006BE7D5 /* HCHttpManager.m */,
-				8B6331861BB84705006BE7D5 /* HCHttpProject.h */,
-				8B6331871BB84705006BE7D5 /* HCHttpProject.m */,
 				8BCAFBB81BB3F588003DE2A8 /* UtilConversion.h */,
 				8BCAFBB91BB3F588003DE2A8 /* UtilConversion.m */,
 			);
@@ -470,6 +432,7 @@
 				4EBF80AB1B93F98D00C0E099 /* Frameworks */,
 				4EBF80AC1B93F98D00C0E099 /* Resources */,
 				C41BC35738CD2C17891D3C08 /* Copy Pods Resources */,
+				AF7614C6466408D5583EFCDE /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -563,6 +526,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AF7614C6466408D5583EFCDE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C41BC35738CD2C17891D3C08 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -613,10 +591,8 @@
 				8B63318C1BB912FD006BE7D5 /* CustomPlan.m in Sources */,
 				8BA6A9071B9C796E00537F67 /* TempretureSetModel.m in Sources */,
 				4E4E5E7C1BA033E4008C594E /* SelectWeekView.m in Sources */,
-				8B6331891BB84705006BE7D5 /* HCHttpProject.m in Sources */,
 				8BF2ED541BC8B22E0040DBC5 /* NSString+NSStringHexToBytes.m in Sources */,
 				4EBBD9B31B9C1D3B003C6E2A /* HomeCollectionView.m in Sources */,
-				8B6331881BB84705006BE7D5 /* HCHttpManager.m in Sources */,
 				4ECAC5E01B9E826A00425190 /* UserMenuViewController.m in Sources */,
 				8BCAFBB51BB3D971003DE2A8 /* DeviceData.m in Sources */,
 				4EBBD9AB1B9C198E003C6E2A /* TCircleView.m in Sources */,

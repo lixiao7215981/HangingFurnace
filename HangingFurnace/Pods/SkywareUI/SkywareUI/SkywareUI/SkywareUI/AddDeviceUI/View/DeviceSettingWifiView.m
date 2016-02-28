@@ -30,7 +30,7 @@
 
 - (void)awakeFromNib
 {
-    SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+    SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
     [self.nextBtn setBackgroundColor:UIM.Device_button_bgColor == nil? UIM.All_button_bgColor : UIM.Device_button_bgColor];
     [self.cleanBtn setBackgroundColor:UIM.Device_button_bgColor == nil? UIM.All_button_bgColor : UIM.Device_button_bgColor];
     self.backgroundColor = UIM.Device_view_bgColor == nil? UIM.All_view_bgColor : UIM.Device_view_bgColor;
@@ -45,7 +45,7 @@
     if ([BaseNetworkTool isConnectWIFI]) {
         self.wifiSSID.text = [SkywareDeviceTool getWiFiSSID];
     }else{
-        self.connectLabel.text = @"请先连接WiFi";
+        self.connectLabel.text = kMessageDeviceLinkWiFi;
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChange:) name:kReachabilityChangedNotification object:nil];
 }
@@ -62,14 +62,14 @@
     if([BaseNetworkTool isConnectWIFI]){
         NSString *key = self.wifiPassword.text;
         if (!key.length) {
-            [SVProgressHUD showErrorWithStatus:@"请输入WiFi密码"];
+            [SVProgressHUD showErrorWithStatus:kMessageDeviceWriteWiFiPassword];
             return;
         }
         if (self.option) {
             self.option();
         }
     }else{
-        [SVProgressHUD showErrorWithStatus:@"请先连接WiFi"];
+        [SVProgressHUD showErrorWithStatus:kMessageDeviceLinkWiFi];
     }
 }
 
@@ -91,13 +91,13 @@
 - (void) networkChange: (NSNotification*)note {
     Reachability * reach = [note object];
     if (reach.isReachableViaWiFi) {
-        self.connectLabel.text = @"手机连接到WiFi";
+        self.connectLabel.text = kMessageDeviceAlreadyLinkWiFi;
         self.wifiSSID.text = [SkywareDeviceTool getWiFiSSID];
         return;
     }
     
     if (reach.isReachableViaWWAN) {
-        self.connectLabel.text = @"请先连接WiFi";
+        self.connectLabel.text = kMessageDeviceLinkWiFi;
         self.wifiSSID.text = @"";
         return;
     }

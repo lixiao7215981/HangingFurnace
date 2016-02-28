@@ -1,5 +1,5 @@
 //
-//  SkywareHttpTool.m
+//  self.m
 //  RoyalTeapot
 //
 //  Created by 李晓 on 15/7/16.
@@ -12,18 +12,16 @@
 
 + (void)ErrorLogDispose:(NSError *)error
 {
-    [SVProgressHUD dismiss];
-    NSLog(@"errorCode = %ld",error.code);
-    NSLog(@"Error = %@",error);
+    NSLog(@"HTTP_Error = %@",error);
     /**
      *  有可能报 Code = 1011  服务器错误
      */
     if (error.code == -1001) {
         [SVProgressHUD showErrorWithStatus:@"网络不给力 请检查网络设置"];
-    }else if(error.code == -1011){
-        // 连接数过多，暂不处理
+    }else if(error.code == -1011){        // 连接数过多
+        [SVProgressHUD showErrorWithStatus:@"网络拥挤 请稍后重试"];
     }else{
-        [SVProgressHUD showErrorWithStatus:@"请求失败 请稍后重试"];
+        [SVProgressHUD showErrorWithStatus:@"请求失败 请稍后再试"];
     }
 }
 
@@ -36,7 +34,7 @@
  */
 +(void) responseHttpToolWithJson:(id)json Success:(void(^)(SkywareResult *result)) success failure:(void (^)(SkywareResult *result)) failure
 {
-    SkywareResult *result = [SkywareResult objectWithKeyValues:json];
+    SkywareResult *result = [SkywareResult mj_objectWithKeyValues:json];
     NSInteger message = [result.message integerValue];
     if (message == request_frequently) {
         [SVProgressHUD showInfoWithStatus:@"亲～慢点我快顶不住了..."];
@@ -58,9 +56,8 @@
 
 +(void)HttpToolGetWithUrl:(NSString *)url paramesers:(NSArray *)parameser requestHeaderField:(NSDictionary *) header SuccessJson:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
-    NSString *URL = [SkywareHttpTool getURLWithRUL:url AndParamesers:parameser];
-    [HttpTool HttpToolGetWithUrl: URL paramesers:nil requestHeaderField:[SkywareHttpTool getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
+    NSString *URL = [self getURLWithRUL:url AndParamesers:parameser];
+    [HttpTool HttpToolGetWithUrl: URL paramesers:nil requestHeaderField:[self getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
         if (success) {
             success(json);
         }
@@ -68,16 +65,13 @@
         if (failure) {
             failure(error);
         }
-        [SkywareHttpTool ErrorLogDispose:error];
     }];
 }
 
 
 + (void)HttpToolPostWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser requestHeaderField:(NSDictionary *) header SuccessJson:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
-    NSString *URL = [SkywareHttpTool getEncryptURLWithRUL:url];
-    [HttpTool HttpToolPostWithUrl:URL paramesers:parameser requestHeaderField:[SkywareHttpTool getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
+    [HttpTool HttpToolPostWithUrl:[self getEncryptURLWithRUL:url] paramesers:parameser requestHeaderField:[self getSignatureWithRequestHeader:header URL:url] Serializer:JSONResponseSerializer Success:^(id json) {
         if (success) {
             success(json);
         }
@@ -85,15 +79,13 @@
         if (failure) {
             failure(error);
         }
-        [SkywareHttpTool ErrorLogDispose:error];
     }];
 }
 
 +(void)HttpToolPutWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser requestHeaderField:(NSDictionary *) header SuccessJson:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
-    NSString *URL = [SkywareHttpTool getEncryptURLWithRUL:url];
-    [HttpTool HttpToolPutWithUrl:URL paramesers:parameser requestHeaderField:[SkywareHttpTool getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
+    NSString *URL = [self getEncryptURLWithRUL:url];
+    [HttpTool HttpToolPutWithUrl:URL paramesers:parameser requestHeaderField:[self getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
         if (success) {
             success(json);
         }
@@ -101,15 +93,13 @@
         if (failure) {
             failure(error);
         }
-        [SkywareHttpTool ErrorLogDispose:error];
     }];
 }
 
 + (void)HttpToolDeleteWithUrl:(NSString *)url paramesers:(NSArray *)parameser requestHeaderField:(NSDictionary *) header SuccessJson:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
-    NSString *URL = [SkywareHttpTool getURLWithRUL:url AndParamesers:parameser];
-    [HttpTool HttpToolDeleteWithUrl: URL paramesers:nil requestHeaderField:[SkywareHttpTool getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
+    NSString *URL = [self getURLWithRUL:url AndParamesers:parameser];
+    [HttpTool HttpToolDeleteWithUrl: URL paramesers:nil requestHeaderField:[self getSignatureWithRequestHeader:header URL:URL] Serializer:JSONResponseSerializer Success:^(id json) {
         if (success) {
             success(json);
         }
@@ -117,16 +107,13 @@
         if (failure) {
             failure(error);
         }
-        [SkywareHttpTool ErrorLogDispose:error];
     }];
 }
 
 
 + (void)HttpToolUploadWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser requestHeaderField:(NSDictionary *) header Data:(NSData *)data Name:(NSString *)name FileName:(NSString *) fileName MainType:(NSString *)mainType SuccessJson:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD showWithStatus:@"正在上传..."];
-    
-    [HttpTool HttpToolPostWithUrl:[SkywareHttpTool getEncryptURLWithRUL:url] paramesers:parameser requestHeaderField:[SkywareHttpTool getSignatureWithRequestHeader:header URL:url] Data:data Name:name FileName:fileName MainType:mainType Success:^(id json) {
+    [HttpTool HttpToolPostWithUrl:[self getEncryptURLWithRUL:url] paramesers:parameser requestHeaderField:[self getSignatureWithRequestHeader:header URL:url] Data:data Name:name FileName:fileName MainType:mainType Success:^(id json) {
         if (success) {
             success(json);
         }
@@ -134,7 +121,6 @@
         if (failure) {
             failure(error);
         }
-        [SkywareHttpTool ErrorLogDispose:error];
     }];
 }
 

@@ -54,7 +54,7 @@
 {
     [self.code reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark *pacemark = [placemarks firstObject];
-        UserAddressModel *address = [UserAddressModel objectWithKeyValues:pacemark.addressDictionary];
+        UserAddressModel *address = [UserAddressModel mj_objectWithKeyValues:pacemark.addressDictionary];
         if (userAddress) {
             userAddress(address);
         }

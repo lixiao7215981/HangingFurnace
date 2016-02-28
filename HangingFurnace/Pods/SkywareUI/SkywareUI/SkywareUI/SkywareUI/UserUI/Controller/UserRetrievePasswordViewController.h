@@ -7,11 +7,14 @@
 //
 
 #import "BaseViewController.h"
-#import "SkywareUIInstance.h"
+#import "SkywareUIManager.h"
 #import "MessageCodeTool.h"
 #import "TimeButton.h"
 #import <NSString+RegularExpression.h>
 
+/**
+ *  找回密码
+ */
 @interface UserRetrievePasswordViewController : BaseViewController
 
 @end

@@ -29,11 +29,12 @@ static NSMutableDictionary *_subscribeDic;
 + (void) CreateMQTTSection
 {
     // 创建 MQTT
-    SkywareInstanceModel *instance = [SkywareInstanceModel sharedSkywareInstanceModel];
-    NSString *clintId = [NSString stringWithFormat:@"%ld",instance.app_id];
+    SkywareSDKManager *manager = [SkywareSDKManager sharedSkywareSDKManager];
+    NSString *clintId = [NSString stringWithFormat:@"%ld",manager.app_id];
     _secction = [[MQTTSession alloc] initWithClientId: clintId];
     [_secction setDelegate:[MQTT_Tool sharedMQTT_Tool]];
-    [_secction connectAndWaitToHost:kMQTTServerHost port:1883 usingSSL:NO];
+    NSString *serviceURL = [NSString stringWithFormat:kMQTTServerHost,[SkywareSDKManager sharedSkywareSDKManager].service];
+    [_secction connectAndWaitToHost:serviceURL port:1883 usingSSL:NO];
     
     if (_subscribeDic.count) {
         [_subscribeDic enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL *stop) {

@@ -164,7 +164,7 @@
 - (NSArray *)dataWeekNumber
 {
     if (!_dataWeekNumber) {
-        _dataWeekNumber = @[@"",@(1),@(2),@(3),@(4),@(5),@(6),@(0)];
+        _dataWeekNumber = @[@"",@(1),@(2),@(3),@(4),@(5),@(6),@(7)];
     }
     return _dataWeekNumber;
 }

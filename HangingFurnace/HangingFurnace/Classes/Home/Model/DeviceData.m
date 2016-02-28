@@ -16,7 +16,7 @@ static const long  valueLengthStep = 2;
 -(instancetype)initWithBase64String:(NSString *)base64String
 {
         self = [super init];
-        if (self ) {
+        if (self) {
             [self initObject];
             NSString *cmdKey;
             NSString *cmdValue;
@@ -95,7 +95,7 @@ static const long  valueLengthStep = 2;
                     lengthValue = valueLengthStep;
                     loctionStar+=kLength;
                     cmdValue = [base64String substringWithRange:NSMakeRange(loctionStar, lengthValue)];
-                    [self setCmdSeasonWinter:cmdValue];
+//                    [self setCmdSeasonWinter:cmdValue];
                 }
                 loctionStar+=lengthValue;
             }

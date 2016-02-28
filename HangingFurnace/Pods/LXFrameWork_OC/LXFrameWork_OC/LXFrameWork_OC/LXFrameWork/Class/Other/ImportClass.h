@@ -17,7 +17,7 @@
 
 // 全局使用的分类引用
 #ifdef __OBJC__
-#import "LXFrameWorkInstance.h"
+#import "LXFrameWorkManager.h"
 #import "NSString+Hash.h"
 #import "UIView+Extension.h"
 #import "NSString+Extension.h"
@@ -25,6 +25,7 @@
 #import "UITextView+Extension.h"
 #import "NSString+Extension.h"
 #import "NSDate+Extension.h"
+#import "UIColor+Extension.h"
 #import "UIWindow+Extension.h"
 #import "NSString+RegularExpression.h"
 

@@ -24,7 +24,7 @@
 
 - (void)awakeFromNib
 {
-    SkywareUIInstance *UIM = [SkywareUIInstance sharedSkywareUIInstance];
+    SkywareUIManager *UIM = [SkywareUIManager sharedSkywareUIManager];
     [self.registerBtn setBackgroundColor:UIM.User_button_bgColor == nil? UIM.All_button_bgColor : UIM.User_button_bgColor];
     self.backgroundColor = UIM.User_view_bgColor == nil ? UIM.All_view_bgColor :UIM.User_view_bgColor;
 }
@@ -53,8 +53,9 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setObject:phone forKey:@"login_id"];
     [dict setObject:self.password.text forKey:@"login_pwd"];
-    [SkywareUserManagement UserRegisterWithParamesers:dict Success:^(SkywareResult *result) {
-        [SVProgressHUD showSuccessWithStatus:@"恭喜您!注册成功"];
+    [SVProgressHUD show];
+    [SkywareUserManager UserRegisterWithParamesers:dict Success:^(SkywareResult *result) {
+        [SVProgressHUD showSuccessWithStatus:kMessageUserRegisterSuccess];
         [Delegate.navigationController popToRootViewControllerAnimated:YES];
     } failure:^(SkywareResult *result) {
         [SVProgressHUD showErrorWithStatus:@"网络不给力,请稍后重试"];

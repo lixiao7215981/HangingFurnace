@@ -1,2 +1,4 @@
 platform :ios, '7.0'
-pod 'SkywareUI'/Users/ybyao07
+pod 'SkywareUI'
+pod 'Pgyer'
+pod 'PgyUpdate'

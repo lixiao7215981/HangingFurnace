@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  将字符串进行加密
+ */
 @interface NSString (Hash)
 
 @property (readonly) NSString *md5String;

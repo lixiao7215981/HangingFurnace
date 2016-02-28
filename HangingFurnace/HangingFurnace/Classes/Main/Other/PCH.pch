@@ -52,6 +52,8 @@
 #define ServersURL @"http://v1.skyware.com.cn/api"
 #define kSearchPlan(DeviceId)  [NSString stringWithFormat:@"cronJob/%@",DeviceId]
 
+//设备离线
+#define DeviceOffLine @"请检查：\n1.设备是否连接电源；\n2.WiFi是否正常；\n3.请尝试重新配置WiFi；\n当检查完毕，请重新刷新；"
 
 #endif
 #endif

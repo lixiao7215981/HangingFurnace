@@ -20,7 +20,7 @@
 /*** 用户token */
 @property (nonatomic,copy) NSString *token;
 
-/*** 返回的状态码 */
+/*** 返回的状态消息 */
 @property (nonatomic,copy) NSString *message;
 
 /*** 用户登录ID(用户手机号) */
